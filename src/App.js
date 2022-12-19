@@ -1,5 +1,8 @@
+import { useAppContext } from "./context/useAppContext";
+
 function App() {
-  return <div className="App">yo</div>;
+  const { name } = useAppContext();
+  return <div className="App">yo {name}</div>;
 }
 
 export default App;
