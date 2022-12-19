@@ -5,9 +5,12 @@
   display: flex;
   justify-content: space-between;
   height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 .search-section input {
-  width: 70%;
+  width: 60%;
   outline: none;
   border: 3px solid #cc0000;
   background-color: transparent;
@@ -18,11 +21,17 @@
 }
 
 .search-section button {
-  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
   border-radius: 5px;
   background-color: transparent;
   border: 3px solid #cc0000;
   cursor: pointer;
-  color: white;
-  font-weight: bold;
+}
+.search-section button img {
+  width: 20px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
+    contrast(103%);
 }
