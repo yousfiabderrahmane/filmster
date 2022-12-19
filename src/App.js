@@ -1,8 +1,9 @@
 import { useAppContext } from "./context/useAppContext";
+import Search from "./components/Search";
 
 function App() {
   const { name } = useAppContext();
-  return <div className="App">yo {name}</div>;
+  return <Search />;
 }
 
 export default App;

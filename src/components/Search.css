@@ -1,0 +1,28 @@
+.search-section {
+  padding-top: 10%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+}
+.search-section input {
+  width: 70%;
+  outline: none;
+  border: 3px solid #cc0000;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+.search-section button {
+  width: 20%;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 3px solid #cc0000;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
