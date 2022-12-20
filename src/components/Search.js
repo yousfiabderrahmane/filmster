@@ -1,6 +1,6 @@
 import "./Search.css";
 import { useAppContext } from "../context/useAppContext";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import SearchIcon from "../assets/search.svg";
 import FavIcon from "../assets/favorite.svg";
 import TrendIcon from "../assets/trending.svg";
@@ -23,6 +23,9 @@ export default function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!searchValue.current.value) {
+      searchValue.current.focus();
+    }
     setSearchTerm(searchValue.current.value);
   };
   return (

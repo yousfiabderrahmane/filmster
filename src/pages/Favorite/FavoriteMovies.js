@@ -1,5 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import MovieCard from "../../components/MovieCard";
+import { useAppContext } from "../../context/useAppContext";
+import "./FavoriteMovies.css";
 
 export default function FavoriteMovies() {
-  return <div>FavoriteMovies</div>;
+  const { favList, setFavList } = useAppContext();
+  const navigate = useNavigate();
+
+  const handleClear = () => {
+    setFavList([]);
+  };
+  return (
+    <section className="favorite-movies-page">
+      <div className="favorite-page-header">
+        <h2>My Favorite Movies</h2>
+        <button onClick={handleClear}>Clear</button>
+        <button onClick={() => navigate("/")}>Back Home</button>
+      </div>
+      <div className="favorite-page-list">
+        {favList &&
+          favList.map((movie) => {
+            return <MovieCard movie={movie} />;
+          })}
+      </div>
+    </section>
+  );
 }

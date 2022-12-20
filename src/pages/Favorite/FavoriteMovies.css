@@ -1,0 +1,36 @@
+.favorite-movies-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.favorite-page-header {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  color: white;
+}
+.favorite-page-header button {
+  padding: 5px;
+  height: 50%;
+  background: transparent;
+  border: 2px solid #cc0000;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.favorite-page-header button:hover {
+  transform: scale(1.1);
+}
+.favorite-page-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
