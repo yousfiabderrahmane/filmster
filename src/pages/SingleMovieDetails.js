@@ -9,6 +9,7 @@ export default function SingleMovieDetails() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [movie, setMovie] = useState(null);
+  const [key, setKey] = useState(null);
 
   //temporary
   const [isFavorite, setIsFavorite] = useState(false);
@@ -28,7 +29,6 @@ export default function SingleMovieDetails() {
         `https://api.themoviedb.org/3/movie/${id}?api_key=19dc8c994b8ef838ba65a40c5ea44444`
       );
       const data = await response.json();
-      console.log(data);
 
       //deja chekina f context just in case bdl chi wa7d l id manually
       if (data.poster_path != null) {
@@ -53,24 +53,38 @@ export default function SingleMovieDetails() {
       setIsPending(false);
     }
   };
+
+  //get trailer key
+  const getTrailerKey = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+    );
+    const data = await response.json();
+    setKey(data.results[0].key);
+  };
   useEffect(() => {
     fetchMovieById();
+    getTrailerKey();
   }, []);
+
   return (
     <>
       {isPending && <p className="info">Loading ...</p>}
       {error && <p className="info">{error}</p>}
-      {movie && (
+      {movie && key && (
         <section className="single-movie-page">
           <button className="close-me">
             <img onClick={() => navigate("/")} src={Close} alt="" />
           </button>
           <div className="left">
-            <img
-              className="poster"
-              src={`${IMAGE_URL}${movie.poster_path}`}
-              alt=""
-            />
+            <div className="image-container">
+              <img
+                className="poster"
+                src={`${IMAGE_URL}${movie.poster_path}`}
+                alt=""
+              />
+            </div>
+
             <div className="add-to-fav">
               <p>Add to favourites :</p>
               <img
@@ -118,6 +132,15 @@ export default function SingleMovieDetails() {
             </div>
             <div className="trailer">
               <h3>Trailer</h3>
+              <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${key}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
             </div>
           </div>
         </section>

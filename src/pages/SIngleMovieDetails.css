@@ -8,6 +8,9 @@
   color: white;
   position: relative;
 }
+.image-container {
+  height: 50%;
+}
 .close-me {
   position: absolute;
   top: 0;
@@ -22,6 +25,7 @@
 }
 .single-movie-page h3 {
   font-weight: bolder;
+  margin-bottom: 10px;
 }
 .single-movie-page .left {
   flex-basis: 20%;
@@ -31,7 +35,7 @@
 }
 .single-movie-page .left .poster {
   width: 100%;
-  height: 70%;
+  height: 100%;
   border-radius: 5px;
   border: 2px solid #cc0000;
   box-shadow: 0 0 0.5rem rgba(255, 0, 0, 1);
@@ -66,4 +70,9 @@
 }
 .add-to-fav img:hover {
   transform: scale(1.1);
+}
+.trailer iframe {
+  border: 2px solid #cc0000;
+  box-shadow: 0 0 0.5rem rgba(255, 0, 0, 1);
+  border-radius: 5px;
 }
