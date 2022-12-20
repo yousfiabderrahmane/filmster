@@ -11,7 +11,6 @@ export default function ContextProvider({ children }) {
 
   const [favList, setFavList] = useState([]);
 
-  console.log(favList);
   const getTrendingMovies = async () => {
     setError(null);
     setIsPending(true);

@@ -15,8 +15,9 @@ export default function MovieCard({ movie }) {
     const names = favList.map((i) => {
       return i.original_title;
     });
+
     //nchecki ila kan had lmovie kayna, la kayna manzidhach ;)
-    console.log(names);
+    //flwl kikom empty so names braso makaynch
     if (favList.length < 1) {
       setFavList([...favList, movie]);
     } else if (!names.includes(movie.original_title)) {
