@@ -1,11 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./SIngleMovieDetails.css";
+import Close from "../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
+import FavIcon from "../assets/favorite.svg";
+import RedHeart from "../assets/red-heart-icon.svg";
 
 export default function SingleMovieDetails() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [movie, setMovie] = useState(null);
+
+  //temporary
+  const [isFavorite, setIsFavorite] = useState(false);
 
   //to get the urls
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500`;
@@ -52,18 +58,32 @@ export default function SingleMovieDetails() {
   }, []);
   return (
     <>
-      <button onClick={() => navigate("/")}>Go back home</button>
       {isPending && <p className="info">Loading ...</p>}
       {error && <p className="info">{error}</p>}
       {movie && (
         <section className="single-movie-page">
+          <button className="close-me">
+            <img onClick={() => navigate("/")} src={Close} alt="" />
+          </button>
           <div className="left">
-            <img src={`${IMAGE_URL}${movie.poster_path}`} alt="" />
+            <img
+              className="poster"
+              src={`${IMAGE_URL}${movie.poster_path}`}
+              alt=""
+            />
+            <div className="add-to-fav">
+              <p>Add to favourites :</p>
+              <img
+                onClick={() => setIsFavorite(!isFavorite)}
+                src={isFavorite ? RedHeart : FavIcon}
+                alt=""
+              />
+            </div>
           </div>
           <div className="right">
             <div className="titles">
               <h1>{movie.title}</h1>
-              <h4>{movie.tagline}</h4>
+              <h5>{movie.tagline}</h5>
             </div>
 
             <div className="details">
@@ -97,7 +117,7 @@ export default function SingleMovieDetails() {
               <p>{movie.overview}</p>
             </div>
             <div className="trailer">
-              <h4>Trailer</h4>
+              <h3>Trailer</h3>
             </div>
           </div>
         </section>
