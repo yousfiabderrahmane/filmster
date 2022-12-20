@@ -9,8 +9,8 @@
   padding-right: 20px;
   padding-bottom: 20px;
 }
-.search-section input {
-  width: 60%;
+.search-section form input {
+  width: 80%;
   outline: none;
   border: 3px solid #cc0000;
   background-color: transparent;
@@ -19,7 +19,14 @@
   font-weight: bold;
   color: white;
 }
-
+.search-section form input:focus {
+  box-shadow: 0 0 0.8rem rgba(255, 0, 0, 1);
+}
+form {
+  width: 75%;
+  display: flex;
+  gap: 10px;
+}
 .search-section button {
   display: flex;
   align-items: center;
@@ -29,6 +36,10 @@
   background-color: transparent;
   border: 3px solid #cc0000;
   cursor: pointer;
+  transition: all 0.3s;
+}
+.search-section button:hover {
+  box-shadow: 0 0 0.8rem rgba(255, 0, 0, 1);
 }
 .search-section button img {
   width: 20px;

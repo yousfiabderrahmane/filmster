@@ -2,17 +2,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./SIngleMovieDetails.css";
 import Close from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
-import FavIcon from "../../assets/favorite.svg";
-import RedHeart from "../../assets/red-heart-icon.svg";
+
+import { useAppContext } from "../../context/useAppContext";
 
 export default function SingleMovieDetails() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [movie, setMovie] = useState(null);
   const [key, setKey] = useState(null);
-
-  //temporary
-  const [isFavorite, setIsFavorite] = useState(false);
 
   //to get the urls
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500`;
@@ -73,7 +70,7 @@ export default function SingleMovieDetails() {
       {error && (
         <div className="error-redirect">
           <p className="info">{error}</p>
-          <button onClick={() => navigate("/trending")}>Back To Trends</button>
+          <button onClick={() => navigate(-1)}>Back</button>
         </div>
       )}
       {movie && (
@@ -86,15 +83,6 @@ export default function SingleMovieDetails() {
               <img
                 className="poster"
                 src={`${IMAGE_URL}${movie.poster_path}`}
-                alt=""
-              />
-            </div>
-
-            <div className="add-to-fav">
-              <p>Add to favourites :</p>
-              <img
-                onClick={() => setIsFavorite(!isFavorite)}
-                src={isFavorite ? RedHeart : FavIcon}
                 alt=""
               />
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { createContext, Provider, useState } from "react";
 export const AppContext = createContext();
 
@@ -9,6 +9,9 @@ export default function ContextProvider({ children }) {
   const [error, setError] = useState(null);
   const [movies, setMovies] = useState(null);
 
+  const [favList, setFavList] = useState([]);
+
+  console.log(favList);
   const getTrendingMovies = async () => {
     setError(null);
     setIsPending(true);
@@ -38,11 +41,17 @@ export default function ContextProvider({ children }) {
       //check wach results machi empty array
       if (results.length > 0) {
         //check ila 3ndhom poster image
-        setList(
-          results.filter((i) => {
-            return i.poster_path != null;
-          })
-        );
+        const filtredList = results.filter((i) => {
+          return i.poster_path != null;
+        });
+
+        setList(filtredList);
+
+        // old way : setList(
+        //   results.filter((i) => {
+        //     return i.poster_path != null;
+        //   })
+        // );
         setIsPending(false);
       } else {
         setError("The is no movies to display for that specific search term");
@@ -70,6 +79,8 @@ export default function ContextProvider({ children }) {
         list,
         isPending,
         error,
+        favList,
+        setFavList,
       }}
     >
       {children}

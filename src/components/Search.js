@@ -21,7 +21,8 @@ export default function Search() {
     navigate("/trending");
   };
 
-  const handleClick = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setSearchTerm(searchValue.current.value);
   };
   return (
@@ -32,14 +33,16 @@ export default function Search() {
       <button onClick={favRedirect}>
         <img src={FavIcon} alt="" />
       </button>
-      <input
-        ref={searchValue}
-        type="text"
-        placeholder="Search For A Movie..."
-      />
-      <button onClick={handleClick}>
-        <img src={SearchIcon} alt="" />
-      </button>
+      <form onSubmit={handleSubmit}>
+        <input
+          ref={searchValue}
+          type="text"
+          placeholder="Search For A Movie..."
+        />
+        <button>
+          <img src={SearchIcon} alt="" />
+        </button>
+      </form>
     </section>
   );
 }
