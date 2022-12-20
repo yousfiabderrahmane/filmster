@@ -2,9 +2,9 @@ import { useAppContext } from "./context/useAppContext";
 import Search from "./components/Search";
 import MoviesList from "./components/MoviesList";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import SingleMovieDetails from "./pages/SingleMovieDetails";
-import TrendingMovies from "./components/TrendingMovies";
-import FavoriteMovies from "./components/FavoriteMovies";
+import SingleMovieDetails from "./pages/SingleMovie/SingleMovieDetails";
+import TrendingMovies from "./pages/Trending/TrendingMovies";
+import FavoriteMovies from "./pages/Favorite/FavoriteMovies";
 import "./index.css";
 
 function App() {

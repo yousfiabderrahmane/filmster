@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./SIngleMovieDetails.css";
-import Close from "../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
-import FavIcon from "../assets/favorite.svg";
-import RedHeart from "../assets/red-heart-icon.svg";
+import Close from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
+import FavIcon from "../../assets/favorite.svg";
+import RedHeart from "../../assets/red-heart-icon.svg";
 
 export default function SingleMovieDetails() {
   const [isPending, setIsPending] = useState(false);
@@ -37,7 +37,7 @@ export default function SingleMovieDetails() {
         setError(null);
       } else {
         setIsPending(false);
-        setError("Oops, seems like the movie doesn't exist");
+        setError("Oops, seems like the movie details doesn't exist yet");
         //bach ila movie id makaynach wl9a dik proprety success ykon nfs l err message maytbdl en deux deux
       }
 
@@ -45,11 +45,11 @@ export default function SingleMovieDetails() {
       if (data.hasOwnProperty("success")) {
         setMovie(null);
         setIsPending(false);
-        setError("Oops, seems like the movie doesn't exist");
+        setError("Oops, seems like the movie details doesn't exist yet");
       }
     } catch (err) {
       console.log(err);
-      setError("Oops, seems like the movie doesn't exist");
+      setError("Oops, seems like the movie details doesn't exist yet");
       setIsPending(false);
     }
   };
@@ -70,14 +70,19 @@ export default function SingleMovieDetails() {
   return (
     <>
       {isPending && <p className="info">Loading ...</p>}
-      {error && <p className="info">{error}</p>}
-      {movie && key && (
+      {error && (
+        <div className="error-redirect">
+          <p className="info">{error}</p>
+          <button onClick={() => navigate("/trending")}>Back To Trends</button>
+        </div>
+      )}
+      {movie && (
         <section className="single-movie-page">
           <button className="close-me">
-            <img onClick={() => navigate("/")} src={Close} alt="" />
+            <img onClick={() => navigate(-1)} src={Close} alt="" />
           </button>
           <div className="left">
-            <div className="image-container">
+            <div style={{ height: !key && "100%" }} className="image-container">
               <img
                 className="poster"
                 src={`${IMAGE_URL}${movie.poster_path}`}
@@ -130,18 +135,20 @@ export default function SingleMovieDetails() {
               <h3>Overview</h3>
               <p>{movie.overview}</p>
             </div>
-            <div className="trailer">
-              <h3>Trailer</h3>
-              <iframe
-                width="560"
-                height="315"
-                src={`https://www.youtube.com/embed/${key}`}
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
+            {key && (
+              <div className="trailer">
+                <h3>Trailer</h3>
+                <iframe
+                  width="560"
+                  height="315"
+                  src={`https://www.youtube.com/embed/${key}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            )}
           </div>
         </section>
       )}

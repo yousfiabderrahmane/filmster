@@ -7,7 +7,25 @@ export default function ContextProvider({ children }) {
   const [list, setList] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
+  const [movies, setMovies] = useState(null);
 
+  const getTrendingMovies = async () => {
+    setError(null);
+    setIsPending(true);
+    try {
+      const response = await fetch(
+        "https://api.themoviedb.org/3/trending/all/day?api_key=19dc8c994b8ef838ba65a40c5ea44444"
+      );
+      const data = await response.json();
+      const { results } = data;
+      setMovies(results);
+      setError(null);
+      setIsPending(false);
+    } catch (err) {
+      setError("We could not fetch the data x)");
+      console.log(err);
+    }
+  };
   const getMovieByName = async () => {
     setIsPending(true);
     setError(null);
@@ -37,7 +55,6 @@ export default function ContextProvider({ children }) {
       setList(null);
     }
   };
-
   useEffect(() => {
     //empty string falsy :)
     if (searchTerm) {
@@ -45,7 +62,16 @@ export default function ContextProvider({ children }) {
     }
   }, [searchTerm]);
   return (
-    <AppContext.Provider value={{ setSearchTerm, list, isPending, error }}>
+    <AppContext.Provider
+      value={{
+        movies,
+        getTrendingMovies,
+        setSearchTerm,
+        list,
+        isPending,
+        error,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

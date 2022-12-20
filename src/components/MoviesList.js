@@ -12,7 +12,7 @@ export default function MoviesList() {
       <section className="movies-list">
         {list &&
           list.map((item, index) => {
-            return <MovieCard index={index} />;
+            return <MovieCard key={item.id} index={index} />;
           })}
       </section>
     </>
