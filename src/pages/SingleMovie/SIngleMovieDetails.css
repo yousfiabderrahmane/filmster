@@ -1,0 +1,103 @@
+.single-movie-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  position: relative;
+}
+.image-container {
+  height: 50%;
+}
+.close-me {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+}
+.close-me img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
+    contrast(103%);
+  cursor: pointer;
+}
+.single-movie-page h3 {
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+.single-movie-page .left {
+  flex-basis: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.single-movie-page .left .poster {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 2px solid #cc0000;
+  box-shadow: 0 0 0.5rem rgba(255, 0, 0, 1);
+}
+.single-movie-page .right {
+  flex-basis: 75%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.details {
+  width: 40%;
+}
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.right p {
+  font-size: 14px;
+  /* font-weight: inherit; */
+}
+.add-to-fav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-to-fav img {
+  height: 25px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.add-to-fav img:hover {
+  transform: scale(1.1);
+}
+.trailer iframe {
+  border: 2px solid #cc0000;
+  box-shadow: 0 0 0.5rem rgba(255, 0, 0, 1);
+  border-radius: 5px;
+}
+.error-redirect {
+  display: flex;
+  max-width: 1200px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.error-redirect .info {
+  margin: 0;
+}
+.error-redirect button {
+  cursor: pointer;
+  height: 50%;
+  border-radius: 5px;
+  border: 2px solid #cc0000;
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  transition: all 0.5s;
+}
+.error-redirect button:hover {
+  transform: scale(1.1);
+}
