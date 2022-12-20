@@ -10,8 +10,10 @@ export default function Search() {
   const { setSearchTerm } = useAppContext();
 
   const searchValue = useRef();
+
   const navigate = useNavigate();
 
+  //navigation
   const favRedirect = () => {
     navigate("/favorite");
   };

@@ -17,6 +17,7 @@ export default function ContextProvider({ children }) {
       );
       const data = await response.json();
       const { results } = data;
+      //check wach results machi empty array
       if (results.length > 0) {
         //check ila 3ndhom poster image
         setList(
@@ -36,7 +37,6 @@ export default function ContextProvider({ children }) {
       setList(null);
     }
   };
-  console.log(list);
 
   useEffect(() => {
     //empty string falsy :)
