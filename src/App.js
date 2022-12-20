@@ -24,6 +24,15 @@ function App() {
           <Route path="/movie/:id" element={<SingleMovieDetails />} />
           <Route path="/trending" element={<TrendingMovies />} />
           <Route path="/favorite" element={<FavoriteMovies />} />
+          <Route
+            path="*"
+            element={
+              <>
+                <Search />
+                <MoviesList />
+              </>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

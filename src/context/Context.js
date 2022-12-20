@@ -1,5 +1,5 @@
-import React, { useEffect, useReducer } from "react";
-import { createContext, Provider, useState } from "react";
+import React, { useEffect } from "react";
+import { createContext, useState } from "react";
 export const AppContext = createContext();
 
 export default function ContextProvider({ children }) {
@@ -10,9 +10,9 @@ export default function ContextProvider({ children }) {
   const [movies, setMovies] = useState(null);
 
   const [favList, setFavList] = useState([]);
-
+  console.log(favList);
   const getTrendingMovies = async () => {
-    setError(null);
+    setError(null); //in case chi error
     setIsPending(true);
     try {
       const response = await fetch(
@@ -35,40 +35,41 @@ export default function ContextProvider({ children }) {
       const response = await fetch(
         `https://api.themoviedb.org/3/search/movie?api_key=19dc8c994b8ef838ba65a40c5ea44444&query=${searchTerm}`
       );
-      const data = await response.json();
-      const { results } = data;
-      //check wach results machi empty array
-      if (results.length > 0) {
-        //check ila 3ndhom poster image
-        const filtredList = results.filter((i) => {
-          return i.poster_path != null;
-        });
+      if (response.ok) {
+        const data = await response.json();
+        const { results } = data;
+        //check wach results machi empty array
+        if (results.length > 0) {
+          //check ila 3ndhom poster image
+          const filtredList = results.filter((movie) => {
+            return movie.poster_path != null;
+          });
 
-        setList(filtredList);
-
-        // old way : setList(
-        //   results.filter((i) => {
-        //     return i.poster_path != null;
-        //   })
-        // );
+          setList(filtredList);
+        } else {
+          setError(
+            "There is no movies to display for that specific search term"
+          );
+          setList(null);
+        }
         setIsPending(false);
       } else {
-        setError("The is no movies to display for that specific search term");
-        setIsPending(false);
-        setList(null);
+        throw Error("Could not fetch data");
       }
     } catch (err) {
-      console.log(error);
+      console.log(err);
       setIsPending(false);
       setList(null);
     }
   };
+
   useEffect(() => {
     //empty string falsy :)
     if (searchTerm) {
       getMovieByName();
     }
   }, [searchTerm]);
+
   return (
     <AppContext.Provider
       value={{

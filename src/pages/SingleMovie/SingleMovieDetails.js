@@ -25,24 +25,28 @@ export default function SingleMovieDetails() {
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${id}?api_key=19dc8c994b8ef838ba65a40c5ea44444`
       );
-      const data = await response.json();
+      if (response.ok) {
+        const data = await response.json();
 
-      //deja chekina f context just in case bdl chi wa7d l id manually
-      if (data.poster_path != null) {
-        setMovie(data);
-        setIsPending(false);
-        setError(null);
+        //deja chekina f context just in case bdl chi wa7d l id manually
+        if (data.poster_path != null) {
+          setMovie(data);
+          setIsPending(false);
+          setError(null);
+        } else {
+          setIsPending(false);
+          setError("Oops, seems like the movie details doesn't exist yet");
+          //bach ila movie id makaynach wl9a dik proprety success ykon nfs l err message maytbdl en deux deux
+        }
+
+        //ila 3ndo dik success proprety rah mal9a walo meskin
+        if (data.hasOwnProperty("success")) {
+          setMovie(null);
+          setIsPending(false);
+          setError("Oops, seems like the movie details doesn't exist yet");
+        }
       } else {
-        setIsPending(false);
-        setError("Oops, seems like the movie details doesn't exist yet");
-        //bach ila movie id makaynach wl9a dik proprety success ykon nfs l err message maytbdl en deux deux
-      }
-
-      //ila 3ndo dik success proprety rah mal9a walo meskin
-      if (data.hasOwnProperty("success")) {
-        setMovie(null);
-        setIsPending(false);
-        setError("Oops, seems like the movie details doesn't exist yet");
+        throw Error("Could not fetch data");
       }
     } catch (err) {
       console.log(err);
