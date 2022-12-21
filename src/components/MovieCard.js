@@ -19,19 +19,19 @@ export default function MovieCard({ movie }) {
   };
 
   const handleAddFav = (movie) => {
-    const names = favList.map((i) => {
-      return i.original_title;
+    const IDS = favList.map((i) => {
+      return i.id;
     });
-
+    console.log(IDS);
     //nchecki ila kan had lmovie kayna, la kayna manzidhach ;)
     //flwl kikom empty so names braso makaynch
     if (favList.length < 1) {
       // setFavList([...favList, movie]);
       dispatch({ type: "UPDATE_FAVLIST", payload: [...favList, movie] });
-    } else if (!names.includes(movie.original_title)) {
+    } else if (!IDS.includes(movie.id)) {
       // setFavList([...favList, movie]);
       dispatch({ type: "UPDATE_FAVLIST", payload: [...favList, movie] });
-    } else if (names.includes(movie.original_title)) {
+    } else if (IDS.includes(movie.id)) {
       const newList = favList.filter((myMovie) => {
         return myMovie.id !== movie.id;
       });
