@@ -57,4 +57,10 @@
     color: white;
     margin-bottom: 30px;
   }
+  .btns button {
+    padding: 10px 15px;
+  }
+  .favorite-page-header button:hover {
+    transform: unset;
+  }
 }

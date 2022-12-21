@@ -50,6 +50,10 @@ form {
   color: white;
   font-weight: bold;
 }
+.left button {
+  display: flex;
+  gap: 10px;
+}
 .left button:hover {
   box-shadow: 0 0 0.8rem rgba(255, 0, 0, 1);
 }
@@ -83,5 +87,11 @@ form {
   }
   .right button:hover {
     filter: unset;
+  }
+  .left {
+    justify-content: center;
+  }
+  .left button {
+    padding: 10px;
   }
 }

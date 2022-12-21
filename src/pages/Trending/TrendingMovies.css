@@ -53,6 +53,9 @@
     margin-bottom: 30px;
     text-align: center;
   }
+  .page-header button {
+    padding: 10px 15px;
+  }
   .page-header button:hover {
     transform: unset;
   }
