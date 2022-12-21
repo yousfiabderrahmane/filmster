@@ -18,7 +18,12 @@ const contextReducer = (state, action) => {
     case "UPDATE_SEARCHTERM":
       return { ...state, searchTerm: action.payload };
     case "UPDATE_LIST":
-      return { ...state, error: null, isPending: false, list: action.payload };
+      return {
+        ...state,
+        error: null,
+        isPending: false,
+        list: action.payload,
+      };
     case "UPDATE_TRENDLIST":
       return {
         ...state,

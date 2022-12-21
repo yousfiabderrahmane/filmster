@@ -29,9 +29,6 @@
 }
 .single-movie-page .left {
   flex-basis: 20%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 .single-movie-page .left .poster {
   width: 100%;
@@ -71,8 +68,13 @@
 .add-to-fav img:hover {
   transform: scale(1.1);
 }
+.trailer {
+  width: 100%;
+}
 .trailer iframe {
   border: 2px solid #cc0000;
+  width: 100%;
+
   box-shadow: 0 0 0.5rem rgba(255, 0, 0, 1);
   border-radius: 5px;
 }
@@ -101,4 +103,31 @@
 }
 .error-redirect button:hover {
   transform: scale(1.1);
+}
+@media (max-width: 1000px) {
+  .single-movie-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    position: relative;
+    flex-direction: column;
+  }
+  .single-movie-page .left {
+    justify-content: center;
+  }
+  .details {
+    width: 100%;
+  }
+  .single-movie-page h1,
+  .single-movie-page h5 {
+    margin-top: 10px;
+    text-align: center;
+  }
+  .close-me img {
+    width: 60px;
+  }
 }

@@ -1,48 +1,87 @@
 .search-section {
   padding-top: 5%;
-  max-width: 500px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
   height: 40px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
 }
-.search-section form input {
-  width: 80%;
-  outline: none;
+.left {
+  display: flex;
+  gap: 10px;
+}
+.right {
+  width: 100%;
+  display: flex;
+}
+form {
   border: 3px solid #cc0000;
+  border-radius: 5px;
+
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+.search-section form input {
+  width: 100%;
+  outline: none;
+  border: 3px solid transparent;
   background-color: transparent;
   padding: 10px;
   border-radius: 5px;
   font-weight: bold;
   color: white;
 }
-.search-section form input:focus {
-  box-shadow: 0 0 0.8rem rgba(255, 0, 0, 1);
-}
-form {
-  width: 75%;
-  display: flex;
-  gap: 10px;
-}
+
 .search-section button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10%;
   border-radius: 5px;
   background-color: transparent;
   border: 3px solid #cc0000;
   cursor: pointer;
   transition: all 0.3s;
+  padding: 5px;
+  color: white;
+  font-weight: bold;
 }
-.search-section button:hover {
+.left button:hover {
   box-shadow: 0 0 0.8rem rgba(255, 0, 0, 1);
+}
+.right button {
+  border: 3px solid transparent;
+}
+.right button:hover {
+  filter: drop-shadow(0px 0px 8px #cc0000);
 }
 .search-section button img {
   width: 20px;
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
     contrast(103%);
+}
+@media (max-width: 600px) {
+  .search-section {
+    max-width: 1000px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 5%;
+  }
+  .left button:hover {
+    box-shadow: unset;
+  }
+  .right button:hover {
+    filter: unset;
+  }
 }

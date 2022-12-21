@@ -30,21 +30,28 @@ export default function Search() {
   };
   return (
     <section className="search-section">
-      <button onClick={TrendRedirect}>
-        <img src={TrendIcon} alt="" />
-      </button>
-      <button onClick={favRedirect}>
-        <img src={FavIcon} alt="" />
-      </button>
-      <form onSubmit={handleSubmit}>
-        <input
-          ref={searchValue}
-          type="text"
-          placeholder="Search For A Movie..."
-        />
-        <button>
-          <img src={SearchIcon} alt="" />
+      <div className="left">
+        <button onClick={TrendRedirect}>
+          Trending
+          <img src={TrendIcon} alt="" />
         </button>
+        <button onClick={favRedirect}>
+          Favorites
+          <img src={FavIcon} alt="" />
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        <div className="right">
+          <input
+            ref={searchValue}
+            type="text"
+            placeholder="Search For A Movie..."
+          />
+          <button>
+            <img src={SearchIcon} alt="" />
+          </button>
+        </div>
       </form>
     </section>
   );

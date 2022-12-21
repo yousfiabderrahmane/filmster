@@ -11,6 +11,10 @@
   gap: 30px;
   color: white;
 }
+.btns {
+  display: flex;
+  gap: 10px;
+}
 .favorite-page-header button {
   padding: 5px;
   height: 50%;
@@ -33,4 +37,24 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+@media (max-width: 900px) {
+  .favorite-page-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .favorite-page-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .favorite-page-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    margin-bottom: 30px;
+  }
 }

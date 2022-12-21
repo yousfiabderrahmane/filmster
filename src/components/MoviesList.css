@@ -11,7 +11,17 @@
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .movies-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .movies-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

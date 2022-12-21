@@ -4,6 +4,8 @@ import Star from "../assets/stars_FILL0_wght400_GRAD0_opsz48.svg";
 import { useNavigate } from "react-router-dom";
 import AddFavIcon from "../assets/AddToFav.svg";
 import { useAppContext } from "../context/useAppContext";
+import RateStar from "../assets/rating.svg";
+import RemoveFav from "../assets/removeFav.svg";
 
 export default function MovieCard({ movie }) {
   const { favList, dispatch } = useAppContext();
@@ -48,12 +50,14 @@ export default function MovieCard({ movie }) {
 
   return (
     <section className="movie-card">
-      <img
-        className="sticker"
-        src={isFavorite ? Star : AddFavIcon}
-        alt=""
-        onClick={() => handleAddFav(movie)}
-      />
+      <div className="sticker-container">
+        <img
+          className="sticker"
+          src={isFavorite ? RemoveFav : AddFavIcon}
+          alt=""
+          onClick={() => handleAddFav(movie)}
+        />
+      </div>
 
       <img
         onClick={handleNavigation}
@@ -63,10 +67,12 @@ export default function MovieCard({ movie }) {
       />
       <div className="overlay-info">
         <h4>{movie.original_title}</h4>{" "}
-        <h5>Released in : {movie.release_date}</h5>
+        {/* <h5 className="rating-flex">
+          <span>Released in :</span> <span>{movie.release_date}</span>{" "}
+        </h5> */}
         <p className="rating-flex">
           <span> {movie.vote_average} </span>
-          <img src={Star} alt="" />
+          <img src={RateStar} alt="" />
         </p>
       </div>
     </section>

@@ -15,8 +15,11 @@ export default function FavoriteMovies() {
     <section className="favorite-movies-page">
       <div className="favorite-page-header">
         <h2>My Favorite Movies</h2>
-        <button onClick={handleClear}>Clear</button>
-        <button onClick={() => navigate("/")}>Back Home</button>
+        <div className="btns">
+          {" "}
+          <button onClick={handleClear}>Clear</button>
+          <button onClick={() => navigate("/")}>Back Home</button>
+        </div>
       </div>
       <div className="favorite-page-list">
         {favList &&

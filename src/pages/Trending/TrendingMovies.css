@@ -33,3 +33,27 @@
   align-items: center;
   gap: 10px;
 }
+@media (max-width: 900px) {
+  .trending-movies-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .trending-movies-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .trending-movies-page .page-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .page-header button:hover {
+    transform: unset;
+  }
+}
