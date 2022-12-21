@@ -7,7 +7,7 @@ import TrendIcon from "../assets/trending.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Search() {
-  const { setSearchTerm } = useAppContext();
+  const { dispatch } = useAppContext();
 
   const searchValue = useRef();
 
@@ -26,7 +26,7 @@ export default function Search() {
     if (!searchValue.current.value) {
       searchValue.current.focus();
     }
-    setSearchTerm(searchValue.current.value);
+    dispatch({ type: "UPDATE_SEARCHTERM", payload: searchValue.current.value });
   };
   return (
     <section className="search-section">

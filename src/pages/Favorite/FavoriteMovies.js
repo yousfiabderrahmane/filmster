@@ -5,11 +5,11 @@ import { useAppContext } from "../../context/useAppContext";
 import "./FavoriteMovies.css";
 
 export default function FavoriteMovies() {
-  const { favList, setFavList } = useAppContext();
+  const { favList, dispatch } = useAppContext();
   const navigate = useNavigate();
 
   const handleClear = () => {
-    setFavList([]);
+    dispatch({ type: "CLEAR_FAVLIST" });
   };
   return (
     <section className="favorite-movies-page">
@@ -21,7 +21,7 @@ export default function FavoriteMovies() {
       <div className="favorite-page-list">
         {favList &&
           favList.map((movie) => {
-            return <MovieCard movie={movie} />;
+            return <MovieCard key={movie.id} movie={movie} />;
           })}
       </div>
     </section>

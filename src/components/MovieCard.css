@@ -21,8 +21,6 @@
 }
 .sticker:hover {
   transform: scale(1.1);
-  top: 2px;
-  left: 2px;
 }
 .img {
   width: 100%;

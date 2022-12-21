@@ -6,11 +6,15 @@ import AddFavIcon from "../assets/AddToFav.svg";
 import { useAppContext } from "../context/useAppContext";
 
 export default function MovieCard({ movie }) {
-  const { favList, setFavList } = useAppContext();
+  const { favList, dispatch } = useAppContext();
   const [isFavorite, setIsFavorite] = useState(false);
+
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   const navigate = useNavigate();
+  const handleNavigation = () => {
+    navigate(`/movie/${movie.id}`);
+  };
 
   const handleAddFav = (movie) => {
     const names = favList.map((i) => {
@@ -20,24 +24,20 @@ export default function MovieCard({ movie }) {
     //nchecki ila kan had lmovie kayna, la kayna manzidhach ;)
     //flwl kikom empty so names braso makaynch
     if (favList.length < 1) {
-      setFavList([...favList, movie]);
+      // setFavList([...favList, movie]);
+      dispatch({ type: "UPDATE_FAVLIST", payload: [...favList, movie] });
     } else if (!names.includes(movie.original_title)) {
-      setFavList([...favList, movie]);
+      // setFavList([...favList, movie]);
+      dispatch({ type: "UPDATE_FAVLIST", payload: [...favList, movie] });
     } else if (names.includes(movie.original_title)) {
       const newList = favList.filter((myMovie) => {
         return myMovie.id !== movie.id;
       });
-      setFavList(newList);
+      dispatch({ type: "UPDATE_FAVLIST", payload: newList });
       setIsFavorite(false);
     }
   };
-
-  //mavigate to single movie details page
-  const handleNavigation = () => {
-    navigate(`/movie/${movie.id}`);
-  };
   //check if movie is in the favlist
-
   useEffect(() => {
     favList.forEach((mymovie) => {
       if (mymovie.id === movie.id) {
@@ -45,6 +45,7 @@ export default function MovieCard({ movie }) {
       }
     });
   }, [favList]);
+
   return (
     <section className="movie-card">
       <img
