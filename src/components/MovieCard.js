@@ -24,14 +24,15 @@ export default function MovieCard({ movie }) {
     });
     console.log(IDS);
     //nchecki ila kan had lmovie kayna, la kayna manzidhach ;)
-    //flwl kikom empty so names braso makaynch
+
     if (favList.length < 1) {
-      // setFavList([...favList, movie]);
+      //flwl kikom empty so IDS braso makaynch so zid
       dispatch({ type: "UPDATE_FAVLIST", payload: [...favList, movie] });
     } else if (!IDS.includes(movie.id)) {
-      // setFavList([...favList, movie]);
+      // check ila IDS array mafihch l'id dl current movie
       dispatch({ type: "UPDATE_FAVLIST", payload: [...favList, movie] });
     } else if (IDS.includes(movie.id)) {
+      //sinon ila kayn deleteh
       const newList = favList.filter((myMovie) => {
         return myMovie.id !== movie.id;
       });
@@ -39,7 +40,8 @@ export default function MovieCard({ movie }) {
       setIsFavorite(false);
     }
   };
-  //check if movie is in the favlist
+
+  //check if movie is in the favlist bach nl3bo b favicon
   useEffect(() => {
     favList.forEach((mymovie) => {
       if (mymovie.id === movie.id) {

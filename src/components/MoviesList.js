@@ -2,8 +2,19 @@ import { useEffect, useState } from "react";
 import "./MoviesList.css";
 import { useAppContext } from "../context/useAppContext";
 import MovieCard from "./MovieCard";
+
 export default function MoviesList() {
-  const { list, isPending, error } = useAppContext();
+  const { list, isPending, error, getTrendingHomeMovies } = useAppContext();
+
+  //mount only
+  useEffect(() => {
+    console.log("+list before condition : ", list);
+    // !! bach n7wloha boolean , !!! la negation ta3 dak lboolean
+    if (list.length < 1) {
+      console.log("+list after condition : ", list);
+      getTrendingHomeMovies();
+    }
+  }, []);
 
   return (
     <>
