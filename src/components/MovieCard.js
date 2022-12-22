@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./MovieCard.css";
-import Star from "../assets/stars_FILL0_wght400_GRAD0_opsz48.svg";
 import { useNavigate } from "react-router-dom";
 import AddFavIcon from "../assets/AddToFav.svg";
 import { useAppContext } from "../context/useAppContext";
 import RateStar from "../assets/rating.svg";
 import RemoveFav from "../assets/removeFav.svg";
+import Star from "../assets/star-svgrepo-com.svg";
 
 export default function MovieCard({ movie }) {
   const { favList, dispatch } = useAppContext();
@@ -51,11 +51,11 @@ export default function MovieCard({ movie }) {
   }, [favList]);
 
   return (
-    <section className="movie-card">
-      <div className="sticker-container">
+    <section className={`movie-card ${isFavorite && "favorite-border"}`}>
+      <div className={`sticker-container ${isFavorite && "favorite-bg"}`}>
         <img
           className="sticker"
-          src={isFavorite ? RemoveFav : AddFavIcon}
+          src={isFavorite ? Star : AddFavIcon}
           alt=""
           onClick={() => handleAddFav(movie)}
         />
