@@ -2,7 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  margin-top: 50px;
+  padding-top: 50px;
   display: flex;
   justify-content: space-between;
   color: white;
@@ -13,8 +13,8 @@
 }
 .close-me {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50px;
+  right: 20px;
   background: transparent;
   border: none;
 }

@@ -1,10 +1,12 @@
 import "./Search.css";
 import { useAppContext } from "../context/useAppContext";
-import { useRef, useState } from "react";
-import SearchIcon from "../assets/search.svg";
-import FavIcon from "../assets/favorite.svg";
-import TrendIcon from "../assets/trending.svg";
+import { useRef } from "react";
+
+// import TrendIcon from "../assets/trending.svg";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as TrendIcon } from "../assets/trending.svg";
+import { ReactComponent as FavIcon } from "../assets/favorite.svg";
+import { ReactComponent as SearchIcon } from "../assets/search.svg";
 
 export default function Search() {
   const { dispatch } = useAppContext();
@@ -21,23 +23,31 @@ export default function Search() {
     navigate("/trending");
   };
 
+  //handle searchterm state
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!searchValue.current.value) {
       searchValue.current.focus();
     }
-    dispatch({ type: "UPDATE_SEARCHTERM", payload: searchValue.current.value });
+    dispatch({
+      type: "UPDATE_SEARCHTERM",
+      payload: searchValue.current.value,
+    });
   };
   return (
     <section className="search-section">
       <div className="left">
         <button onClick={TrendRedirect}>
           Trending
-          <img src={TrendIcon} alt="" />
+          <div className="trend-container">
+            <TrendIcon fill="white" />
+          </div>
         </button>
         <button onClick={favRedirect}>
           Favorites
-          <img src={FavIcon} alt="" />
+          <div className="trend-container">
+            <FavIcon fill="white" />
+          </div>
         </button>
       </div>
 
@@ -49,7 +59,9 @@ export default function Search() {
             placeholder="Search For A Movie..."
           />
           <button>
-            <img src={SearchIcon} alt="" />
+            <div className="trend-container">
+              <SearchIcon fill="white" />
+            </div>
           </button>
         </div>
       </form>

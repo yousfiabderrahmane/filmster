@@ -10,7 +10,7 @@ export default function TrendingMovies() {
   const { movies, getTrendingMovies, isPending } = useAppContext();
   const navigate = useNavigate();
 
-  console.log(movies);
+  //mount only
   useEffect(() => {
     getTrendingMovies();
   }, []);

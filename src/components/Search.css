@@ -1,14 +1,11 @@
 .search-section {
-  padding-top: 5%;
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   gap: 10px;
   height: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 .left {
   display: flex;
@@ -67,6 +64,8 @@ form {
   width: 20px;
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
     contrast(103%);
+}
+.trend-icon {
 }
 @media (max-width: 600px) {
   .search-section {

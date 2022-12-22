@@ -4,17 +4,19 @@ export const AppContext = createContext();
 
 let initialState = {
   searchTerm: "",
-  list: null,
+  list: [], //by name
   isPending: false,
   error: null,
-  movies: null, //trend movies
+  movies: [], //trend movies
   favList: [],
+  mode: "light",
 };
 
 const contextReducer = (state, action) => {
   switch (action.type) {
     case "IS_PENDING":
       return { ...state, isPending: true };
+
     case "UPDATE_SEARCHTERM":
       return { ...state, searchTerm: action.payload };
     case "UPDATE_LIST":
@@ -37,6 +39,7 @@ const contextReducer = (state, action) => {
       return { ...state, favList: action.payload };
     case "CLEAR_FAVLIST":
       return { ...state, favList: [] };
+
     default:
       return state;
   }
@@ -65,6 +68,28 @@ export default function ContextProvider({ children }) {
       console.log(err);
     }
   };
+
+  //get trending movies home page
+  const getTrendingHomeMovies = async () => {
+    dispatch({ type: "IS_PENDING" });
+    try {
+      const response = await fetch(
+        "https://api.themoviedb.org/3/trending/all/day?api_key=19dc8c994b8ef838ba65a40c5ea44444"
+      );
+      if (response.ok) {
+        const data = await response.json();
+        const { results } = data;
+
+        dispatch({ type: "UPDATE_LIST", payload: results });
+      } else {
+        throw Error("Could not fetch data");
+      }
+    } catch (err) {
+      dispatch({ type: "ERROR", payload: "Could not fetch the data" });
+      console.log(err);
+    }
+  };
+
   //fetch movie by name
   const getMovieByName = async () => {
     dispatch({ type: "IS_PENDING" });
@@ -106,6 +131,7 @@ export default function ContextProvider({ children }) {
         ...state,
         dispatch,
         getTrendingMovies,
+        getTrendingHomeMovies,
       }}
     >
       {children}

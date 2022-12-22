@@ -6,8 +6,10 @@ import SingleMovieDetails from "./pages/SingleMovie/SingleMovieDetails";
 import TrendingMovies from "./pages/Trending/TrendingMovies";
 import FavoriteMovies from "./pages/Favorite/FavoriteMovies";
 import "./index.css";
+import Header from "./components/Header";
 
 function App() {
+  const { mode } = useAppContext();
   return (
     <div className="app">
       <BrowserRouter>
@@ -17,7 +19,9 @@ function App() {
             path="/"
             element={
               <>
-                <Search /> <MoviesList />
+                <Header />
+                <Search />
+                <MoviesList />
               </>
             }
           />
