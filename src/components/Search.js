@@ -75,7 +75,7 @@ export default function Search() {
       </form>
 
       <div className="left">
-        <a href="https://youshows.netlify.app/" target="_blank">
+        <a href="https://youshows.netlify.app/">
           <button id="unique" className={`${mode === "light" && "dark-color"}`}>
             Tv-Shows
             <div className="trend-container">
