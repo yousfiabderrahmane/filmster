@@ -25,3 +25,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.info {
+  font-weight: bold;
+}
+.info.dark-color {
+  color: #121212;
+}

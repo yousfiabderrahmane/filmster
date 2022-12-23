@@ -7,20 +7,26 @@ export default function Header() {
   const { mode, dispatch } = useAppContext();
   return (
     <section className="header">
-      <ModeIcon
-        onClick={() =>
-          dispatch({
-            type: "TOGGLE_MODE",
-            payload: mode === "light" ? "dark" : "light",
-          })
-        }
-        className="mode-icon"
-        fill={mode === "light" ? "#121212" : "white"}
-      />
+      <div className="header-svg">
+        <ModeIcon
+          onClick={() =>
+            dispatch({
+              type: "TOGGLE_MODE",
+              payload: mode === "light" ? "dark" : "light",
+            })
+          }
+          className="mode-icon"
+          fill={mode === "light" ? "#121212" : "white"}
+        />
+      </div>
+
       <h1 className={`header-title ${mode === "light" && "dark-color"}`}>
         Y<span style={{ color: "#cc0000" }}>OU</span>SFILMS
       </h1>
-      <MovieIcon fill="#cc0000" />
+      <div className="header-svg">
+        {" "}
+        <MovieIcon fill="#cc0000" />
+      </div>
     </section>
   );
 }
