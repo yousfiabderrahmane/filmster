@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./MovieCard.css";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/useAppContext";
-import { ReactComponent as RatingStar } from "../assets/rating-star.svg";
-import { ReactComponent as Favorite } from "../assets/rating.svg";
+import { ReactComponent as RatingStar } from "../assets/rating.svg";
+import { ReactComponent as Favorite } from "../assets/removeFav.svg";
 import { ReactComponent as AddFavIcon } from "../assets/AddToFav.svg";
 
 export default function MovieCard({ movie }) {
