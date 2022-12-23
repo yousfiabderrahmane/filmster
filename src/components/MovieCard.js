@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./MovieCard.css";
 import { useNavigate } from "react-router-dom";
-import AddFavIcon from "../assets/AddToFav.svg";
 import { useAppContext } from "../context/useAppContext";
-import RateStar from "../assets/rating.svg";
-import RemoveFav from "../assets/removeFav.svg";
-import Star from "../assets/star-svgrepo-com.svg";
+import { ReactComponent as RatingStar } from "../assets/rating-star.svg";
+import { ReactComponent as Favorite } from "../assets/rating.svg";
+import { ReactComponent as AddFavIcon } from "../assets/AddToFav.svg";
 
 export default function MovieCard({ movie }) {
-  const { favList, dispatch } = useAppContext();
+  const { favList, dispatch, mode } = useAppContext();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -53,12 +52,23 @@ export default function MovieCard({ movie }) {
   return (
     <section className={`movie-card ${isFavorite && "favorite-border"}`}>
       <div className={`sticker-container ${isFavorite && "favorite-bg"}`}>
-        <img
+        {isFavorite ? (
+          <Favorite
+            onClick={() => handleAddFav(movie)}
+            fill={mode === "light" ? "#121212" : "white"}
+          />
+        ) : (
+          <AddFavIcon
+            onClick={() => handleAddFav(movie)}
+            fill={mode === "light" ? "#121212" : "white"}
+          />
+        )}
+        {/* <img
           className="sticker"
-          src={isFavorite ? Star : AddFavIcon}
+          src={isFavorite ? RateStar : AddFavIcon}
           alt=""
           onClick={() => handleAddFav(movie)}
-        />
+        /> */}
       </div>
 
       <img
@@ -67,14 +77,23 @@ export default function MovieCard({ movie }) {
         src={IMAGE_URL}
         alt={movie.original_title}
       />
-      <div className="overlay-info">
+      <div
+        className={`overlay-info ${mode === "light" && "dark-color"}
+`}
+      >
         <h4>{movie.original_title}</h4>{" "}
         {/* <h5 className="rating-flex">
           <span>Released in :</span> <span>{movie.release_date}</span>{" "}
         </h5> */}
         <p className="rating-flex">
           <span> {movie.vote_average} </span>
-          <img src={RateStar} alt="" />
+          <div className="rating-star-container">
+            {" "}
+            <RatingStar
+              className="rating-star"
+              fill={mode === "light" ? "#121212" : "white"}
+            />
+          </div>
         </p>
       </div>
     </section>
