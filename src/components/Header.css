@@ -36,6 +36,8 @@
 @media (max-width: 600px) {
   .header {
     gap: 5px;
+    padding-top: 20px;
+    padding-bottom: 0px;
   }
   .header-title {
     font-size: 30px;

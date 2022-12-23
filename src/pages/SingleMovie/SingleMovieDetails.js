@@ -221,7 +221,7 @@ export default function SingleMovieDetails() {
           </div>
         </section>
       )}
-      {showSimilar && <Similar />}
+      {showSimilar && !isPending && <Similar />}
     </>
   );
 }

@@ -42,8 +42,12 @@
 .list-icon-container {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
   width: 100%;
+  text-align: center;
   /* height: 100px; */
 }
 
@@ -77,6 +81,6 @@
   }
   .list-icon-container {
     transform: scale(0.7);
-    margin-top: 50px;
+    margin-top: 20px;
   }
 }

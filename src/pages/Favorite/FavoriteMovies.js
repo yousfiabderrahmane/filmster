@@ -37,7 +37,16 @@ export default function FavoriteMovies() {
       </div>
       {favList.length < 1 && (
         <div className="list-icon-container">
-          <FavBookMark fill={mode === "light" ? "#121212" : "white"} />
+          <div className="icon">
+            <FavBookMark fill={mode === "light" ? "#121212" : "white"} />
+          </div>
+
+          <h1
+            style={{ color: mode == "dark" && "white" }}
+            className={`${mode === "light" && "dark-color"}`}
+          >
+            Currently Empty
+          </h1>
         </div>
       )}
 

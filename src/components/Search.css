@@ -114,8 +114,17 @@ a button {
   }
   .left {
     justify-content: center;
+    align-items: flex-end;
   }
   .left button {
     padding: 10px;
+    height: 60%;
+  }
+  form {
+    order: 3;
+    width: 100%;
+  }
+  #unique {
+    height: 60%;
   }
 }
