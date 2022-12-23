@@ -21,7 +21,7 @@
   transition: all 0.8s;
 }
 .mode-icon:hover {
-  transform: rotate(180deg);
+  transform: rotate(45deg);
 }
 .dark-color {
   color: #121212;
@@ -41,5 +41,8 @@
   }
   .header-svg {
     transform: scale(0.7);
+  }
+  .mode-icon:hover {
+    transform: unset;
   }
 }
