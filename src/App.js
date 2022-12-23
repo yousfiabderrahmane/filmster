@@ -14,13 +14,13 @@ function App() {
   return (
     <div className={`App ${mode === "light" && "light"}`}>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route
             exact
             path="/"
             element={
               <>
-                <Header />
                 <Search />
                 <MoviesList />
               </>
