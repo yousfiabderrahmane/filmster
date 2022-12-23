@@ -39,7 +39,8 @@ const contextReducer = (state, action) => {
       return { ...state, favList: action.payload };
     case "CLEAR_FAVLIST":
       return { ...state, favList: [] };
-
+    case "TOGGLE_MODE":
+      return { ...state, mode: action.payload };
     default:
       return state;
   }
