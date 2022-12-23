@@ -7,7 +7,7 @@ import { useAppContext } from "../../context/useAppContext";
 import Star from "../../assets/stars_FILL0_wght400_GRAD0_opsz48.svg";
 
 export default function TrendingMovies() {
-  const { movies, getTrendingMovies, isPending } = useAppContext();
+  const { movies, getTrendingMovies, isPending, mode } = useAppContext();
   const navigate = useNavigate();
 
   //mount only
@@ -18,8 +18,15 @@ export default function TrendingMovies() {
   return (
     <section className="trending-movies-page">
       <div className="page-header">
-        <h2 className="page-title">Most Popular Movies Right Now</h2>
-        <button onClick={() => navigate("/")}>Back Home</button>
+        <h2 className={`page-title ${mode === "light" && "dark-color"}`}>
+          Most Popular Movies Right Now
+        </h2>
+        <button
+          className={`${mode === "light" && "dark-color"}`}
+          onClick={() => navigate("/")}
+        >
+          Back Home
+        </button>
       </div>
 
       <div className="trending-movies-list">

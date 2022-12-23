@@ -33,6 +33,11 @@
   align-items: center;
   gap: 10px;
 }
+.dark-color,
+.page-header button.dark-color {
+  color: #121212;
+}
+
 @media (max-width: 900px) {
   .trending-movies-list {
     grid-template-columns: repeat(3, 1fr);

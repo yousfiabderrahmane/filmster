@@ -3,24 +3,44 @@ import { useNavigate } from "react-router-dom";
 import MovieCard from "../../components/MovieCard";
 import { useAppContext } from "../../context/useAppContext";
 import "./FavoriteMovies.css";
+import { ReactComponent as List } from "../../assets/favorite-bookmark-svgrepo-com.svg";
 
 export default function FavoriteMovies() {
-  const { favList, dispatch } = useAppContext();
+  const { favList, dispatch, mode } = useAppContext();
   const navigate = useNavigate();
 
   const handleClear = () => {
     dispatch({ type: "CLEAR_FAVLIST" });
   };
+
   return (
     <section className="favorite-movies-page">
-      <div className="favorite-page-header">
+      <div
+        className={`favorite-page-header ${mode === "light" && "dark-color"}`}
+      >
         <h2>My Favorite Movies</h2>
         <div className="btns">
           {" "}
-          <button onClick={handleClear}>Clear</button>
-          <button onClick={() => navigate("/")}>Back Home</button>
+          <button
+            className={`${mode === "light" && "dark-color"}`}
+            onClick={handleClear}
+          >
+            Clear
+          </button>
+          <button
+            className={`${mode === "light" && "dark-color"}`}
+            onClick={() => navigate("/")}
+          >
+            Back Home
+          </button>
         </div>
       </div>
+      {favList.length < 1 && (
+        <div className="list-icon-container">
+          <List fill={mode === "light" ? "#121212" : "white"} />
+        </div>
+      )}
+
       <div className="favorite-page-list">
         {favList &&
           favList.map((movie) => {

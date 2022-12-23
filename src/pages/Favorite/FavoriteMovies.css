@@ -24,6 +24,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s;
+  font-weight: bold;
 }
 .favorite-page-header button:hover {
   transform: scale(1.1);
@@ -37,6 +38,16 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+.list-icon-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  width: 100%;
+  height: 300px;
+}
+.favorite-page-header button.dark-color {
+  color: #121212;
 }
 @media (max-width: 900px) {
   .favorite-page-list {
