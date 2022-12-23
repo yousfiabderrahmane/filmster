@@ -9,7 +9,7 @@ let initialState = {
   error: null,
   movies: [], //trend movies
   favList: [],
-  mode: "light",
+  mode: "dark",
 };
 
 const contextReducer = (state, action) => {
