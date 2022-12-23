@@ -2,7 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  margin-top: 40px;
+  padding-top: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,4 +12,16 @@
   color: white;
   font-weight: bold;
   font-size: 50px;
+}
+.mode-icon {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transition: all 0.8s;
+}
+.mode-icon:hover {
+  transform: rotate(180deg);
+}
+.dark-color {
+  color: #121212;
 }
