@@ -1,8 +1,8 @@
 .search-section {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
   height: 40px;
   padding: 20px;
@@ -19,7 +19,7 @@ form {
   border: 3px solid #cc0000;
   border-radius: 5px;
 
-  width: 100%;
+  width: 60%;
   display: flex;
   gap: 10px;
 }
@@ -34,7 +34,8 @@ form {
   color: white;
 }
 
-.search-section button {
+.search-section button,
+.tv-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,11 +48,13 @@ form {
   color: white;
   font-weight: bold;
 }
-.left button {
+.left button,
+.tv-btn {
   display: flex;
   gap: 10px;
 }
-.left button:hover {
+.left button:hover,
+.tv-btn:hover {
   box-shadow: 0 0 0.8rem rgba(255, 0, 0, 1);
 }
 .right button {
@@ -65,8 +68,17 @@ form {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
     contrast(103%);
 }
-.trend-icon {
+.trend-container {
+  transform: scale(0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.search-section button.dark-color,
+.search-section form input.dark-color {
+  color: #121212;
+}
+
 @media (max-width: 600px) {
   .search-section {
     max-width: 1000px;
