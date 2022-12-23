@@ -4,7 +4,8 @@ import { useAppContext } from "../context/useAppContext";
 import MovieCard from "./MovieCard";
 
 export default function MoviesList() {
-  const { list, isPending, error, getTrendingHomeMovies } = useAppContext();
+  const { list, isPending, error, getTrendingHomeMovies, mode } =
+    useAppContext();
 
   //mount only
   useEffect(() => {
@@ -18,8 +19,14 @@ export default function MoviesList() {
 
   return (
     <>
-      {isPending && <p className="info">Loading ...</p>}
-      {error && <p className="info">{error}</p>}
+      {isPending && (
+        <p className={`info ${mode === "light" && "dark-color"}`}>
+          Loading ...
+        </p>
+      )}
+      {error && (
+        <p className={`info ${mode === "light" && "dark-color"}`}>{error}</p>
+      )}
       <section className="movies-list">
         {list &&
           list.map((item) => {

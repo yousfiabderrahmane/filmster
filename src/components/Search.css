@@ -53,14 +53,14 @@ form {
   display: flex;
   gap: 10px;
 }
-.left button:hover,
+.search-section .left button:hover,
 .tv-btn:hover {
   box-shadow: 0 0 0.8rem rgba(255, 0, 0, 1);
 }
 .right button {
   border: 3px solid transparent;
 }
-.right button:hover {
+.search-section .right button:hover {
   filter: drop-shadow(0px 0px 8px #cc0000);
 }
 .search-section button img {
@@ -82,12 +82,13 @@ form {
 @media (max-width: 600px) {
   .search-section {
     max-width: 1000px;
-    margin: 30px auto;
+    margin: 104px auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 10px;
-    height: 40px;
+    height: 0px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;

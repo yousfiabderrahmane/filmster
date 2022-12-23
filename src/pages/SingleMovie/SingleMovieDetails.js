@@ -1,7 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./SIngleMovieDetails.css";
-import Close from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
+
+import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
 
 import { useAppContext } from "../../context/useAppContext";
 
@@ -10,6 +11,8 @@ export default function SingleMovieDetails() {
   const [error, setError] = useState(null);
   const [movie, setMovie] = useState(null);
   const [key, setKey] = useState(null);
+
+  const { mode } = useAppContext();
 
   //to get the urls
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500`;
@@ -70,18 +73,25 @@ export default function SingleMovieDetails() {
 
   return (
     <>
-      {isPending && <p className="info">Loading ...</p>}
+      {isPending && (
+        <p className={`info ${mode === "light" && "dark-color"}`}>
+          Loading ...
+        </p>
+      )}
       {error && (
         <div className="error-redirect">
-          <p className="info">{error}</p>
-          <button onClick={() => navigate(-1)}>Back</button>
+          <p className={`info ${mode === "light" && "dark-color"}`}>{error}</p>
+          <button
+            className={`${mode === "light" && "dark-color"}`}
+            style={{ color: mode === "light" && "#121212" }}
+            onClick={() => navigate(-1)}
+          >
+            Back
+          </button>
         </div>
       )}
       {movie && (
         <section className="single-movie-page">
-          <button className="close-me">
-            <img onClick={() => navigate(-1)} src={Close} alt="" />
-          </button>
           <div className="left">
             <div style={{ height: !key && "100%" }} className="image-container">
               <img
@@ -92,44 +102,89 @@ export default function SingleMovieDetails() {
             </div>
           </div>
           <div className="right">
+            <button className="close-me">
+              <Close
+                fill={mode === "light" ? "#121212" : "white"}
+                onClick={() => navigate(-1)}
+              />
+            </button>
             <div className="titles">
-              <h1>{movie.title}</h1>
-              <h5>{movie.tagline}</h5>
+              <h1 className={`${mode === "light" && "dark-color"}`}>
+                {movie.title}
+              </h1>
+              <h5 className={`${mode === "light" && "dark-color"}`}>
+                {movie.tagline}
+              </h5>
             </div>
 
             <div className="details">
               <p className="space-between">
-                <span>Language :</span>{" "}
-                <span>{movie.original_language.toUpperCase()}</span>
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  Language :
+                </span>{" "}
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  {movie.original_language.toUpperCase()}
+                </span>
               </p>
               <p className="space-between">
-                <span>Length :</span> <span>{movie.runtime} minutes</span>
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  Length :
+                </span>{" "}
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  {movie.runtime} minutes
+                </span>
               </p>
               <p className="space-between">
-                <span>Rate :</span> <span>{movie.vote_average}/10</span>
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  Rate :
+                </span>{" "}
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  {movie.vote_average}/10
+                </span>
               </p>
               <p className="space-between">
-                <span>Budget :</span> <span>{movie.budget}</span>
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  Budget :
+                </span>{" "}
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  {movie.budget}
+                </span>
               </p>
               <p className="space-between">
-                <span>Release Date :</span> <span>{movie.release_date}</span>
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  Release Date :
+                </span>{" "}
+                <span className={`${mode === "light" && "dark-color"}`}>
+                  {movie.release_date}
+                </span>
               </p>
             </div>
             <div className="genres">
-              <h3>Genres</h3>
+              <h3 className={`${mode === "light" && "dark-color"}`}>Genres</h3>
               <ul>
                 {movie.genres.map((item) => (
-                  <li key={item.id}>{item.name}</li>
+                  <li
+                    className={`${mode === "light" && "dark-color"}`}
+                    key={item.id}
+                  >
+                    {item.name}
+                  </li>
                 ))}
               </ul>
             </div>
             <div className="overview">
-              <h3>Overview</h3>
-              <p>{movie.overview}</p>
+              <h3 className={`${mode === "light" && "dark-color"}`}>
+                Overview
+              </h3>
+              <p className={`${mode === "light" && "dark-color"}`}>
+                {movie.overview}
+              </p>
             </div>
             {key && (
               <div className="trailer">
-                <h3>Trailer</h3>
+                <h3 className={`${mode === "light" && "dark-color"}`}>
+                  Trailer
+                </h3>
                 <iframe
                   width="560"
                   height="315"

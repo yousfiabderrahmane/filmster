@@ -13,14 +13,11 @@
 }
 .close-me {
   position: absolute;
-  top: 50px;
-  right: 20px;
+  right: 0px;
   background: transparent;
   border: none;
 }
-.close-me img {
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
-    contrast(103%);
+.close-me svg {
   cursor: pointer;
 }
 .single-movie-page h3 {
@@ -35,7 +32,7 @@
   height: 100%;
   border-radius: 5px;
   border: 2px solid #cc0000;
-  box-shadow: 0 0 0.5rem rgba(255, 0, 0, 1);
+  box-shadow: 0 0 0.7rem rgba(255, 0, 0, 1);
 }
 .single-movie-page .right {
   flex-basis: 75%;
@@ -104,12 +101,23 @@
 .error-redirect button:hover {
   transform: scale(1.1);
 }
+.info.dark-color {
+  color: #121212;
+}
 @media (max-width: 1000px) {
+  .close-me {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .single-movie-page .left {
+    padding-top: 50px;
+  }
   .single-movie-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    margin-top: 50px;
+
     display: flex;
     justify-content: space-between;
     color: white;

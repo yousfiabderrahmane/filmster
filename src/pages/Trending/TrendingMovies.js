@@ -30,7 +30,12 @@ export default function TrendingMovies() {
       </div>
 
       <div className="trending-movies-list">
-        {isPending && <p className="info">Loading ...</p>}
+        {isPending && (
+          <p className={`info ${mode === "light" && "dark-color"}`}>
+            Loading ...
+          </p>
+        )}
+
         {movies &&
           movies.map((movie) => {
             return <MovieCard key={movie.id} movie={movie} />;
