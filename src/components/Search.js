@@ -75,12 +75,14 @@ export default function Search() {
       </form>
 
       <div className="left">
-        <button className={`${mode === "light" && "dark-color"}`}>
-          Tv-Shows
-          <div className="trend-container">
-            <TV fill={mode === "light" ? "#121212" : "white"} />
-          </div>
-        </button>
+        <a href="https://youshows.netlify.app/" target="_blank">
+          <button id="unique" className={`${mode === "light" && "dark-color"}`}>
+            Tv-Shows
+            <div className="trend-container">
+              <TV fill={mode === "light" ? "#121212" : "white"} />
+            </div>
+          </button>
+        </a>
       </div>
     </section>
   );

@@ -9,6 +9,7 @@ let initialState = {
   error: null,
   movies: [], //trend movies
   favList: [],
+  similar: [],
   mode: "dark",
 };
 
@@ -33,6 +34,8 @@ const contextReducer = (state, action) => {
         isPending: false,
         movies: action.payload,
       };
+    case "UPDATE_SIMILAR":
+      return { ...state, similar: action.payload };
     case "ERROR":
       return { ...state, error: action.payload, isPending: false, list: null };
     case "UPDATE_FAVLIST":

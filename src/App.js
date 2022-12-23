@@ -5,6 +5,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import SingleMovieDetails from "./pages/SingleMovie/SingleMovieDetails";
 import TrendingMovies from "./pages/Trending/TrendingMovies";
 import FavoriteMovies from "./pages/Favorite/FavoriteMovies";
+import Similar from "./components/Similar";
 
 import "./App.css";
 import Header from "./components/Header";
@@ -26,7 +27,14 @@ function App() {
               </>
             }
           />
-          <Route path="/movie/:id" element={<SingleMovieDetails />} />
+          <Route
+            path="/movie/:id"
+            element={
+              <>
+                <SingleMovieDetails />
+              </>
+            }
+          />
           <Route path="/trending" element={<TrendingMovies />} />
           <Route path="/favorite" element={<FavoriteMovies />} />
           <Route

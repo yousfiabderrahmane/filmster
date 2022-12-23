@@ -5,6 +5,7 @@ import "./SIngleMovieDetails.css";
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
 
 import { useAppContext } from "../../context/useAppContext";
+import Similar from "../../components/Similar";
 
 export default function SingleMovieDetails() {
   const [isPending, setIsPending] = useState(false);
@@ -12,8 +13,9 @@ export default function SingleMovieDetails() {
   const [movie, setMovie] = useState(null);
   const [key, setKey] = useState(null);
 
-  const { mode } = useAppContext();
+  const { mode, dispatch, similar } = useAppContext();
 
+  const [showSimilar, setShowSimilar] = useState(true);
   //to get the urls
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500`;
 
@@ -39,6 +41,7 @@ export default function SingleMovieDetails() {
         } else {
           setIsPending(false);
           setError("Oops, seems like the movie details doesn't exist yet");
+          setShowSimilar(false);
           //bach ila movie id makaynach wl9a dik proprety success ykon nfs l err message maytbdl en deux deux
         }
 
@@ -66,10 +69,29 @@ export default function SingleMovieDetails() {
     const data = await response.json();
     setKey(data.results[0].key);
   };
+
+  const getSimilarMovies = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+    );
+    const data = await response.json();
+    if (response.ok) {
+      dispatch({ type: "UPDATE_SIMILAR", payload: data.results });
+    }
+  };
+
   useEffect(() => {
     fetchMovieById();
     getTrailerKey();
-  }, []);
+    if (showSimilar) {
+      getSimilarMovies();
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    return () => {
+      dispatch({ type: "UPDATE_SIMILAR", payload: [] });
+    };
+  }, [id]);
 
   return (
     <>
@@ -105,7 +127,7 @@ export default function SingleMovieDetails() {
             <button className="close-me">
               <Close
                 fill={mode === "light" ? "#121212" : "white"}
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/")}
               />
             </button>
             <div className="titles">
@@ -199,6 +221,7 @@ export default function SingleMovieDetails() {
           </div>
         </section>
       )}
+      {showSimilar && <Similar />}
     </>
   );
 }
