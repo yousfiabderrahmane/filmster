@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MovieCard from "../../components/MovieCard";
 import { useAppContext } from "../../context/useAppContext";
 import "./FavoriteMovies.css";
-import { ReactComponent as List } from "../../assets/favorite-bookmark-svgrepo-com.svg";
+import { ReactComponent as FavBookMark } from "../../assets/favorite-bookmark-svgrepo-com.svg";
 
 export default function FavoriteMovies() {
   const { favList, dispatch, mode } = useAppContext();
@@ -37,7 +37,7 @@ export default function FavoriteMovies() {
       </div>
       {favList.length < 1 && (
         <div className="list-icon-container">
-          <List fill={mode === "light" ? "#121212" : "white"} />
+          <FavBookMark fill={mode === "light" ? "#121212" : "white"} />
         </div>
       )}
 
