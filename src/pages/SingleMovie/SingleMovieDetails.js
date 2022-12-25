@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import "./SIngleMovieDetails.css";
 
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
+import { ReactComponent as noReviews } from "../../assets/norev.svg";
 
 import { useAppContext } from "../../context/useAppContext";
 import Similar from "../../components/Similar";
+import Slider from "./Slider";
 
 export default function SingleMovieDetails() {
   const [isPending, setIsPending] = useState(false);
@@ -13,9 +15,11 @@ export default function SingleMovieDetails() {
   const [movie, setMovie] = useState(null);
   const [key, setKey] = useState(null);
 
-  const { mode, dispatch, similar } = useAppContext();
+  const { mode, dispatch, similar, people, getComments } = useAppContext();
 
   const [showSimilar, setShowSimilar] = useState(true);
+
+  const [showMore, setShowMore] = useState(false);
   //to get the urls
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500`;
 
@@ -86,10 +90,11 @@ export default function SingleMovieDetails() {
     if (showSimilar) {
       getSimilarMovies();
     }
-
+    getComments(id);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     return () => {
       dispatch({ type: "UPDATE_SIMILAR", payload: [] });
+      dispatch({ type: "UPDATE_REVIEWS", payload: [] });
     };
   }, [id]);
 
@@ -140,60 +145,92 @@ export default function SingleMovieDetails() {
             </div>
 
             <div className="details">
-              <p className="space-between">
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  Language :
-                </span>{" "}
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  {movie.original_language.toUpperCase()}
-                </span>
-              </p>
-              <p className="space-between">
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  Length :
-                </span>{" "}
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  {movie.runtime} minutes
-                </span>
-              </p>
-              <p className="space-between">
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  Rate :
-                </span>{" "}
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  {movie.vote_average}/10
-                </span>
-              </p>
-              <p className="space-between">
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  Budget :
-                </span>{" "}
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  {movie.budget}
-                </span>
-              </p>
-              <p className="space-between">
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  Release Date :
-                </span>{" "}
-                <span className={`${mode === "light" && "dark-color"}`}>
-                  {movie.release_date}
-                </span>
-              </p>
+              <div className="details-left">
+                <div className="div">
+                  <h2>Details</h2>
+                  <p className="space-between">
+                    <span className={`${mode === "light" && "dark-color"}`}>
+                      Language :
+                    </span>{" "}
+                    <span className={`red ${mode === "light" && "dark-color"}`}>
+                      {movie.original_language.toUpperCase()}
+                    </span>
+                  </p>
+                  <p className="space-between">
+                    <span className={`${mode === "light" && "dark-color"}`}>
+                      Length :
+                    </span>{" "}
+                    <span className={`red ${mode === "light" && "dark-color"}`}>
+                      {movie.runtime} minutes
+                    </span>
+                  </p>
+                  <p className="space-between">
+                    <span className={`${mode === "light" && "dark-color"}`}>
+                      Rate :
+                    </span>{" "}
+                    <span className={`red ${mode === "light" && "dark-color"}`}>
+                      {movie.vote_average}/10
+                    </span>
+                  </p>
+                  <p className="space-between">
+                    <span className={`${mode === "light" && "dark-color"}`}>
+                      Budget :
+                    </span>{" "}
+                    <span className={`red ${mode === "light" && "dark-color"}`}>
+                      {movie.budget}
+                    </span>
+                  </p>
+                  <p className="space-between">
+                    <span className={`${mode === "light" && "dark-color"}`}>
+                      Release Date :
+                    </span>{" "}
+                    <span className={`red ${mode === "light" && "dark-color"}`}>
+                      {movie.release_date}
+                    </span>
+                  </p>
+                </div>
+
+                <div className="genres">
+                  <h3 className={`${mode === "light" && "dark-color"}`}>
+                    Genres
+                  </h3>
+                  <ul>
+                    {movie.genres.map((item) => (
+                      <li
+                        className={`${mode === "light" && "dark-color"}`}
+                        key={item.id}
+                      >
+                        {item.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="details-right">
+                <h2>Reviews</h2>
+                {people.length >= 2 ? (
+                  <>
+                    {" "}
+                    <Slider showMore={showMore} />
+                    <button
+                      className={`showmore-btn ${
+                        mode === "light" && "dark-color"
+                      } `}
+                      onClick={() => setShowMore(!showMore)}
+                    >
+                      {showMore ? "Shorten" : "Expand"}
+                    </button>
+                  </>
+                ) : (
+                  <div>
+                    <h2 style={{ color: mode === "dark" ? "#fff" : "#121212" }}>
+                      There is no reviews yet
+                    </h2>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="genres">
-              <h3 className={`${mode === "light" && "dark-color"}`}>Genres</h3>
-              <ul>
-                {movie.genres.map((item) => (
-                  <li
-                    className={`${mode === "light" && "dark-color"}`}
-                    key={item.id}
-                  >
-                    {item.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
+
             <div className="overview">
               <h3 className={`${mode === "light" && "dark-color"}`}>
                 Overview

@@ -5,7 +5,16 @@ body,
 #root {
   height: 100%;
 }
-
+body {
+  overflow: overlay;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, #c00);
+  border-radius: 4px;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

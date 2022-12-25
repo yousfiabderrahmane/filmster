@@ -1,7 +1,8 @@
 .App {
+  transition: all 0.3s;
   min-height: 100%;
 }
 .App.light {
-  background-color: #f2f2f2;
+  background-color: #e6e6e6;
   color: #121212;
 }

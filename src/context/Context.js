@@ -9,6 +9,7 @@ let initialState = {
   error: null,
   movies: [], //trend movies
   favList: [],
+  people: [], //reviews
   similar: [],
   mode: "dark",
 };
@@ -40,6 +41,8 @@ const contextReducer = (state, action) => {
       return { ...state, error: action.payload, isPending: false, list: null };
     case "UPDATE_FAVLIST":
       return { ...state, favList: action.payload };
+    case "UPDATE_REVIEWS":
+      return { ...state, people: action.payload, isPending: false };
     case "CLEAR_FAVLIST":
       return { ...state, favList: [] };
     case "TOGGLE_MODE":
@@ -122,6 +125,30 @@ export default function ContextProvider({ children }) {
     }
   };
 
+  const getComments = async (id) => {
+    dispatch({ type: "IS_PENDING" });
+
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        const { results } = data;
+
+        const newResults = results.filter((result) => {
+          return result.author_details.avatar_path != null;
+        });
+
+        dispatch({ type: "UPDATE_REVIEWS", payload: newResults });
+        console.log(newResults);
+        //LOL IM A GENIUS AHAHSDHASHDHAHAHAHAHHAHA
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     //empty string falsy :)
     if (state.searchTerm) {
@@ -136,6 +163,7 @@ export default function ContextProvider({ children }) {
         dispatch,
         getTrendingMovies,
         getTrendingHomeMovies,
+        getComments,
       }}
     >
       {children}
