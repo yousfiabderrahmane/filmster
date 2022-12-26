@@ -163,14 +163,14 @@ export default function SingleMovieDetails() {
               />
             </button>
             <div className="titles">
-              <h1
-                style={{
-                  textShadow: mode === "light" && "0px 0px 30px #c00",
-                }}
-                className={`big-t ${mode === "light" && "dark-color"}`}
-              >
-                {movie.title}
-              </h1>
+              <div className="big-t">
+                <h1
+                  style={{}}
+                  className={`${mode === "light" && "dark-color"}`}
+                >
+                  {movie.title}
+                </h1>
+              </div>
               <h5 className={`${mode === "light" && "dark-color"}`}>
                 {movie.tagline}
               </h5>

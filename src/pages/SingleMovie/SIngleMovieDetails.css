@@ -17,11 +17,16 @@
 .close-me {
   position: absolute;
   right: 0px;
+  top: 30px;
   background: transparent;
   border: none;
+  transform: scale(0.8);
 }
 .close-me svg {
   cursor: pointer;
+
+  border: 2px solid #c00;
+  border-radius: 50%;
 }
 .single-movie-page h3 {
   font-weight: bolder;
@@ -159,7 +164,18 @@
   color: #c00;
 }
 .big-t {
-  text-shadow: 0px 0px 20px #fff;
+  display: flex;
+  justify-content: center;
+}
+.big-t h1 {
+  padding: 5px 10px;
+  border: 2px dashed #c00;
+  border-radius: 10px;
+}
+.titles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 @media (max-width: 1000px) {
   .close-me {
