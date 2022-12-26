@@ -78,7 +78,7 @@ export default function Slider({ showMore }) {
                 />
 
                 <h4 className={mode === "light" && "dark-color"}>
-                  {person.author} ({person.author_details.rating} ⭐)
+                  {person.author} ( {person.author_details.rating} ⭐ )
                 </h4>
                 <p className="title">{person.author_details.username}</p>
               </div>

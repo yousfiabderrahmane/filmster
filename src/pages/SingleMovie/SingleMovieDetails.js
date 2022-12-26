@@ -163,7 +163,12 @@ export default function SingleMovieDetails() {
               />
             </button>
             <div className="titles">
-              <h1 className={`${mode === "light" && "dark-color"}`}>
+              <h1
+                style={{
+                  textShadow: mode === "light" && "0px 0px 30px #c00",
+                }}
+                className={`big-t ${mode === "light" && "dark-color"}`}
+              >
                 {movie.title}
               </h1>
               <h5 className={`${mode === "light" && "dark-color"}`}>
@@ -232,6 +237,7 @@ export default function SingleMovieDetails() {
                     {" "}
                     <Slider showMore={showMore} />
                     <button
+                      style={{ position: showMore && "unset" }}
                       className={`showmore-btn ${
                         mode === "light" && "dark-color"
                       } `}

@@ -119,12 +119,18 @@ article.activeSlide {
   opacity: 1;
   transform: translateX(0);
   gap: 20px;
+  transition: all 0.5s;
 }
 article.lastSlide {
   transform: translateX(-50%);
+  transition: all 0.5s;
 }
 article.nextSlide {
   transform: translateX(50%);
+  transition: all 0.5s;
+}
+article p.text.dark-color {
+  color: #121212;
 }
 @media (max-width: 1000px) {
   .prev {

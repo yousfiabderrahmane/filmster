@@ -139,8 +139,8 @@ export default function ContextProvider({ children }) {
       if (response.ok) {
         const data = await response.json();
         const { cast } = data;
-        if (cast.length > 6) {
-          const newCast = cast.slice(0, 6);
+        if (cast.length > 5) {
+          const newCast = cast.slice(0, 5);
           dispatch({ type: "UPDATE_CAST", payload: newCast });
         } else {
           dispatch({ type: "UPDATE_CAST", payload: cast });

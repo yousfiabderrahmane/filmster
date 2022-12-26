@@ -66,6 +66,7 @@
 .details-right {
   flex-basis: 70%;
   text-align: center;
+  position: relative;
 }
 
 .details-right h2 {
@@ -134,12 +135,17 @@
 }
 .details-right .showmore-btn {
   padding: 5px;
-  margin-top: 20px;
   background-color: transparent;
+  margin-top: 10px;
   border: 2px solid #c00;
   cursor: pointer;
   color: white;
   font-weight: bold;
+  position: absolute;
+  position: absolute;
+  /* top: 100%; */
+  bottom: 3%;
+  right: 45%;
   border-radius: 5px;
   transition: all 0.5s;
 }
@@ -151,6 +157,9 @@
 }
 .red {
   color: #c00;
+}
+.big-t {
+  text-shadow: 0px 0px 20px #fff;
 }
 @media (max-width: 1000px) {
   .close-me {
@@ -188,5 +197,20 @@
   }
   .close-me img {
     width: 60px;
+  }
+  .details-right .showmore-btn {
+    padding: 5px;
+    background-color: transparent;
+    margin-top: 10px;
+    border: 2px solid #c00;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    position: unset;
+    /* top: 100%; */
+    bottom: unset;
+    right: unset;
+    border-radius: 5px;
+    transition: all 0.5s;
   }
 }
