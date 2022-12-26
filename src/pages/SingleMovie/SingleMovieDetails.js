@@ -15,8 +15,7 @@ export default function SingleMovieDetails() {
   const [movie, setMovie] = useState(null);
   const [key, setKey] = useState(null);
 
-  const { mode, dispatch, similar, people, getComments } = useAppContext();
-
+  const { mode, dispatch, similar, people, fetchCast, cast } = useAppContext();
   const [showSimilar, setShowSimilar] = useState(true);
 
   const [showMore, setShowMore] = useState(false);
@@ -84,6 +83,33 @@ export default function SingleMovieDetails() {
     }
   };
 
+  const getComments = async (id) => {
+    dispatch({ type: "IS_PENDING" });
+
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        const { results } = data;
+        if (response.ok) {
+          const newResults = results.filter((result) => {
+            return result.author_details.avatar_path != null;
+          });
+
+          dispatch({ type: "UPDATE_REVIEWS", payload: newResults });
+
+          //LOL IM A GENIUS AHAHSDHASHDHAHAHAHAHHAHA
+        } else {
+          dispatch({ type: "ERROR", payload: "Could not fetch the data" });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchMovieById();
     getTrailerKey();
@@ -91,10 +117,10 @@ export default function SingleMovieDetails() {
       getSimilarMovies();
     }
     getComments(id);
+    fetchCast(id);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     return () => {
       dispatch({ type: "UPDATE_SIMILAR", payload: [] });
-      dispatch({ type: "UPDATE_REVIEWS", payload: [] });
     };
   }, [id]);
 

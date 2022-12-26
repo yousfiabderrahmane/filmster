@@ -9,10 +9,8 @@ export default function MoviesList() {
 
   //mount only
   useEffect(() => {
-    console.log("+list before condition : ", list);
     // !! bach n7wloha boolean , !!! la negation ta3 dak lboolean
     if (list.length < 1) {
-      console.log("+list after condition : ", list);
       getTrendingHomeMovies();
     }
   }, []);

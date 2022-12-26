@@ -11,6 +11,7 @@ let initialState = {
   favList: [],
   people: [], //reviews
   similar: [],
+  cast: [],
   mode: "dark",
 };
 
@@ -43,6 +44,8 @@ const contextReducer = (state, action) => {
       return { ...state, favList: action.payload };
     case "UPDATE_REVIEWS":
       return { ...state, people: action.payload, isPending: false };
+    case "UPDATE_CAST":
+      return { ...state, cast: action.payload, isPending: false };
     case "CLEAR_FAVLIST":
       return { ...state, favList: [] };
     case "TOGGLE_MODE":
@@ -125,27 +128,28 @@ export default function ContextProvider({ children }) {
     }
   };
 
-  const getComments = async (id) => {
+  //fetch cast
+  const fetchCast = async (id) => {
     dispatch({ type: "IS_PENDING" });
 
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=19dc8c994b8ef838ba65a40c5ea44444`
       );
       if (response.ok) {
         const data = await response.json();
-        const { results } = data;
-
-        const newResults = results.filter((result) => {
-          return result.author_details.avatar_path != null;
-        });
-
-        dispatch({ type: "UPDATE_REVIEWS", payload: newResults });
-        console.log(newResults);
-        //LOL IM A GENIUS AHAHSDHASHDHAHAHAHAHHAHA
+        const { cast } = data;
+        if (cast.length > 7) {
+          const newCast = cast.slice(0, 5);
+          dispatch({ type: "UPDATE_CAST", payload: newCast });
+        } else {
+          dispatch({ type: "UPDATE_CAST", payload: cast });
+        }
+      } else {
+        dispatch({ type: "ERROR", payload: "Could not fetch the data" });
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -163,7 +167,8 @@ export default function ContextProvider({ children }) {
         dispatch,
         getTrendingMovies,
         getTrendingHomeMovies,
-        getComments,
+        fetchCast,
+        // getComments,
       }}
     >
       {children}
