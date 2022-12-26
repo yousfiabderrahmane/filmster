@@ -39,7 +39,7 @@ const contextReducer = (state, action) => {
     case "UPDATE_SIMILAR":
       return { ...state, similar: action.payload };
     case "ERROR":
-      return { ...state, error: action.payload, isPending: false, list: null };
+      return { ...state, error: action.payload, isPending: false, list: [] };
     case "UPDATE_FAVLIST":
       return { ...state, favList: action.payload };
     case "UPDATE_REVIEWS":
@@ -139,8 +139,8 @@ export default function ContextProvider({ children }) {
       if (response.ok) {
         const data = await response.json();
         const { cast } = data;
-        if (cast.length > 7) {
-          const newCast = cast.slice(0, 5);
+        if (cast.length > 6) {
+          const newCast = cast.slice(0, 6);
           dispatch({ type: "UPDATE_CAST", payload: newCast });
         } else {
           dispatch({ type: "UPDATE_CAST", payload: cast });

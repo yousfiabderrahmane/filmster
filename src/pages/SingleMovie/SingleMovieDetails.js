@@ -8,6 +8,7 @@ import { ReactComponent as noReviews } from "../../assets/norev.svg";
 import { useAppContext } from "../../context/useAppContext";
 import Similar from "../../components/Similar";
 import Slider from "./Slider";
+import Cast from "./Cast";
 
 export default function SingleMovieDetails() {
   const [isPending, setIsPending] = useState(false);
@@ -15,7 +16,7 @@ export default function SingleMovieDetails() {
   const [movie, setMovie] = useState(null);
   const [key, setKey] = useState(null);
 
-  const { mode, dispatch, similar, people, fetchCast, cast } = useAppContext();
+  const { mode, dispatch, people, fetchCast } = useAppContext();
   const [showSimilar, setShowSimilar] = useState(true);
 
   const [showMore, setShowMore] = useState(false);
@@ -178,7 +179,7 @@ export default function SingleMovieDetails() {
                     <span className={`${mode === "light" && "dark-color"}`}>
                       Language :
                     </span>{" "}
-                    <span className={`red ${mode === "light" && "dark-color"}`}>
+                    <span className={`red `}>
                       {movie.original_language.toUpperCase()}
                     </span>
                   </p>
@@ -186,33 +187,25 @@ export default function SingleMovieDetails() {
                     <span className={`${mode === "light" && "dark-color"}`}>
                       Length :
                     </span>{" "}
-                    <span className={`red ${mode === "light" && "dark-color"}`}>
-                      {movie.runtime} minutes
-                    </span>
+                    <span className={`red `}>{movie.runtime} minutes</span>
                   </p>
                   <p className="space-between">
                     <span className={`${mode === "light" && "dark-color"}`}>
                       Rate :
                     </span>{" "}
-                    <span className={`red ${mode === "light" && "dark-color"}`}>
-                      {movie.vote_average}/10
-                    </span>
+                    <span className={`red `}>{movie.vote_average}/10</span>
                   </p>
                   <p className="space-between">
                     <span className={`${mode === "light" && "dark-color"}`}>
                       Budget :
                     </span>{" "}
-                    <span className={`red ${mode === "light" && "dark-color"}`}>
-                      {movie.budget}
-                    </span>
+                    <span className={`red `}>{movie.budget}</span>
                   </p>
                   <p className="space-between">
                     <span className={`${mode === "light" && "dark-color"}`}>
                       Release Date :
                     </span>{" "}
-                    <span className={`red ${mode === "light" && "dark-color"}`}>
-                      {movie.release_date}
-                    </span>
+                    <span className={`red `}>{movie.release_date}</span>
                   </p>
                 </div>
 
@@ -255,6 +248,11 @@ export default function SingleMovieDetails() {
                   </div>
                 )}
               </div>
+            </div>
+
+            <div className="cast">
+              <h1>Top Cast :</h1>
+              <Cast />
             </div>
 
             <div className="overview">
