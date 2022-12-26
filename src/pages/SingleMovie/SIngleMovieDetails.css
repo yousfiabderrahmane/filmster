@@ -21,6 +21,10 @@
   background: transparent;
   border: none;
   transform: scale(0.8);
+  transition: all 0.5s;
+}
+.close-me:hover {
+  transform: scale(0.9);
 }
 .close-me svg {
   cursor: pointer;
