@@ -52,6 +52,7 @@ export default function SingleMovieDetails() {
     return () => {
       dispatch({ type: "UPDATE_SIMILAR", payload: [] });
       dispatch({ type: "UPDATE_SINGLEMOVIE", payload: null });
+      dispatch({ type: "UPDATE_CAST", payload: [] });
     };
   }, [id]);
 
