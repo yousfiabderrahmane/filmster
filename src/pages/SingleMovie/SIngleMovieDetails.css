@@ -13,6 +13,7 @@
 }
 .image-container {
   height: 30%;
+  width: 100%;
 }
 .close-me {
   position: absolute;
@@ -44,8 +45,9 @@
   height: 100%;
   border-radius: 5px;
   border: 2px solid #cc0000;
-  box-shadow: 0 0 0.7rem rgba(255, 0, 0, 1);
+  box-shadow: 0 0 0.9rem 0.1em rgba(255, 0, 0, 1);
 }
+
 .right h1,
 .right h2,
 .right h3 {
