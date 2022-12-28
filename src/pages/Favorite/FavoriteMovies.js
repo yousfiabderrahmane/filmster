@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "../../components/MovieCard";
 import { useAppContext } from "../../context/useAppContext";
 import "./FavoriteMovies.css";
 import { ReactComponent as FavBookMark } from "../../assets/favorite-bookmark-svgrepo-com.svg";
+import FavPagination from "./FavPagination";
 
 export default function FavoriteMovies() {
   const { favList, dispatch, mode } = useAppContext();
   const navigate = useNavigate();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardsPerPage, setCardsPerPage] = useState(8);
+
+  const lastCardIndex = currentPage * cardsPerPage;
+  const firstCardIndex = lastCardIndex - cardsPerPage;
+
+  const currentFavList = favList.slice(firstCardIndex, lastCardIndex);
+
+  const totalPages = Math.ceil(favList.length / cardsPerPage);
 
   const handleClear = () => {
     dispatch({ type: "CLEAR_FAVLIST" });
@@ -49,12 +60,22 @@ export default function FavoriteMovies() {
           </h1>
         </div>
       )}
-
+      {favList.length > 8 && (
+        <FavPagination
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          currentFavList={currentFavList}
+        />
+      )}
       <div className="favorite-page-list">
-        {favList &&
-          favList.map((movie) => {
-            return <MovieCard key={movie.id} movie={movie} />;
-          })}
+        {favList.length > 8
+          ? currentFavList.map((movie) => {
+              return <MovieCard key={movie.id} movie={movie} />;
+            })
+          : favList.map((movie) => {
+              return <MovieCard key={movie.id} movie={movie} />;
+            })}
       </div>
     </section>
   );

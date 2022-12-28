@@ -21,7 +21,7 @@ export default function MovieCard({ movie }) {
     const IDS = favList.map((i) => {
       return i.id;
     });
-    console.log(IDS);
+
     //nchecki ila kan had lmovie kayna, la kayna manzidhach ;)
 
     if (favList.length < 1) {
