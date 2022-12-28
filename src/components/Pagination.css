@@ -1,0 +1,21 @@
+.pagination-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 20px;
+}
+.pagination-container button {
+  padding: 10px;
+  background-color: transparent;
+  border: 2px solid #c00;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pagination-container .pagination-btn:hover {
+  transform: scale(1.05);
+}
