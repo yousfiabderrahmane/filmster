@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import "./MoviesList.css";
 import { useAppContext } from "../context/useAppContext";
 import MovieCard from "./MovieCard";
+import Pagination from "./Pagination";
 
 export default function MoviesList() {
-  const { list, isPending, error, getTrendingHomeMovies, mode } =
+  const { list, isPending, error, getTrendingHomeMovies, mode, currentPage } =
     useAppContext();
 
   //mount only
@@ -15,22 +16,31 @@ export default function MoviesList() {
     }
   }, []);
 
+  useEffect(() => {
+    getTrendingHomeMovies();
+  }, [currentPage]);
   return (
     <>
-      {isPending && (
-        <p className={`info ${mode === "light" && "dark-color"}`}>
-          Loading ...
-        </p>
-      )}
       {error && (
         <p className={`info ${mode === "light" && "dark-color"}`}>{error}</p>
       )}
-      <section className="movies-list">
-        {list &&
-          list.map((item) => {
-            return <MovieCard movie={item} key={item.id} />;
-          })}
-      </section>
+
+      {!error && <Pagination />}
+
+      {isPending ? (
+        <p className={`info ${mode === "light" && "dark-color"}`}>
+          Loading ...
+        </p>
+      ) : (
+        <>
+          <section className="movies-list">
+            {list &&
+              list.map((item) => {
+                return <MovieCard movie={item} key={item.id} />;
+              })}
+          </section>
+        </>
+      )}
     </>
   );
 }

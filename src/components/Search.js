@@ -22,6 +22,7 @@ export default function Search() {
   };
   const TrendRedirect = () => {
     navigate("/trending");
+    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
   };
 
   //handle searchterm state
@@ -34,6 +35,7 @@ export default function Search() {
       type: "UPDATE_SEARCHTERM",
       payload: searchValue.current.value,
     });
+    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
   };
   return (
     <section className="search-section">

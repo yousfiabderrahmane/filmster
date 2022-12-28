@@ -25,6 +25,7 @@ export default function SingleMovieDetails() {
     getSimilarMovies,
   } = useAppContext();
   const [showMore, setShowMore] = useState(false);
+
   //to get the urls
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500`;
 

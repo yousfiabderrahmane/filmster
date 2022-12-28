@@ -5,16 +5,23 @@ import "../../components/MovieCard.css";
 import MovieCard from "../../components/MovieCard";
 import { useAppContext } from "../../context/useAppContext";
 import Star from "../../assets/stars_FILL0_wght400_GRAD0_opsz48.svg";
+import Pagination from "../../components/Pagination";
 
 export default function TrendingMovies() {
-  const { movies, getTrendingMovies, isPending, mode } = useAppContext();
+  const { movies, getTrendingMovies, isPending, mode, currentPage, dispatch } =
+    useAppContext();
   const navigate = useNavigate();
 
   //mount only
   useEffect(() => {
     getTrendingMovies();
-  }, []);
+  }, [currentPage]);
 
+  useEffect(() => {
+    return () => {
+      dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
+    };
+  }, []);
   return (
     <section className="trending-movies-page">
       <div className="page-header">
@@ -29,6 +36,7 @@ export default function TrendingMovies() {
         </button>
       </div>
 
+      <Pagination />
       <div className="trending-movies-list">
         {isPending && (
           <p className={`info ${mode === "light" && "dark-color"}`}>
