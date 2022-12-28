@@ -2,16 +2,20 @@ import React, { useEffect, useReducer } from "react";
 import { createContext, useState } from "react";
 export const AppContext = createContext();
 
+const favoriteLs = JSON.parse(localStorage.getItem("favList"));
+
 let initialState = {
   searchTerm: "",
   list: [], //by name
   isPending: false,
   error: null,
   movies: [], //trend movies
-  favList: [],
+  favList: favoriteLs ? favoriteLs : [],
   people: [], //reviews
   similar: [],
   cast: [],
+  currentPage: 1,
+  totalPages: "",
   singleMovie: null,
   mode: "dark",
 };
@@ -53,6 +57,10 @@ const contextReducer = (state, action) => {
       return { ...state, favList: [] };
     case "TOGGLE_MODE":
       return { ...state, mode: action.payload };
+    case "UPDATE_CURRENTPAGE":
+      return { ...state, currentPage: action.payload };
+    case "UPDATE_TOTALPAGES":
+      return { ...state, totalPages: action.payload };
     default:
       return state;
   }
@@ -66,13 +74,21 @@ export default function ContextProvider({ children }) {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
-        "https://api.themoviedb.org/3/trending/all/day?api_key=19dc8c994b8ef838ba65a40c5ea44444"
+        `https://api.themoviedb.org/3/trending/all/day?api_key=19dc8c994b8ef838ba65a40c5ea44444&page=${state.currentPage}`
       );
       if (response.ok) {
         const data = await response.json();
-        const { results } = data;
+        const { results, total_pages } = data;
 
-        dispatch({ type: "UPDATE_TRENDLIST", payload: results });
+        const filtredList = results.filter((movie) => {
+          return movie.poster_path != null;
+        });
+
+        dispatch({
+          type: "UPDATE_TOTALPAGES",
+          payload: total_pages < 500 ? total_pages : 499,
+        });
+        dispatch({ type: "UPDATE_TRENDLIST", payload: filtredList });
       } else {
         throw Error("Could not fetch data");
       }
@@ -87,12 +103,15 @@ export default function ContextProvider({ children }) {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
-        "https://api.themoviedb.org/3/movie/top_rated?api_key=19dc8c994b8ef838ba65a40c5ea44444"
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=19dc8c994b8ef838ba65a40c5ea44444&page=${state.currentPage}`
       );
       if (response.ok) {
         const data = await response.json();
-        const { results } = data;
-
+        const { results, total_pages } = data;
+        dispatch({
+          type: "UPDATE_TOTALPAGES",
+          payload: total_pages < 500 ? total_pages : 499,
+        });
         dispatch({ type: "UPDATE_LIST", payload: results });
       } else {
         throw Error("Could not fetch data");
@@ -108,11 +127,16 @@ export default function ContextProvider({ children }) {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=19dc8c994b8ef838ba65a40c5ea44444&query=${state.searchTerm}`
+        `https://api.themoviedb.org/3/search/movie?api_key=19dc8c994b8ef838ba65a40c5ea44444&query=${state.searchTerm}&page=${state.currentPage}`
       );
       if (response.ok) {
         const data = await response.json();
-        const { results } = data;
+        const { results, total_pages } = data;
+        dispatch({
+          type: "UPDATE_TOTALPAGES",
+          payload: total_pages < 500 ? total_pages : 499,
+        });
+
         //check wach results machi empty array
         if (results.length > 0) {
           //check ila 3ndhom poster image
@@ -259,9 +283,14 @@ export default function ContextProvider({ children }) {
     //empty string falsy :)
     if (state.searchTerm) {
       getMovieByName();
+    } else {
+      getTrendingHomeMovies();
     }
-  }, [state.searchTerm]);
+  }, [state.searchTerm, state.currentPage]);
 
+  useEffect(() => {
+    localStorage.setItem("favList", JSON.stringify(state.favList));
+  }, [state.favList]);
   return (
     <AppContext.Provider
       value={{
