@@ -37,7 +37,7 @@ export default function FavoriteMovies() {
     if (currentFavList.length == 0) {
       setCurrentPage(currentPage - 1);
     }
-  }, []);
+  }, [currentFavList]);
   return (
     <section className="favorite-movies-page">
       <div
