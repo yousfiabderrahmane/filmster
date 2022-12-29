@@ -65,7 +65,7 @@ export default function MoviesList() {
           </section>
         </>
       )}
-      {!error && (
+      {!error && !isPending && (
         <Pagination
           handleNext={handleNext}
           handlePrevious={handlePrevious}
