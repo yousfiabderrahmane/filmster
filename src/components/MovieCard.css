@@ -1,7 +1,7 @@
 .movie-card {
   height: 100%;
   width: 100%;
-
+  transition: all 0.3s;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -42,7 +42,11 @@
   border-radius: 5px;
   -webkit-border-radius: 5px;
 }
-
+.lazy-image-container {
+  height: 100%;
+  width: 100%;
+  transition: all 0.3s;
+}
 .overlay-info {
   position: absolute;
   bottom: -100%;
@@ -61,16 +65,8 @@
 .img {
   transition: all 0.3s;
 }
-.movie-card:hover .img {
-  animation: zoom 3s linear forwards;
-}
-@keyframes zoom {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.5);
-  }
+.movie-card:hover .lazy-image-container {
+  transform: scale(1.2);
 }
 
 .rating-flex {

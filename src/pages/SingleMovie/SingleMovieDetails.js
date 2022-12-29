@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import "./SIngleMovieDetails.css";
 import LoadingGif from "../../assets/loading-gif.gif";
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
-import { ReactComponent as noReviews } from "../../assets/norev.svg";
 import { useAppContext } from "../../context/useAppContext";
 import Similar from "../../components/Similar";
-import Slider from "./Slider";
-import Cast from "./Cast";
+// import Slider from "./Slider";
+// import Cast from "./Cast";
+
+const LazyCast = React.lazy(() => import("./Cast"));
+const LazySlider = React.lazy(() => import("./Slider"));
 
 export default function SingleMovieDetails() {
   const [key, setKey] = useState(null);
@@ -171,7 +173,7 @@ export default function SingleMovieDetails() {
                 {people.length >= 2 ? (
                   <>
                     {" "}
-                    <Slider showMore={showMore} />
+                    <LazySlider showMore={showMore} />
                     <button
                       style={{ position: showMore && "unset" }}
                       className={`showmore-btn ${
@@ -193,8 +195,10 @@ export default function SingleMovieDetails() {
             </div>
 
             <div className="cast">
-              <h1>Top Cast </h1>
-              <Cast />
+              <Suspense fallback={<p className="loading">Loading...</p>}>
+                <h1>Top Cast </h1>
+                <LazyCast />
+              </Suspense>
             </div>
 
             <div className="overview">
@@ -224,7 +228,7 @@ export default function SingleMovieDetails() {
           </div>
         </section>
       )}
-      {!isPending && <Similar />}
+      {!isPending && singleMovie && <Similar />}
     </>
   );
 }

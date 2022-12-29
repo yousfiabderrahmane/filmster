@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./MovieCard.css";
+
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/useAppContext";
 import { ReactComponent as RatingStar } from "../assets/rating.svg";
 import { ReactComponent as Favorite } from "../assets/removeFav.svg";
 import { ReactComponent as AddFavIcon } from "../assets/AddToFav.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import ImagePlaceHolder from "../assets/placeholder.jpg";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function MovieCard({ movie }) {
   const { favList, dispatch, mode } = useAppContext();
@@ -70,12 +74,19 @@ export default function MovieCard({ movie }) {
         /> */}
       </div>
 
-      <img
-        onClick={handleNavigation}
-        className="img"
-        src={IMAGE_URL}
-        alt={movie.original_title}
-      />
+      <div className="lazy-image-container">
+        <LazyLoadImage
+          onClick={handleNavigation}
+          className="img"
+          src={IMAGE_URL}
+          alt={movie.original_title}
+          height="100%"
+          width="100%"
+          effect="blur"
+          placeholderSrc={ImagePlaceHolder}
+        />
+      </div>
+
       <div
         className={`overlay-info ${mode === "light" && "dark-color"}
 `}

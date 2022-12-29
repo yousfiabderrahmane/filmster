@@ -40,9 +40,11 @@ export default function MoviesList() {
     dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
     console.log(currentPage);
     // !! bach n7wloha boolean , !!! la negation ta3 dak lboolean
-    if (list.length < 1) {
-      getTrendingHomeMovies();
-    }
+    setTimeout(() => {
+      if (list.length < 1) {
+        getTrendingHomeMovies();
+      }
+    }, 200);
   }, []);
 
   useEffect(() => {
