@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "../../components/MovieCard";
 import { useAppContext } from "../../context/useAppContext";
 import "./FavoriteMovies.css";
 import { ReactComponent as FavBookMark } from "../../assets/favorite-bookmark-svgrepo-com.svg";
-import FavPagination from "./FavPagination";
+import Pagination from "../../components/Pagination";
 
 export default function FavoriteMovies() {
   const { favList, dispatch, mode } = useAppContext();
@@ -20,10 +20,24 @@ export default function FavoriteMovies() {
 
   const totalPages = Math.ceil(favList.length / cardsPerPage);
 
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+  const handlePrevious = () => {
+    setCurrentPage(currentPage - 1);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   const handleClear = () => {
     dispatch({ type: "CLEAR_FAVLIST" });
   };
 
+  useEffect(() => {
+    if (currentFavList.length == 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  }, []);
   return (
     <section className="favorite-movies-page">
       <div
@@ -60,14 +74,7 @@ export default function FavoriteMovies() {
           </h1>
         </div>
       )}
-      {favList.length > 8 && (
-        <FavPagination
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          currentFavList={currentFavList}
-        />
-      )}
+
       <div className="favorite-page-list">
         {favList.length > 8
           ? currentFavList.map((movie) => {
@@ -77,6 +84,15 @@ export default function FavoriteMovies() {
               return <MovieCard key={movie.id} movie={movie} />;
             })}
       </div>
+      {favList.length > 8 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          currentFavList={currentFavList}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+        />
+      )}
     </section>
   );
 }

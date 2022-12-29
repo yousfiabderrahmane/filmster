@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import { createContext, useState } from "react";
+import { createContext, useCallback } from "react";
 export const AppContext = createContext();
 
 const favoriteLs = JSON.parse(localStorage.getItem("favList"));
@@ -70,7 +70,7 @@ export default function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(contextReducer, initialState);
 
   //fetch trending movies
-  const getTrendingMovies = async () => {
+  const getTrendingMovies = useCallback(async () => {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
@@ -86,7 +86,7 @@ export default function ContextProvider({ children }) {
 
         dispatch({
           type: "UPDATE_TOTALPAGES",
-          payload: total_pages < 500 ? total_pages : 499,
+          payload: total_pages < 1000 ? total_pages : 999,
         });
         dispatch({ type: "UPDATE_TRENDLIST", payload: filtredList });
       } else {
@@ -96,7 +96,7 @@ export default function ContextProvider({ children }) {
       dispatch({ type: "ERROR", payload: "Could not fetch the data" });
       console.log(err);
     }
-  };
+  }, [state.currentPage]);
 
   //get trending movies home page
   const getTrendingHomeMovies = async () => {
@@ -283,14 +283,13 @@ export default function ContextProvider({ children }) {
     //empty string falsy :)
     if (state.searchTerm) {
       getMovieByName();
-    } else {
-      getTrendingHomeMovies();
     }
   }, [state.searchTerm, state.currentPage]);
 
   useEffect(() => {
     localStorage.setItem("favList", JSON.stringify(state.favList));
   }, [state.favList]);
+
   return (
     <AppContext.Provider
       value={{

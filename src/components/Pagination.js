@@ -1,49 +1,37 @@
+import { useCallback } from "react";
 import { useAppContext } from "../context/useAppContext";
 import "./Pagination.css";
-export default function Pagination() {
-  const { currentPage, dispatch, totalPages } = useAppContext();
 
+export default function Pagination({
+  handleNext,
+  handlePrevious,
+  totalPages,
+  currentPage,
+}) {
+  const { mode } = useAppContext();
   return (
     <div className="pagination-container">
-      <button
-        className="pagination-btn"
-        onClick={() => dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 })}
-      >
-        First
-      </button>
-      <button
-        className="pagination-btn"
-        onClick={() =>
-          dispatch({
-            type: "UPDATE_CURRENTPAGE",
-            payload: currentPage > 1 ? currentPage - 1 : 1,
-          })
-        }
-      >
-        ◀
-      </button>
-      <button> {currentPage}</button>
-      <button
-        className="pagination-btn"
-        onClick={() =>
-          dispatch({
-            type: "UPDATE_CURRENTPAGE",
-            payload: currentPage < totalPages ? currentPage + 1 : totalPages,
-          })
-        }
-      >
+      {currentPage > 1 && (
+        <button
+          className={`pagination-btn ${mode === "light" && "dark-color"}`}
+          onClick={handlePrevious}
+        >
+          Previous
+        </button>
+      )}
+      <button className={`middle ${mode === "light" && "dark-color"}`}>
         {" "}
-        ▶
+        {currentPage}
       </button>
-      <button
-        className="pagination-btn"
-        onClick={() =>
-          dispatch({ type: "UPDATE_CURRENTPAGE", payload: totalPages })
-        }
-      >
-        {" "}
-        Last
-      </button>
+      {currentPage < totalPages && (
+        <button
+          className={`pagination-btn ${mode === "light" && "dark-color"}`}
+          onClick={handleNext}
+        >
+          {" "}
+          Next
+        </button>
+      )}
     </div>
   );
 }

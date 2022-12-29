@@ -6,7 +6,17 @@
   display: flex;
   justify-content: space-between;
   color: white;
+  animation: fadeIn 0.5s linear forwards;
+
   position: relative;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .titles {
   text-align: center;
@@ -30,7 +40,6 @@
 .close-me svg {
   cursor: pointer;
 
-  border: 2px solid #c00;
   border-radius: 50%;
 }
 .single-movie-page h3 {
@@ -42,7 +51,7 @@
 }
 .single-movie-page .left .poster {
   width: 100%;
-  height: 100%;
+
   border-radius: 5px;
   border: 2px solid #cc0000;
   box-shadow: 0 0 0.9rem 0.1em rgba(255, 0, 0, 1);
@@ -146,11 +155,12 @@
 }
 .details-right .showmore-btn {
   padding: 5px;
-  background-color: transparent;
+
   margin-top: 10px;
   border: 2px solid #c00;
   cursor: pointer;
-  color: white;
+  color: #121212;
+  background-color: #fff;
   font-weight: bold;
   position: absolute;
   position: absolute;
@@ -161,7 +171,8 @@
   transition: all 0.5s;
 }
 .details-right .showmore-btn.dark-color {
-  color: #121212;
+  background-color: #121212;
+  color: #fff;
 }
 .details-right .showmore-btn:hover {
   transform: scale(1.1);
@@ -177,6 +188,8 @@
   padding: 5px 10px;
   border: 2px solid #c00;
   border-radius: 10px;
+  background-color: #fff;
+  transition: all 0.3s;
 }
 .titles {
   display: flex;
@@ -188,6 +201,10 @@
     position: absolute;
     top: 0;
     right: 0;
+  }
+  .image-container {
+    height: 30%;
+    width: 90%;
   }
   .details {
     flex-direction: column;

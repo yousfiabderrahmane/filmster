@@ -11,8 +11,17 @@
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
+  animation: fadeIn 1s linear forwards;
   gap: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 900px) {

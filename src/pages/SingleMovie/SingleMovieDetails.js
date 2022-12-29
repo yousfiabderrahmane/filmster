@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./SIngleMovieDetails.css";
-
+import LoadingGif from "../../assets/loading-gif.gif";
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
 import { ReactComponent as noReviews } from "../../assets/norev.svg";
 import { useAppContext } from "../../context/useAppContext";
@@ -61,7 +61,7 @@ export default function SingleMovieDetails() {
     <>
       {isPending && (
         <p className={`info ${mode === "light" && "dark-color"}`}>
-          Loading ...
+          <img src={LoadingGif} alt="" />
         </p>
       )}
       {error && (
@@ -79,7 +79,7 @@ export default function SingleMovieDetails() {
       {singleMovie && (
         <section className="single-movie-page">
           <div className="left">
-            <div style={{ height: !key && "100%" }} className="image-container">
+            <div style={{ height: !key && "60%" }} className="image-container">
               <img
                 className="poster"
                 src={`${IMAGE_URL}${singleMovie.poster_path}`}
@@ -91,13 +91,13 @@ export default function SingleMovieDetails() {
             <button className="close-me">
               <Close
                 fill={mode === "light" ? "#121212" : "white"}
-                onClick={() => navigate("/")}
+                onClick={() => navigate(-1)}
               />
             </button>
             <div className="titles">
               <div className="big-t">
                 <h1
-                  style={{}}
+                  style={{ backgroundColor: mode === "light" && "#121212" }}
                   className={`${mode === "light" && "dark-color"}`}
                 >
                   {singleMovie.title}
@@ -193,7 +193,7 @@ export default function SingleMovieDetails() {
             </div>
 
             <div className="cast">
-              <h1>Top Cast :</h1>
+              <h1>Top Cast </h1>
               <Cast />
             </div>
 

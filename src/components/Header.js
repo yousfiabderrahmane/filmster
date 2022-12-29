@@ -50,7 +50,7 @@ export default function Header() {
       >
         Y<span style={{ color: "#cc0000" }}>OU</span>SFILMS
       </h1>
-      <div className="header-svg">
+      <div className="header-svg hide">
         {" "}
         <MovieIcon fill="#cc0000" />
       </div>

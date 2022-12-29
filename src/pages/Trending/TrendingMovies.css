@@ -31,7 +31,17 @@
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   align-items: center;
+  animation: fadeIn 1s linear forwards;
+
   gap: 10px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .dark-color,
 .page-header button.dark-color {

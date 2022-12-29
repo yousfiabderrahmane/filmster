@@ -13,6 +13,20 @@
   font-weight: bold;
   font-size: 50px;
   cursor: pointer;
+  animation: shadow 2s ease-in-out infinite;
+  border-right: 4px solid #c00;
+  padding: 0px 15px;
+}
+@keyframes shadow {
+  0% {
+    filter: drop-shadow(0px 0px 0px #c00);
+  }
+  50% {
+    filter: drop-shadow(0px 0px 10px #c00);
+  }
+  100% {
+    filter: drop-shadow(0px 0px 0px #c00);
+  }
 }
 .mode-icon {
   cursor: pointer;
@@ -28,9 +42,21 @@
   color: #121212;
 }
 @media (max-width: 1350px) {
+  .header-svg {
+    transform: scale(0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .mode-icon {
     position: unset;
     transition: all 0.8s;
+  }
+  .header-title {
+    border-left: 4px solid #c00;
+  }
+  .hide {
+    display: none;
   }
 }
 @media (max-width: 600px) {
@@ -44,6 +70,9 @@
   }
   .header-svg {
     transform: scale(0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   .mode-icon:hover {
     transform: unset;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./MovieCard.css";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/useAppContext";
@@ -16,6 +16,8 @@ export default function MovieCard({ movie }) {
   const handleNavigation = () => {
     navigate(`/movie/${movie.id}`);
   };
+
+  const cardRef = useRef();
 
   const handleAddFav = (movie) => {
     const IDS = favList.map((i) => {
@@ -50,18 +52,15 @@ export default function MovieCard({ movie }) {
   }, [favList]);
 
   return (
-    <section className={`movie-card ${isFavorite && "favorite-border"}`}>
+    <section
+      ref={cardRef}
+      className={`movie-card ${isFavorite && "favorite-border"}`}
+    >
       <div className={`sticker-container ${isFavorite && "favorite-bg"}`}>
         {isFavorite ? (
-          <Favorite
-            onClick={() => handleAddFav(movie)}
-            fill={mode === "light" ? "#121212" : "white"}
-          />
+          <Favorite onClick={() => handleAddFav(movie)} fill="white" />
         ) : (
-          <AddFavIcon
-            onClick={() => handleAddFav(movie)}
-            fill={mode === "light" ? "#121212" : "white"}
-          />
+          <AddFavIcon onClick={() => handleAddFav(movie)} fill="white" />
         )}
         {/* <img
           className="sticker"

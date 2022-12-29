@@ -2,8 +2,7 @@
   height: 100%;
   width: 100%;
 
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
   outline: 2px solid rgba(255, 0, 0, 0.6);
@@ -63,7 +62,15 @@
   transition: all 0.3s;
 }
 .movie-card:hover .img {
-  transform: scale(1.1);
+  animation: zoom 3s linear forwards;
+}
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
 }
 
 .rating-flex {

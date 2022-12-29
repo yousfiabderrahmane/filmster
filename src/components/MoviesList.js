@@ -1,12 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect, useCallback } from "react";
 import "./MoviesList.css";
 import { useAppContext } from "../context/useAppContext";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 
+import LoadingGif from "../assets/loading-gif.gif";
+
 export default function MoviesList() {
-  const { list, isPending, error, getTrendingHomeMovies, mode, currentPage } =
-    useAppContext();
+  const {
+    list,
+    isPending,
+    error,
+    getTrendingHomeMovies,
+    mode,
+    dispatch,
+    currentPage,
+    totalPages,
+  } = useAppContext();
+
+  const handlePrevious = useCallback(() => {
+    dispatch({
+      type: "UPDATE_CURRENTPAGE",
+      payload: currentPage - 1,
+    });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [currentPage, dispatch]);
+
+  const handleNext = useCallback(() => {
+    dispatch({
+      type: "UPDATE_CURRENTPAGE",
+      payload: currentPage + 1,
+    });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [currentPage, dispatch]);
 
   //mount only
   useEffect(() => {
@@ -25,11 +51,9 @@ export default function MoviesList() {
         <p className={`info ${mode === "light" && "dark-color"}`}>{error}</p>
       )}
 
-      {!error && <Pagination />}
-
       {isPending ? (
         <p className={`info ${mode === "light" && "dark-color"}`}>
-          Loading ...
+          <img src={LoadingGif} alt="" />
         </p>
       ) : (
         <>
@@ -40,6 +64,14 @@ export default function MoviesList() {
               })}
           </section>
         </>
+      )}
+      {!error && (
+        <Pagination
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       )}
     </>
   );

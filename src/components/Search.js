@@ -2,6 +2,7 @@ import "./Search.css";
 import { useAppContext } from "../context/useAppContext";
 import { useRef } from "react";
 
+import { useCallback } from "react";
 // import TrendIcon from "../assets/trending.svg";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as TrendIcon } from "../assets/trending.svg";
@@ -17,13 +18,14 @@ export default function Search() {
   const navigate = useNavigate();
 
   //navigation
-  const favRedirect = () => {
+  const favRedirect = useCallback(() => {
     navigate("/favorite");
-  };
-  const TrendRedirect = () => {
+    console.log("+AAAAAAA");
+  }, []);
+  const TrendRedirect = useCallback(() => {
     navigate("/trending");
-    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
-  };
+    console.log("+AAAAAAA");
+  }, []);
 
   //handle searchterm state
   const handleSubmit = (e) => {
@@ -41,7 +43,8 @@ export default function Search() {
     <section className="search-section">
       <div className="left">
         <button
-          className={`${mode === "light" && "dark-color"}`}
+          id="left-btns"
+          className={`left-btns ${mode === "light" && "dark-color"}`}
           onClick={TrendRedirect}
         >
           Trending
@@ -50,7 +53,8 @@ export default function Search() {
           </div>
         </button>
         <button
-          className={`${mode === "light" && "dark-color"}`}
+          id="left-btns"
+          className={`left-btns ${mode === "light" && "dark-color"}`}
           onClick={favRedirect}
         >
           Favorites
