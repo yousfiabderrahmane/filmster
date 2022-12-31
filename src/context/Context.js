@@ -69,6 +69,7 @@ const contextReducer = (state, action) => {
 export default function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(contextReducer, initialState);
 
+  console.log(state.currentPage);
   //fetch trending movies
   const getTrendingMovies = useCallback(async () => {
     dispatch({ type: "IS_PENDING" });
@@ -143,9 +144,19 @@ export default function ContextProvider({ children }) {
           const filtredList = results.filter((movie) => {
             return movie.poster_path != null;
           });
-          dispatch({ type: "UPDATE_LIST", payload: filtredList });
+          if (filtredList.length > 0) {
+            dispatch({ type: "UPDATE_LIST", payload: filtredList });
+          } else {
+            dispatch({
+              type: "ERROR",
+              payload: `There is no such results for ${state.searchTerm}`,
+            });
+          }
         } else {
-          dispatch({ type: "ERROR", payload: "Could not fetch the data" });
+          dispatch({
+            type: "ERROR",
+            payload: `There is no such results for '${state.searchTerm}'`,
+          });
         }
       } else {
         throw Error("Could not fetch data");

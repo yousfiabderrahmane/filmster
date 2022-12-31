@@ -36,9 +36,6 @@ export default function MoviesList() {
 
   //mount only
   useEffect(() => {
-    console.log(currentPage);
-    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
-    console.log(currentPage);
     // !! bach n7wloha boolean , !!! la negation ta3 dak lboolean
     setTimeout(() => {
       if (list.length < 1) {
@@ -57,9 +54,9 @@ export default function MoviesList() {
       )}
 
       {isPending ? (
-        <p className={`info ${mode === "light" && "dark-color"}`}>
-          <img src={LoadingGif} alt="" />
-        </p>
+        <div className={`center-me ${mode === "light" && "dark-color"}`}>
+          <h1>Loading . . .</h1>
+        </div>
       ) : (
         <>
           <section className="movies-list">

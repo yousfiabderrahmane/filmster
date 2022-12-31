@@ -6,9 +6,9 @@ import { useAppContext } from "../context/useAppContext";
 import { ReactComponent as RatingStar } from "../assets/rating.svg";
 import { ReactComponent as Favorite } from "../assets/removeFav.svg";
 import { ReactComponent as AddFavIcon } from "../assets/AddToFav.svg";
-// import { LazyLoadImage } from "react-lazy-load-image-component";
-// import ImagePlaceHolder from "../assets/placeholder.jpg";
-// import "react-lazy-load-image-component/src/effects/blur.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import ImagePlaceHolder from "../assets/placeholder.jpg";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function MovieCard({ movie }) {
   const { favList, dispatch, mode } = useAppContext();
@@ -75,15 +75,15 @@ export default function MovieCard({ movie }) {
       </div>
 
       <div className="lazy-image-container">
-        <img
+        <LazyLoadImage
           onClick={handleNavigation}
           className="img"
           src={IMAGE_URL}
           alt={movie.original_title}
           height="100%"
           width="100%"
-          // effect="blur"
-          // placeholderSrc={ImagePlaceHolder}
+          effect="blur"
+          placeholderSrc={ImagePlaceHolder}
         />
       </div>
 

@@ -35,6 +35,11 @@ export default function TrendingMovies() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [currentPage, dispatch]);
 
+  const handleHome = () => {
+    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
+    navigate("/");
+  };
+
   useEffect(() => {
     getTrendingMovies();
   }, [currentPage]);
@@ -55,16 +60,16 @@ export default function TrendingMovies() {
         </h2>
         <button
           className={`${mode === "light" && "dark-color"}`}
-          onClick={() => navigate("/")}
+          onClick={handleHome}
         >
           Back Home
         </button>
       </div>
 
       {isPending ? (
-        <p className={`info ${mode === "light" && "dark-color"}`}>
-          <img src={LoadingGif} alt="" />
-        </p>
+        <div className="center-me">
+          <h1>Loading . . .</h1>
+        </div>
       ) : (
         <div className="trending-movies-list">
           {movies.map((movie) => {

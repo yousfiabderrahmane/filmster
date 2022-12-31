@@ -6,6 +6,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import LoadingGif from "./assets/loading-gif.gif";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 // import SingleMovieDetails from "./pages/SingleMovie/SingleMovieDetails";
 // import TrendingMovies from "./pages/Trending/TrendingMovies";
@@ -24,54 +25,74 @@ function App() {
   const { mode } = useAppContext();
   return (
     <div className={`App ${mode === "light" && "light"}`}>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <>
-                <Search />
-                <MoviesList />
-              </>
-            }
-          />
-          <Route
-            path="/movie/:id"
-            element={
-              <Suspense fallback={<img src={LoadingGif} alt="loading ..." />}>
-                <LazySingleMovieDetails />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/trending"
-            element={
-              <Suspense>
-                <LazyTrendingMovies />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/favorite"
-            element={
-              <Suspense>
-                <LazyFavoriteMovies />
-              </Suspense>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <>
-                <Search />
-                <MoviesList />
-              </>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <>
+                  <Search />
+                  <MoviesList />
+                </>
+              }
+            />
+            <Route
+              path="/movie/:id"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="center-me">
+                      <h1>Loading . . .</h1>
+                    </div>
+                  }
+                >
+                  <LazySingleMovieDetails />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/trending"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="center-me">
+                      <h1>Loading . . .</h1>
+                    </div>
+                  }
+                >
+                  <LazyTrendingMovies />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/favorite"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="center-me">
+                      <h1>Loading . . .</h1>
+                    </div>
+                  }
+                >
+                  <LazyFavoriteMovies />
+                </Suspense>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <>
+                  <Search />
+                  <MoviesList />
+                </>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </ErrorBoundary>
     </div>
   );
 }

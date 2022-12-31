@@ -1,0 +1,26 @@
+.error-boundary {
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.error-boundary p {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+.error-boundary button {
+  padding: 5px 10px;
+  background-color: transparent;
+  border: 2px solid #c00;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.error-boundary button:hover {
+  transform: scale(1.1);
+}

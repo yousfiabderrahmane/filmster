@@ -5,11 +5,8 @@ import LoadingGif from "../../assets/loading-gif.gif";
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
 import { useAppContext } from "../../context/useAppContext";
 import Similar from "../../components/Similar";
-// import Slider from "./Slider";
-// import Cast from "./Cast";
-
-const LazyCast = React.lazy(() => import("./Cast"));
-const LazySlider = React.lazy(() => import("./Slider"));
+import Slider from "./Slider";
+import Cast from "./Cast";
 
 export default function SingleMovieDetails() {
   const [key, setKey] = useState(null);
@@ -62,9 +59,9 @@ export default function SingleMovieDetails() {
   return (
     <>
       {isPending && (
-        <p className={`info ${mode === "light" && "dark-color"}`}>
-          <img src={LoadingGif} alt="" />
-        </p>
+        <div className={`center-me ${mode === "light" && "dark-color"}`}>
+          <h1>Loading . . .</h1>
+        </div>
       )}
       {error && (
         <div className="error-redirect">
@@ -173,7 +170,7 @@ export default function SingleMovieDetails() {
                 {people.length >= 2 ? (
                   <>
                     {" "}
-                    <LazySlider showMore={showMore} />
+                    <Slider showMore={showMore} />
                     <button
                       style={{ position: showMore && "unset" }}
                       className={`showmore-btn ${
@@ -195,10 +192,8 @@ export default function SingleMovieDetails() {
             </div>
 
             <div className="cast">
-              <Suspense fallback={<p className="loading">Loading...</p>}>
-                <h1>Top Cast </h1>
-                <LazyCast />
-              </Suspense>
+              <h1>Top Cast </h1>
+              <Cast />
             </div>
 
             <div className="overview">

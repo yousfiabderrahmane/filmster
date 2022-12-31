@@ -20,10 +20,12 @@ export default function Search() {
   //navigation
   const favRedirect = useCallback(() => {
     navigate("/favorite");
+    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
     console.log("+AAAAAAA");
   }, []);
   const TrendRedirect = useCallback(() => {
     navigate("/trending");
+    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
     console.log("+AAAAAAA");
   }, []);
 

@@ -22,9 +22,9 @@
   color: #121212;
 }
 .pagination-container .middle {
-  border-color: gold;
+  border: none;
   border-radius: 50%;
   padding: 5px 10px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 20px;
 }
