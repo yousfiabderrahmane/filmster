@@ -133,4 +133,7 @@
     background-color: gold;
     border: 2px solid gold;
   }
+  .movie-card:hover .lazy-image-container {
+    transform: unset;
+  }
 }
