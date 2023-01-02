@@ -75,7 +75,7 @@ export default function MovieCard({ movie, index }) {
           alt={movie.original_title}
           height="100%"
           width="100%"
-          fetchpriority={index === 0 || 1 ? "high" : "low"}
+          fetchpriority={index === 0 && "high"}
           // effect="blur"
           // placeholderSrc={ImagePlaceHolder}
         />
