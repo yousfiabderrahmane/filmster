@@ -43,11 +43,10 @@ export default function MoviesList() {
       type: "UPDATE_CURRENTPAGE",
       payload: 1,
     });
-    setTimeout(() => {
-      if (list.length < 1) {
-        getTrendingHomeMovies();
-      }
-    }, 100);
+
+    if (list.length < 1) {
+      getTrendingHomeMovies();
+    }
   }, []);
 
   return (
