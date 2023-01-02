@@ -88,10 +88,11 @@ export default function MovieCard({ movie }) {
       </div>
 
       <div
+        onClick={handleNavigation}
         className={`overlay-info ${mode === "light" && "dark-color"}
 `}
       >
-        <h4>{movie.original_title}</h4>{" "}
+        <h4>{movie.original_title ? movie.original_title : movie.name}</h4>{" "}
         {/* <h5 className="rating-flex">
           <span>Released in :</span> <span>{movie.release_date}</span>{" "}
         </h5> */}
