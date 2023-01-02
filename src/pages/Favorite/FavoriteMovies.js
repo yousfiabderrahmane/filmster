@@ -34,7 +34,7 @@ export default function FavoriteMovies() {
   };
 
   useEffect(() => {
-    if (currentFavList.length == 0) {
+    if (currentFavList.length === 0) {
       setCurrentPage(currentPage - 1);
     }
   }, [currentFavList]);
@@ -45,7 +45,6 @@ export default function FavoriteMovies() {
       >
         <h2>My Favorite Movies</h2>
         <div className="btns">
-          {" "}
           <button
             className={`${mode === "light" && "dark-color"}`}
             onClick={handleClear}
@@ -67,7 +66,7 @@ export default function FavoriteMovies() {
           </div>
 
           <h1
-            style={{ color: mode == "dark" && "white" }}
+            style={{ color: mode === "dark" && "white" }}
             className={`${mode === "light" && "dark-color"}`}
           >
             Currently Empty

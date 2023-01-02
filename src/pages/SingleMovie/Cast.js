@@ -7,7 +7,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function Cast() {
   const { cast, mode } = useAppContext();
-  console.log(cast);
+
   return (
     <section className="cast-container">
       {cast.map((member) => (
@@ -24,8 +24,6 @@ export default function Cast() {
               }
               effect="blur"
               placeholderSrc={ImagePlaceHolder}
-              height="100%"
-              width="100%"
             />
           </div>
 

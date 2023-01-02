@@ -4,11 +4,6 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import { ErrorBoundary } from "./components/ErrorBoundary";
-
-// import SingleMovieDetails from "./pages/SingleMovie/SingleMovieDetails";
-// import TrendingMovies from "./pages/Trending/TrendingMovies";
-// import FavoriteMovies from "./pages/Favorite/FavoriteMovies";
-
 const LazySingleMovieDetails = React.lazy(() =>
   import("./pages/SingleMovie/SingleMovieDetails")
 );
@@ -19,6 +14,7 @@ const LazyFavoriteMovies = React.lazy(() =>
   import("./pages/Favorite/FavoriteMovies")
 );
 const LazyMovieList = React.lazy(() => import("./components/MoviesList"));
+
 function App() {
   const { mode } = useAppContext();
   return (

@@ -13,7 +13,6 @@ export default function Header() {
 
   const handleNavigate = useCallback(() => {
     navigate("/");
-    console.log("+AAAAAAA");
   }, [navigate]);
 
   return (

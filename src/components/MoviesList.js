@@ -3,8 +3,6 @@ import "./MoviesList.css";
 import { useAppContext } from "../context/useAppContext";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
-
-import LoadingGif from "../assets/loading-gif.gif";
 import Search from "./Search";
 
 export default function MoviesList() {
@@ -35,19 +33,21 @@ export default function MoviesList() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [currentPage, dispatch]);
 
-  //mount only
-  useEffect(() => {
-    // !! bach n7wloha boolean , !!! la negation ta3 dak lboolean
-    setTimeout(() => {
-      if (list.length < 1) {
-        getTrendingHomeMovies();
-      }
-    }, 200);
-  }, []);
-
   useEffect(() => {
     getTrendingHomeMovies();
   }, [currentPage]);
+
+  //mount only
+  useEffect(() => {
+    dispatch({
+      type: "UPDATE_CURRENTPAGE",
+      payload: 1,
+    });
+    if (list.length < 1) {
+      getTrendingHomeMovies();
+    }
+  }, []);
+
   return (
     <>
       {error && (

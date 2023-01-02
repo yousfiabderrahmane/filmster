@@ -66,12 +66,6 @@ export default function MovieCard({ movie }) {
         ) : (
           <AddFavIcon onClick={() => handleAddFav(movie)} fill="white" />
         )}
-        {/* <img
-          className="sticker"
-          src={isFavorite ? RateStar : AddFavIcon}
-          alt=""
-          onClick={() => handleAddFav(movie)}
-        /> */}
       </div>
 
       <div className="lazy-image-container">
@@ -80,8 +74,6 @@ export default function MovieCard({ movie }) {
           className="img"
           src={IMAGE_URL}
           alt={movie.original_title}
-          height="100%"
-          width="100%"
           effect="blur"
           placeholderSrc={ImagePlaceHolder}
         />
@@ -93,9 +85,6 @@ export default function MovieCard({ movie }) {
 `}
       >
         <h4>{movie.original_title ? movie.original_title : movie.name}</h4>{" "}
-        {/* <h5 className="rating-flex">
-          <span>Released in :</span> <span>{movie.release_date}</span>{" "}
-        </h5> */}
         <p className="rating-flex">
           <span> {movie.vote_average} </span>
           <div className="rating-star-container">

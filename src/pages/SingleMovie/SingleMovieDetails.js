@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SIngleMovieDetails.css";
-import LoadingGif from "../../assets/loading-gif.gif";
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
 import { useAppContext } from "../../context/useAppContext";
 import Similar from "../../components/Similar";

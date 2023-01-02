@@ -69,7 +69,6 @@ const contextReducer = (state, action) => {
 export default function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(contextReducer, initialState);
 
-  console.log(state.currentPage);
   //fetch trending movies
   const getTrendingMovies = useCallback(async () => {
     dispatch({ type: "IS_PENDING" });
@@ -95,7 +94,6 @@ export default function ContextProvider({ children }) {
       }
     } catch (err) {
       dispatch({ type: "ERROR", payload: "Could not fetch the data" });
-      console.log(err);
     }
   }, [state.currentPage]);
 
@@ -119,7 +117,6 @@ export default function ContextProvider({ children }) {
       }
     } catch (err) {
       dispatch({ type: "ERROR", payload: "Could not fetch the data" });
-      console.log(err);
     }
   };
 
@@ -162,7 +159,7 @@ export default function ContextProvider({ children }) {
         throw Error("Could not fetch data");
       }
     } catch (err) {
-      console.log(err);
+      throw Error(err);
     }
   };
 
@@ -186,9 +183,7 @@ export default function ContextProvider({ children }) {
       } else {
         dispatch({ type: "ERROR", payload: "Could not fetch the data" });
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   //fetch movie by id (single movie)
@@ -223,9 +218,6 @@ export default function ContextProvider({ children }) {
         throw Error("Could not fetch data");
       }
     } catch (err) {
-      // console.log(err);
-      // setError("Oops, seems like the movie details doesn't exist yet");
-      // setIsPending(false);
       dispatch({
         type: "ERROR",
         payload: "Ooops seems like the movie details doesn't exist yet",
@@ -248,7 +240,7 @@ export default function ContextProvider({ children }) {
         throw Error("Could not fetch Similar");
       }
     } catch (err) {
-      console.log(err);
+      throw Error(err);
     }
   };
 
@@ -269,14 +261,12 @@ export default function ContextProvider({ children }) {
           });
 
           dispatch({ type: "UPDATE_REVIEWS", payload: newResults });
-
-          //LOL IM A GENIUS AHAHSDHASHDHAHAHAHAHHAHA
         } else {
           dispatch({ type: "ERROR", payload: "Could not fetch the data" });
         }
       }
     } catch (error) {
-      console.log(error);
+      throw Error(error);
     }
   };
 

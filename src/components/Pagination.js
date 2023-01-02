@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { useAppContext } from "../context/useAppContext";
 import "./Pagination.css";
 
@@ -20,7 +19,6 @@ export default function Pagination({
         </button>
       )}
       <button className={`middle ${mode === "light" && "dark-color"}`}>
-        {" "}
         {currentPage}
       </button>
       {currentPage < totalPages && (
@@ -28,7 +26,6 @@ export default function Pagination({
           className={`pagination-btn ${mode === "light" && "dark-color"}`}
           onClick={handleNext}
         >
-          {" "}
           Next
         </button>
       )}

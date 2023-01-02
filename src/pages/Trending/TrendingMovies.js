@@ -5,7 +5,6 @@ import "../../components/MovieCard.css";
 import MovieCard from "../../components/MovieCard";
 import { useAppContext } from "../../context/useAppContext";
 import Pagination from "../../components/Pagination";
-import LoadingGif from "../../assets/loading-gif.gif";
 
 export default function TrendingMovies() {
   const {
@@ -43,14 +42,6 @@ export default function TrendingMovies() {
   useEffect(() => {
     getTrendingMovies();
   }, [currentPage]);
-
-  useEffect(() => {
-    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
-    return () => {
-      // dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
-      dispatch({ type: "UPDATE_TOTALPAGES", payload: 0 });
-    };
-  }, []);
 
   return (
     <section className="trending-movies-page">

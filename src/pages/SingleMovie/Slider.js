@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import "./Slider.css";
 import { ReactComponent as LeftArr } from "../../assets/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg";
 import { ReactComponent as RightArr } from "../../assets/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg";
 import { useAppContext } from "../../context/useAppContext";
-import { useParams } from "react-router-dom";
 
 export default function Slider({ showMore }) {
   const [index, setIndex] = React.useState(0);
 
-  const { id } = useParams();
-
-  const { mode, dispatch, people, getComments } = useAppContext();
+  const { mode, people } = useAppContext();
 
   useEffect(() => {
     const lastIndex = people.length - 1;
