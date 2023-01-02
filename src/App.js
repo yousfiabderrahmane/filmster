@@ -28,69 +28,38 @@ function App() {
       <ErrorBoundary>
         <BrowserRouter>
           <Header />
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <>
-                  <Search />
-                  <MoviesList />
-                </>
-              }
-            />
-            <Route
-              path="/movie/:id"
-              element={
-                <Suspense
-                  fallback={
-                    <div className="center-me">
-                      <h1>Loading . . .</h1>
-                    </div>
-                  }
-                >
-                  <LazySingleMovieDetails />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/trending"
-              element={
-                <Suspense
-                  fallback={
-                    <div className="center-me">
-                      <h1>Loading . . .</h1>
-                    </div>
-                  }
-                >
-                  <LazyTrendingMovies />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/favorite"
-              element={
-                <Suspense
-                  fallback={
-                    <div className="center-me">
-                      <h1>Loading . . .</h1>
-                    </div>
-                  }
-                >
-                  <LazyFavoriteMovies />
-                </Suspense>
-              }
-            />
-            <Route
-              path="*"
-              element={
-                <>
-                  <Search />
-                  <MoviesList />
-                </>
-              }
-            />
-          </Routes>
+          <Suspense
+            fallback={
+              <div className="center-me">
+                <h1>Loading . . .</h1>
+              </div>
+            }
+          >
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={
+                  <>
+                    <Search />
+                    <MoviesList />
+                  </>
+                }
+              />
+              <Route path="/movie/:id" element={<LazySingleMovieDetails />} />
+              <Route path="/trending" element={<LazyTrendingMovies />} />
+              <Route path="/favorite" element={<LazyFavoriteMovies />} />
+              <Route
+                path="*"
+                element={
+                  <>
+                    <Search />
+                    <MoviesList />
+                  </>
+                }
+              />
+            </Routes>
+          </Suspense>
         </BrowserRouter>
       </ErrorBoundary>
     </div>

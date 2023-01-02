@@ -203,15 +203,8 @@ export default function ContextProvider({ children }) {
 
         //deja chekina f context just in case bdl chi wa7d l id manually
         if (data.poster_path != null) {
-          // setMovie(data);
-          // setIsPending(false);
-          // setError(null);
           dispatch({ type: "UPDATE_SINGLEMOVIE", payload: data });
         } else {
-          // setIsPending(false);
-          // setError("Oops, seems like the movie details doesn't exist yet");
-          // setShowSimilar(false);
-
           dispatch({
             type: "ERROR",
             payload: "Ooops seems like the movie details doesn't exist yet",
@@ -221,9 +214,6 @@ export default function ContextProvider({ children }) {
 
         //ila 3ndo dik success proprety rah mal9a walo meskin
         if (data.hasOwnProperty("success")) {
-          // setMovie(null);
-          // setIsPending(false);
-          // setError("Oops, seems like the movie details doesn't exist yet");
           dispatch({
             type: "ERROR",
             payload: "Ooops seems like the movie details doesn't exist yet",
