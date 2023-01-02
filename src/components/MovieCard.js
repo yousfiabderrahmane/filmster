@@ -75,6 +75,7 @@ export default function MovieCard({ movie }) {
           alt={movie.original_title}
           height="100%"
           width="100%"
+          fetchpriority="high"
           // effect="blur"
           // placeholderSrc={ImagePlaceHolder}
         />
