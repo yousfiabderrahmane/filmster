@@ -1,13 +1,13 @@
 import { useAppContext } from "../../context/useAppContext";
 import Alternative from "../../assets/download.png";
 import "./Cast.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import ImagePlaceHolder from "../../assets/placeholder.jpg";
-import "react-lazy-load-image-component/src/effects/blur.css";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
+// import ImagePlaceHolder from "../../assets/placeholder.jpg";
+// import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function Cast() {
   const { cast, mode } = useAppContext();
-
+  console.log(cast);
   return (
     <section className="cast-container">
       {cast.map((member) => (
@@ -16,14 +16,17 @@ export default function Cast() {
           className="cast-card"
         >
           <div className="img-container">
-            <LazyLoadImage
+            <img
               src={
                 member.profile_path == null
                   ? Alternative
                   : `http://image.tmdb.org/t/p/w500${member.profile_path}`
               }
-              effect="blur"
-              placeholderSrc={ImagePlaceHolder}
+              alt="cast"
+              // effect="blur"
+              // placeholderSrc={ImagePlaceHolder}
+              // height="100%"
+              // width="100%"
             />
           </div>
 
