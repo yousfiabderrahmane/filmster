@@ -5,6 +5,7 @@ import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 
 import LoadingGif from "../assets/loading-gif.gif";
+import Search from "./Search";
 
 export default function MoviesList() {
   const {
@@ -59,6 +60,7 @@ export default function MoviesList() {
         </div>
       ) : (
         <>
+          <Search />
           <section className="movies-list">
             {list &&
               list.map((item) => {

@@ -1,11 +1,8 @@
 import React, { Suspense } from "react";
 import { useAppContext } from "./context/useAppContext";
-import Search from "./components/Search";
-import MoviesList from "./components/MoviesList";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
-import LoadingGif from "./assets/loading-gif.gif";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
 // import SingleMovieDetails from "./pages/SingleMovie/SingleMovieDetails";
@@ -21,6 +18,7 @@ const LazyTrendingMovies = React.lazy(() =>
 const LazyFavoriteMovies = React.lazy(() =>
   import("./pages/Favorite/FavoriteMovies")
 );
+const LazyMovieList = React.lazy(() => import("./components/MoviesList"));
 function App() {
   const { mode } = useAppContext();
   return (
@@ -36,28 +34,11 @@ function App() {
             }
           >
             <Routes>
-              <Route
-                exact
-                path="/"
-                element={
-                  <>
-                    <Search />
-                    <MoviesList />
-                  </>
-                }
-              />
+              <Route exact path="/" element={<LazyMovieList />} />
               <Route path="/movie/:id" element={<LazySingleMovieDetails />} />
               <Route path="/trending" element={<LazyTrendingMovies />} />
               <Route path="/favorite" element={<LazyFavoriteMovies />} />
-              <Route
-                path="*"
-                element={
-                  <>
-                    <Search />
-                    <MoviesList />
-                  </>
-                }
-              />
+              <Route path="*" element={<LazyMovieList />} />
             </Routes>
           </Suspense>
         </BrowserRouter>
