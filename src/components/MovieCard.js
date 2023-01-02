@@ -73,8 +73,8 @@ export default function MovieCard({ movie, index }) {
           className="img"
           src={IMAGE_URL}
           alt={movie.original_title}
-          // height="100%"
-          // width="100%"
+          height="100%"
+          width="100%"
           fetchpriority={index === 0 && "high"}
           // effect="blur"
           // placeholderSrc={ImagePlaceHolder}

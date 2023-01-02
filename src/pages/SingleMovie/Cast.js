@@ -22,11 +22,11 @@ export default function Cast() {
                   ? Alternative
                   : `http://image.tmdb.org/t/p/w500${member.profile_path}`
               }
-              alt="cast"
+              alt={member.id}
               // effect="blur"
               // placeholderSrc={ImagePlaceHolder}
-              // height="100%"
-              // width="100%"
+              height="100%"
+              width="100%"
             />
           </div>
 
