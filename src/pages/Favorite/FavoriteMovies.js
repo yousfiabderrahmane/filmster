@@ -43,7 +43,9 @@ export default function FavoriteMovies() {
       <div
         className={`favorite-page-header ${mode === "light" && "dark-color"}`}
       >
-        <h2>My Favorite Movies</h2>
+        <h2 style={{ color: mode === "light" && "#121212" }}>
+          My Favorite Movies
+        </h2>
         <div className="btns">
           <button
             className={`${mode === "light" && "dark-color"}`}

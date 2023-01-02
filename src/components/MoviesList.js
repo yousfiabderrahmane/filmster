@@ -55,8 +55,10 @@ export default function MoviesList() {
       )}
 
       {isPending ? (
-        <div className={`center-me ${mode === "light" && "dark-color"}`}>
-          <h1>Loading . . .</h1>
+        <div className={`center-me`}>
+          <h1 style={{ color: mode === "light" && "#121212" }}>
+            Loading . . .
+          </h1>
         </div>
       ) : (
         <>

@@ -31,6 +31,8 @@
 }
 @media (max-width: 600px) {
   .movies-list {
+    animation: unset;
+
     grid-template-columns: repeat(2, 1fr);
   }
 }

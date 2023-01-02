@@ -72,6 +72,7 @@
 @media (max-width: 600px) {
   .favorite-page-list {
     grid-template-columns: repeat(2, 1fr);
+    animation: unset;
   }
   .favorite-page-header {
     display: flex;

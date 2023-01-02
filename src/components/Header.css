@@ -67,6 +67,8 @@
   }
   .header-title {
     font-size: 30px;
+    animation: unset;
+    filter: drop-shadow(0px 0px 10px #c00);
   }
   .header-svg {
     transform: scale(0.7);

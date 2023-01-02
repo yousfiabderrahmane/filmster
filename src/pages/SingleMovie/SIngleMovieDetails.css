@@ -216,7 +216,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-
+    animation: unset;
     display: flex;
     justify-content: space-between;
     color: white;
