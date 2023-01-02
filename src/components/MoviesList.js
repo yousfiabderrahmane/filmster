@@ -66,8 +66,8 @@ export default function MoviesList() {
           ) : (
             <section className="movies-list">
               {list &&
-                list.map((item) => {
-                  return <MovieCard movie={item} key={item.id} />;
+                list.map((item, index) => {
+                  return <MovieCard index={index} movie={item} key={item.id} />;
                 })}
             </section>
           )}

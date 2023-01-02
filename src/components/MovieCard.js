@@ -9,7 +9,7 @@ import { ReactComponent as AddFavIcon } from "../assets/AddToFav.svg";
 // import ImagePlaceHolder from "../assets/placeholder.jpg";
 // import "react-lazy-load-image-component/src/effects/blur.css";
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie, index }) {
   const { favList, dispatch, mode } = useAppContext();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -75,7 +75,7 @@ export default function MovieCard({ movie }) {
           alt={movie.original_title}
           height="100%"
           width="100%"
-          fetchpriority="high"
+          fetchpriority={index === 0 ? "high" : "low"}
           // effect="blur"
           // placeholderSrc={ImagePlaceHolder}
         />
