@@ -25,8 +25,8 @@ export default function Cast() {
               alt="cast"
               // effect="blur"
               // placeholderSrc={ImagePlaceHolder}
-              // height="100%"
-              // width="100%"
+              height="100%"
+              width="100%"
             />
           </div>
 

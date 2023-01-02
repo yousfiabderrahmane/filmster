@@ -50,10 +50,6 @@ export default function MoviesList() {
 
   return (
     <>
-      {error && (
-        <p className={`info ${mode === "light" && "dark-color"}`}>{error}</p>
-      )}
-
       {isPending ? (
         <div className={`center-me`}>
           <h1 style={{ color: mode === "light" && "#121212" }}>
@@ -63,12 +59,18 @@ export default function MoviesList() {
       ) : (
         <>
           <Search />
-          <section className="movies-list">
-            {list &&
-              list.map((item) => {
-                return <MovieCard movie={item} key={item.id} />;
-              })}
-          </section>
+          {error ? (
+            <p className={`info ${mode === "light" && "dark-color"}`}>
+              {error}
+            </p>
+          ) : (
+            <section className="movies-list">
+              {list &&
+                list.map((item) => {
+                  return <MovieCard movie={item} key={item.id} />;
+                })}
+            </section>
+          )}
         </>
       )}
       {!error && !isPending && (

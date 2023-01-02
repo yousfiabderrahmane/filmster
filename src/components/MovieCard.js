@@ -73,6 +73,8 @@ export default function MovieCard({ movie }) {
           className="img"
           src={IMAGE_URL}
           alt={movie.original_title}
+          height="100%"
+          width="100%"
           // effect="blur"
           // placeholderSrc={ImagePlaceHolder}
         />
