@@ -63,6 +63,7 @@
   bottom: 0;
 }
 .img {
+  object-fit: contain;
   transition: all 0.3s;
 }
 .movie-card:hover .lazy-image-container {
