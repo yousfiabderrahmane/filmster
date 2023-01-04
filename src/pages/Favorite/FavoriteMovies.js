@@ -11,7 +11,7 @@ export default function FavoriteMovies() {
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage, setCardsPerPage] = useState(8);
+  const [cardsPerPage] = useState(8);
 
   const lastCardIndex = currentPage * cardsPerPage;
   const firstCardIndex = lastCardIndex - cardsPerPage;
@@ -34,10 +34,10 @@ export default function FavoriteMovies() {
   };
 
   useEffect(() => {
-    if (currentFavList.length === 0) {
+    if (currentFavList.length === 0 && currentPage !== 1) {
       setCurrentPage(currentPage - 1);
     }
-  }, [currentFavList]);
+  }, [currentFavList, currentPage]);
   return (
     <section className="favorite-movies-page">
       <div

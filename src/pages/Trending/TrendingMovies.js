@@ -41,7 +41,7 @@ export default function TrendingMovies() {
 
   useEffect(() => {
     getTrendingMovies();
-  }, [currentPage]);
+  }, [currentPage, getTrendingMovies]);
 
   return (
     <section className="trending-movies-page">

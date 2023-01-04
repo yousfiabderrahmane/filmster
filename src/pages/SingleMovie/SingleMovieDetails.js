@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./SIngleMovieDetails.css";
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
 import { useAppContext } from "../../context/useAppContext";
@@ -33,7 +33,7 @@ export default function SingleMovieDetails() {
   const navigate = useNavigate();
 
   //get trailer key
-  const getTrailerKey = async () => {
+  const getTrailerKey = useCallback(async () => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=19dc8c994b8ef838ba65a40c5ea44444`
     );
@@ -43,7 +43,7 @@ export default function SingleMovieDetails() {
     } else {
       throw Error("you dumb fuck");
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     fetchMovieById(id);
@@ -59,7 +59,15 @@ export default function SingleMovieDetails() {
       dispatch({ type: "UPDATE_SINGLEMOVIE", payload: null });
       dispatch({ type: "UPDATE_CAST", payload: [] });
     };
-  }, [id]);
+  }, [
+    dispatch,
+    fetchCast,
+    fetchMovieById,
+    getReviews,
+    getSimilarMovies,
+    getTrailerKey,
+    id,
+  ]);
 
   return (
     <>

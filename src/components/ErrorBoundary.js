@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { useNavigate } from "react-router-dom";
 import "./ErrorBoundary.css";
 
 export class ErrorBoundary extends Component {

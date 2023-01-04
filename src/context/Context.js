@@ -98,7 +98,7 @@ export default function ContextProvider({ children }) {
   }, [state.currentPage]);
 
   //get trending movies home page
-  const getTrendingHomeMovies = async () => {
+  const getTrendingHomeMovies = useCallback(async () => {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
@@ -112,16 +112,19 @@ export default function ContextProvider({ children }) {
           payload: total_pages < 500 ? total_pages : 499,
         });
         dispatch({ type: "UPDATE_LIST", payload: results });
+        console.log(state.currentPage);
       } else {
         throw Error("Could not fetch data");
       }
     } catch (err) {
       dispatch({ type: "ERROR", payload: "Could not fetch the data" });
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.currentPage]);
 
   //fetch movie by name
-  const getMovieByName = async () => {
+
+  const getMovieByName = useCallback(async () => {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
@@ -161,10 +164,10 @@ export default function ContextProvider({ children }) {
     } catch (err) {
       throw Error(err);
     }
-  };
+  }, [state.currentPage, state.searchTerm]);
 
   //fetch cast
-  const fetchCast = async (id) => {
+  const fetchCast = useCallback(async (id) => {
     dispatch({ type: "IS_PENDING" });
 
     try {
@@ -182,10 +185,10 @@ export default function ContextProvider({ children }) {
         }
       }
     } catch (err) {}
-  };
+  }, []);
 
   //fetch movie by id (single movie)
-  const fetchMovieById = async (id) => {
+  const fetchMovieById = useCallback(async (id) => {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
@@ -221,10 +224,10 @@ export default function ContextProvider({ children }) {
         payload: "Ooops seems like the movie details doesn't exist yet",
       });
     }
-  };
+  }, []);
 
   //fetch similar movies
-  const getSimilarMovies = async (id) => {
+  const getSimilarMovies = useCallback(async (id) => {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
@@ -240,10 +243,10 @@ export default function ContextProvider({ children }) {
     } catch (err) {
       console.log(err);
     }
-  };
+  }, []);
 
   //fetch the reviews
-  const getReviews = async (id) => {
+  const getReviews = useCallback(async (id) => {
     dispatch({ type: "IS_PENDING" });
 
     try {
@@ -266,14 +269,14 @@ export default function ContextProvider({ children }) {
     } catch (error) {
       throw Error(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     //empty string falsy :)
     if (state.searchTerm) {
       getMovieByName();
     }
-  }, [state.searchTerm, state.currentPage]);
+  }, [state.searchTerm, state.currentPage, getMovieByName]);
 
   useEffect(() => {
     localStorage.setItem("favList", JSON.stringify(state.favList));

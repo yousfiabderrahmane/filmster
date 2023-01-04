@@ -21,11 +21,11 @@ export default function Search() {
   const favRedirect = useCallback(() => {
     navigate("/favorite");
     dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
-  }, []);
+  }, [dispatch, navigate]);
   const TrendRedirect = useCallback(() => {
     navigate("/trending");
     dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
-  }, []);
+  }, [dispatch, navigate]);
 
   //handle searchterm state
   const handleSubmit = (e) => {
@@ -81,7 +81,11 @@ export default function Search() {
       </form>
 
       <div className="left">
-        <a href="https://youshows.netlify.app/" target="_blank">
+        <a
+          href="https://youshows.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <button id="unique" className={`${mode === "light" && "dark-color"}`}>
             Tv-Shows
             <div className="trend-container">
