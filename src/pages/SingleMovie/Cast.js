@@ -10,8 +10,9 @@ export default function Cast() {
 
   return (
     <section className="cast-container">
-      {cast.map((member) => (
+      {cast.map((member, index) => (
         <div
+          key={index}
           style={{ borderColor: mode === "light" && "#121212" }}
           className="cast-card"
         >

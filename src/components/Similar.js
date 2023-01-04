@@ -13,8 +13,8 @@ export default function Similar() {
         </h1>
       )}
       <div className="similar-container">
-        {similar.map((tvshow) => {
-          return <MovieCard movie={tvshow} />;
+        {similar.map((tvshow, index) => {
+          return <MovieCard key={index} movie={tvshow} />;
         })}
       </div>
     </div>
