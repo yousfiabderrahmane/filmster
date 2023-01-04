@@ -7,7 +7,7 @@ import "./Cast.css";
 
 export default function Cast() {
   const { cast, mode } = useAppContext();
-  console.log(cast);
+
   return (
     <section className="cast-container">
       {cast.map((member) => (

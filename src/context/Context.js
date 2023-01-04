@@ -180,8 +180,6 @@ export default function ContextProvider({ children }) {
         } else {
           dispatch({ type: "UPDATE_CAST", payload: cast });
         }
-      } else {
-        dispatch({ type: "ERROR", payload: "Could not fetch the data" });
       }
     } catch (err) {}
   };
@@ -240,7 +238,7 @@ export default function ContextProvider({ children }) {
         throw Error("Could not fetch Similar");
       }
     } catch (err) {
-      throw Error(err);
+      console.log(err);
     }
   };
 

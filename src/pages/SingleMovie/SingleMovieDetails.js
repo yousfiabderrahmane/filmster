@@ -21,6 +21,8 @@ export default function SingleMovieDetails() {
     error,
     getReviews,
     getSimilarMovies,
+    similar,
+    cast,
   } = useAppContext();
   const [showMore, setShowMore] = useState(false);
 
@@ -35,8 +37,12 @@ export default function SingleMovieDetails() {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=19dc8c994b8ef838ba65a40c5ea44444`
     );
-    const data = await response.json();
-    setKey(data.results[0].key);
+    if (response.ok) {
+      const data = await response.json();
+      setKey(data.results[0].key);
+    } else {
+      throw Error("you dumb fuck");
+    }
   };
 
   useEffect(() => {
@@ -65,7 +71,7 @@ export default function SingleMovieDetails() {
         </div>
       )}
       {error && (
-        <div className="error-redirect">
+        <div className={`error-redirect ${mode === "light" && "dark-color"}`}>
           <p className={`info ${mode === "light" && "dark-color"}`}>{error}</p>
           <button
             className={`${mode === "light" && "dark-color"}`}
@@ -191,11 +197,12 @@ export default function SingleMovieDetails() {
                 )}
               </div>
             </div>
-
-            <div className="cast">
-              <h1>Top Cast </h1>
-              <Cast />
-            </div>
+            {cast.length > 1 && (
+              <div className="cast">
+                <h1>Top Cast </h1>
+                <Cast />
+              </div>
+            )}
 
             <div className="overview">
               <h3 className={`${mode === "light" && "dark-color"}`}>
@@ -224,7 +231,7 @@ export default function SingleMovieDetails() {
           </div>
         </section>
       )}
-      {!isPending && singleMovie && <Similar />}
+      {!isPending && singleMovie && similar.length > 0 && <Similar />}
     </>
   );
 }
