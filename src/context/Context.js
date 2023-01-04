@@ -112,7 +112,6 @@ export default function ContextProvider({ children }) {
           payload: total_pages < 500 ? total_pages : 499,
         });
         dispatch({ type: "UPDATE_LIST", payload: results });
-        console.log(state.currentPage);
       } else {
         throw Error("Could not fetch data");
       }

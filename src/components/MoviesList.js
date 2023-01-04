@@ -35,16 +35,10 @@ export default function MoviesList() {
 
   useEffect(() => {
     getTrendingHomeMovies();
-    console.log("I RAAAAN BITCHES");
   }, [currentPage, getTrendingHomeMovies]);
 
   //mount only
   useEffect(() => {
-    // dispatch({
-    //   type: "UPDATE_CURRENTPAGE",
-    //   payload: 1,
-    // });
-
     if (list.length < 1) {
       getTrendingHomeMovies();
     }
