@@ -10,7 +10,7 @@ export default function MovieCard({ movie, index }) {
   const { favList, dispatch, mode } = useAppContext();
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const IMAGE_URL = `http://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  const IMAGE_URL = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   const navigate = useNavigate();
   const handleNavigation = () => {
