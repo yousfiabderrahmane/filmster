@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import { createContext, useCallback } from "react";
 import API_KEY from "./apikey";
-console.log(API_KEY);
 export const AppContext = createContext();
 
 const favoriteLs = JSON.parse(localStorage.getItem("favList"));
