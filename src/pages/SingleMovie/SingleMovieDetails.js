@@ -6,6 +6,7 @@ import { useAppContext } from "../../context/useAppContext";
 import Similar from "../../components/Similar";
 import Slider from "./Slider";
 import Cast from "./Cast";
+import API_KEY from "../../context/apikey";
 
 export default function SingleMovieDetails() {
   const [key, setKey] = useState(null);
@@ -35,7 +36,7 @@ export default function SingleMovieDetails() {
   //get trailer key
   const getTrailerKey = useCallback(async () => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`
     );
     if (response.ok) {
       const data = await response.json();

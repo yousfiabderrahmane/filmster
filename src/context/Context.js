@@ -1,5 +1,7 @@
 import React, { useEffect, useReducer } from "react";
 import { createContext, useCallback } from "react";
+import API_KEY from "./apikey";
+console.log(API_KEY);
 export const AppContext = createContext();
 
 const favoriteLs = JSON.parse(localStorage.getItem("favList"));
@@ -74,7 +76,7 @@ export default function ContextProvider({ children }) {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=19dc8c994b8ef838ba65a40c5ea44444&page=${state.currentPage}`
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=${state.currentPage}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -102,7 +104,7 @@ export default function ContextProvider({ children }) {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=19dc8c994b8ef838ba65a40c5ea44444&page=${state.currentPage}`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=${state.currentPage}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -127,7 +129,7 @@ export default function ContextProvider({ children }) {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=19dc8c994b8ef838ba65a40c5ea44444&query=${state.searchTerm}&page=${state.currentPage}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${state.searchTerm}&page=${state.currentPage}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -171,7 +173,7 @@ export default function ContextProvider({ children }) {
 
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -191,7 +193,7 @@ export default function ContextProvider({ children }) {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -230,7 +232,7 @@ export default function ContextProvider({ children }) {
     dispatch({ type: "IS_PENDING" });
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}`
       );
 
       if (response.ok) {
@@ -250,7 +252,7 @@ export default function ContextProvider({ children }) {
 
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=19dc8c994b8ef838ba65a40c5ea44444`
+        `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${API_KEY}`
       );
       if (response.ok) {
         const data = await response.json();
