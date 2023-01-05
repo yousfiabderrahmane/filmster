@@ -6,7 +6,7 @@ import { useAppContext } from "../../context/useAppContext";
 import Similar from "../../components/Similar";
 import Slider from "./Slider";
 import Cast from "./Cast";
-import API_KEY from "../../context/apikey";
+import API_KEY from "../../context/test";
 
 export default function SingleMovieDetails() {
   const [key, setKey] = useState(null);
