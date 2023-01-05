@@ -75,6 +75,7 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .search-section button.dark-color,
 .search-section form input.dark-color {

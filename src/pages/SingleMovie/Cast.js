@@ -24,8 +24,6 @@ export default function Cast() {
                   : `http://image.tmdb.org/t/p/w500${member.profile_path}`
               }
               alt={member.id}
-              // effect="blur"
-              // placeholderSrc={ImagePlaceHolder}
               height="100%"
               width="100%"
             />

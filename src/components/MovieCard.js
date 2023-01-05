@@ -69,10 +69,10 @@ export default function MovieCard({ movie, index }) {
           onClick={handleNavigation}
           className="img"
           src={IMAGE_URL}
-          alt={movie.original_title}
+          alt={movie.original_title ? movie.original_title : movie.name}
           height="100%"
           width="100%"
-          fetchpriority={index === 0 && "high"}
+          fetchpriority={index === 0 ? "high" : "false"}
         />
       </div>
 
@@ -81,17 +81,17 @@ export default function MovieCard({ movie, index }) {
         className={`overlay-info ${mode === "light" && "dark-color"}
 `}
       >
-        <h4>{movie.original_title ? movie.original_title : movie.name}</h4>{" "}
-        <p className="rating-flex">
+        <p>{movie.original_title ? movie.original_title : movie.name}</p>{" "}
+        <div className="rating-flex">
           <span> {movie.vote_average} </span>
-          <div className="rating-star-container">
+          <span className="rating-star-container">
             {" "}
             <RatingStar
               className="rating-star"
               fill={mode === "light" ? "#121212" : "white"}
             />
-          </div>
-        </p>
+          </span>
+        </div>
       </div>
     </section>
   );

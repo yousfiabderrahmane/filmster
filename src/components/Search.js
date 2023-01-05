@@ -43,7 +43,7 @@ export default function Search() {
     <section className="search-section">
       <div className="left">
         <button
-          id="left-btns"
+          id="left-btns1"
           className={`left-btns ${mode === "light" && "dark-color"}`}
           onClick={TrendRedirect}
         >
@@ -53,7 +53,7 @@ export default function Search() {
           </div>
         </button>
         <button
-          id="left-btns"
+          id="left-btns2"
           className={`left-btns ${mode === "light" && "dark-color"}`}
           onClick={favRedirect}
         >
@@ -72,11 +72,13 @@ export default function Search() {
             type="text"
             placeholder="Search For A Movie..."
           />
-          <button>
-            <div className="trend-container">
-              <SearchIcon fill={mode === "light" ? "#121212" : "white"} />
-            </div>
-          </button>
+
+          <div className="trend-container">
+            <SearchIcon
+              onClick={handleSubmit}
+              fill={mode === "light" ? "#121212" : "white"}
+            />
+          </div>
         </div>
       </form>
 
