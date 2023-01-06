@@ -3,7 +3,7 @@ import "./MoviesList.css";
 import { useAppContext } from "../context/useAppContext";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
-import Search from "./Search";
+
 
 export default function MoviesList() {
   const {
@@ -54,7 +54,6 @@ export default function MoviesList() {
         </div>
       ) : (
         <>
-          <Search />
           {error ? (
             <p className={`info ${mode === "light" && "dark-color"}`}>
               {error}

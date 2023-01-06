@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { Search } from "react-router-dom";
 const LazySingleMovieDetails = React.lazy(() =>
   import("./pages/SingleMovie/SingleMovieDetails")
 );
@@ -32,7 +33,16 @@ function App() {
             }
           >
             <Routes>
-              <Route exact path="/" element={<LazyMovieList />} />
+              <Route
+                exact
+                path="/"
+                element={
+                  <>
+                    {" "}
+                    <Search /> <LazyMovieList />
+                  </>
+                }
+              />
               <Route path="/movie/:id" element={<LazySingleMovieDetails />} />
               <Route path="/trending" element={<LazyTrendingMovies />} />
               <Route path="/favorite" element={<LazyFavoriteMovies />} />
