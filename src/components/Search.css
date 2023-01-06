@@ -164,4 +164,8 @@ a button {
     box-shadow: unset;
     transform: unset;
   }
+  #unique svg {
+    transition: unset;
+    animation: unset;
+  }
 }
