@@ -4,7 +4,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import { ErrorBoundary } from "./components/ErrorBoundary";
-import { Search } from "react-router-dom";
+import Search from "./components/Search";
+
 const LazySingleMovieDetails = React.lazy(() =>
   import("./pages/SingleMovie/SingleMovieDetails")
 );
