@@ -155,4 +155,13 @@ a button {
   .tv-btn {
     transition: unset;
   }
+  .search-section .left button:hover,
+  .tv-btn:hover {
+    box-shadow: unset;
+    transform: unset;
+  }
+  #unique:hover {
+    box-shadow: unset;
+    transform: unset;
+  }
 }
