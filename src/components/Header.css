@@ -79,4 +79,7 @@
   .mode-icon:hover {
     transform: unset;
   }
+  .mode-icon {
+    transition: rotate 0.8s;
+  }
 }

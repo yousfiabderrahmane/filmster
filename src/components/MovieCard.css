@@ -106,13 +106,17 @@
     position: relative;
     outline: 2px solid rgba(255, 0, 0, 0.6);
     cursor: pointer;
+    transition: unset;
   }
   .overlay-info {
     bottom: 0%;
   }
-
+  .sticker-container {
+    transition: unset;
+  }
   .sticker {
     width: 25px;
+    transition: unset;
   }
   .sticker:hover {
     transform: unset;

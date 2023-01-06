@@ -151,4 +151,8 @@ a button {
   #unique {
     height: 60%;
   }
+  .search-section button,
+  .tv-btn {
+    transition: unset;
+  }
 }

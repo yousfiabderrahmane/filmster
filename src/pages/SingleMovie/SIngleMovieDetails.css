@@ -197,6 +197,9 @@
   flex-direction: column;
   gap: 10px;
 }
+.genres ul {
+  padding-left: 20px;
+}
 @media (max-width: 1000px) {
   .close-me {
     position: absolute;
