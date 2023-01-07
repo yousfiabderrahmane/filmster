@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+## Welcome To YOUSFILMS :
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a high performant & fully responsive React Application, that you can check now on [yousfilms.app](https://yousfilms.netlify.app/) <=
 
-## Available Scripts
+## Overview :
 
-In the project directory, you can run:
+![](src/readmeIMG/img1.png)
+![](src/readmeIMG/img2.png)
+![](src/readmeIMG/img3.png)
+![](src/readmeIMG/img4.png)
+![](src/readmeIMG/img5.png)
+![](src/readmeIMG/img6.png)
 
-### `npm start`
+## Features :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- You can search for a movie by it's name, get the single movie details
+  (cast, trailer, reviews slider, recommendations that are related to the
+  specific movie type ) by clicking the movie card.
+- The tv-Shows button in the Search Bar opens another website with
+  the same logic but for Tv Shows.
+- Pagination is available at the bottom of each page.
+- You can toggle between dark and light themes.
+- Originally I managed state with UseState hook, nevertheless later in
+  the project I extracted the state logic into a reducer which makes
+  state management a lot simpler.
+- Once I ended developing the main functionalities of the site, I
+  implemented React Lazy/Suspense for code splitting and followed
+- Lighthouse recommendation to aim for an extremely improved
+  performance scores. The average Lighthouse analyze tool scores now
+  are : Performance : 97 // Accessibility : 100 // Best Practices : 92 //
+  SEO : 100
