@@ -24,8 +24,7 @@ This is a high performant & fully responsive React Application, that you can che
   the project I extracted the state logic into a reducer which makes
   state management a lot simpler.
 - Once I ended developing the main functionalities of the site, I
-  implemented React Lazy/Suspense for code splitting and followed
-- Lighthouse recommendation to aim for an extremely improved
+  implemented React Lazy/Suspense for code splitting and followed Lighthouse recommendation to aim for an extremely improved
   performance scores. The average Lighthouse analyze tool scores now
   are : Performance : 97 // Accessibility : 100 // Best Practices : 92 //
   SEO : 100
