@@ -13,8 +13,10 @@ export default function MovieCard({ movie, index }) {
   const IMAGE_URL = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   const navigate = useNavigate();
+
   const handleNavigation = () => {
     navigate(`/movie/${movie.id}`);
+    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
   };
 
   const cardRef = useRef();
