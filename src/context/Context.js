@@ -69,7 +69,7 @@ const contextReducer = (state, action) => {
 
 export default function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(contextReducer, initialState);
-
+  console.log(state.list);
   //fetch trending movies
   const getTrendingMovies = useCallback(async () => {
     dispatch({ type: "IS_PENDING" });

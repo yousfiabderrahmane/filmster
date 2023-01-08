@@ -4,7 +4,6 @@ import { useAppContext } from "../context/useAppContext";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 
-
 export default function MoviesList() {
   const {
     list,
@@ -42,7 +41,8 @@ export default function MoviesList() {
     if (list.length < 1) {
       getTrendingHomeMovies();
     }
-  }, [dispatch, getTrendingHomeMovies, list.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, getTrendingHomeMovies]);
 
   return (
     <>
