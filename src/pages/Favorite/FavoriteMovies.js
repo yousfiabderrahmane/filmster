@@ -47,12 +47,14 @@ export default function FavoriteMovies() {
           My Favorite Movies
         </h2>
         <div className="btns">
-          <button
-            className={`${mode === "light" && "dark-color"}`}
-            onClick={handleClear}
-          >
-            Clear
-          </button>
+          {favList.length > 0 && (
+            <button
+              className={`${mode === "light" && "dark-color"}`}
+              onClick={handleClear}
+            >
+              Clear
+            </button>
+          )}
           <button
             className={`${mode === "light" && "dark-color"}`}
             onClick={() => navigate("/")}

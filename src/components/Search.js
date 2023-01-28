@@ -32,12 +32,15 @@ export default function Search() {
     e.preventDefault();
     if (!searchValue.current.value) {
       searchValue.current.focus();
+    } else {
+      dispatch({
+        type: "UPDATE_SEARCHTERM",
+        payload: searchValue.current.value,
+      });
+      dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
+      searchValue.current.value = "";
+      searchValue.current.blur();
     }
-    dispatch({
-      type: "UPDATE_SEARCHTERM",
-      payload: searchValue.current.value,
-    });
-    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
   };
   return (
     <section className="search-section">
