@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import "./Slider.css";
 import { ReactComponent as LeftArr } from "../../assets/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg";
 import { ReactComponent as RightArr } from "../../assets/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg";
-import { useAppContext } from "../../context/useAppContext";
+import { UseMovieContext } from "../../context/Context";
 
 export default function Slider({ showMore }) {
   const [index, setIndex] = React.useState(0);
 
-  const { mode, people } = useAppContext();
+  const { mode, people } = UseMovieContext();
 
   useEffect(() => {
     const lastIndex = people.length - 1;

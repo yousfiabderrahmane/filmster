@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react";
 import "./MoviesList.css";
-import { useAppContext } from "../context/useAppContext";
+import { UseMovieContext } from "../context/Context";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 
@@ -14,7 +14,9 @@ export default function MoviesList() {
     dispatch,
     currentPage,
     totalPages,
-  } = useAppContext();
+  } = UseMovieContext();
+
+  console.log(totalPages, currentPage);
 
   const handlePrevious = useCallback(() => {
     dispatch({

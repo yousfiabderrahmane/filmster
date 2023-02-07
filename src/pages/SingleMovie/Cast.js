@@ -1,4 +1,4 @@
-import { useAppContext } from "../../context/useAppContext";
+import { UseMovieContext } from "../../context/Context";
 import Alternative from "../../assets/download.png";
 import "./Cast.css";
 // import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -6,7 +6,7 @@ import "./Cast.css";
 // import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function Cast() {
-  const { cast, mode } = useAppContext();
+  const { cast, mode } = UseMovieContext();
 
   return (
     <section className="cast-container">

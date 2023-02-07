@@ -1,5 +1,5 @@
 import "./Search.css";
-import { useAppContext } from "../context/useAppContext";
+import { UseMovieContext } from "../context/Context";
 import { useRef } from "react";
 
 import { useCallback } from "react";
@@ -11,7 +11,7 @@ import { ReactComponent as SearchIcon } from "../assets/search.svg";
 import { ReactComponent as TV } from "../assets/tv.svg";
 
 export default function Search() {
-  const { dispatch, mode } = useAppContext();
+  const { dispatch, mode } = UseMovieContext();
 
   const searchValue = useRef();
 

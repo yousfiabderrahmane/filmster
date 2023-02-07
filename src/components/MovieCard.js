@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./MovieCard.css";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../context/useAppContext";
+import { UseMovieContext } from "../context/Context";
 import { ReactComponent as RatingStar } from "../assets/rating.svg";
 import { ReactComponent as Favorite } from "../assets/removeFav.svg";
 import { ReactComponent as AddFavIcon } from "../assets/AddToFav.svg";
 
 export default function MovieCard({ movie, index }) {
-  const { favList, dispatch, mode } = useAppContext();
+  const { favList, dispatch, mode } = UseMovieContext();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const IMAGE_URL = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;

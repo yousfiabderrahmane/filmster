@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "../../components/MovieCard";
-import { useAppContext } from "../../context/useAppContext";
+import { UseMovieContext } from "../../context/Context";
 import "./FavoriteMovies.css";
 import { ReactComponent as FavBookMark } from "../../assets/favorite-bookmark-svgrepo-com.svg";
 import Pagination from "../../components/Pagination";
 
 export default function FavoriteMovies() {
-  const { favList, dispatch, mode } = useAppContext();
+  const { favList, dispatch, mode } = UseMovieContext();
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);

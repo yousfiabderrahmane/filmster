@@ -1,4 +1,4 @@
-import { useAppContext } from "../context/useAppContext";
+import { UseMovieContext } from "../context/Context";
 import "./Pagination.css";
 
 export default function Pagination({
@@ -7,7 +7,7 @@ export default function Pagination({
   totalPages,
   currentPage,
 }) {
-  const { mode } = useAppContext();
+  const { mode } = UseMovieContext();
   return (
     <div className="pagination-container">
       {currentPage > 1 && (

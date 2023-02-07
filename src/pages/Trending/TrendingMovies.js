@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./TrendingMovies.css";
 import "../../components/MovieCard.css";
 import MovieCard from "../../components/MovieCard";
-import { useAppContext } from "../../context/useAppContext";
+import { UseMovieContext } from "../../context/Context";
 import Pagination from "../../components/Pagination";
 
 export default function TrendingMovies() {
@@ -15,7 +15,7 @@ export default function TrendingMovies() {
     mode,
     currentPage,
     dispatch,
-  } = useAppContext();
+  } = UseMovieContext();
   const navigate = useNavigate();
 
   const handlePrevious = useCallback(() => {
