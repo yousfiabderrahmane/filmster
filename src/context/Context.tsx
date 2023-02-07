@@ -8,9 +8,9 @@ import {
   MovieType,
   ReviewsType,
 } from "../types";
-// import API_KEY from "./apikey";
+import API_KEY from "./apikey";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+// const API_KEY = process.env.REACT_APP_API_KEY;
 
 //3gezt n bdl les imports kamlin xDDDD
 export enum ActionNames {
