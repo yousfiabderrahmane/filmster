@@ -45,7 +45,9 @@ export default function FavoriteMovies() {
         className={`favorite-page-header ${mode === "light" && "dark-color"}`}
       >
         {/* to do styling */}
-        <h2>My Favorite Movies</h2>
+        <h2 id={`${mode === "light" && "loading-black"}`}>
+          My Favorite Movies
+        </h2>
         <div className="btns">
           {favList.length > 0 && (
             <button
@@ -70,9 +72,9 @@ export default function FavoriteMovies() {
           </div>
 
           {/* to do styling */}
-          <h1 className={`${mode === "light" && "dark-color"}`}>
+          <h2 id={`${mode === "light" ? "laoding-black" : "loading-white"}`}>
             Currently Empty
-          </h1>
+          </h2>
         </div>
       )}
 

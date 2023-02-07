@@ -1,3 +1,35 @@
+//initial state
+export const initialSingleMovie = {
+  poster_path: "",
+  title: "",
+  tagline: "",
+  original_language: "",
+  runtime: 0,
+  vote_average: 0,
+  budget: 0,
+  release_date: "",
+  genres: [],
+  overview: "",
+};
+
+const favoriteLs = JSON.parse(localStorage.getItem("favList")!);
+
+export let initialState = {
+  searchTerm: "",
+  list: [], //by name
+  isPending: false,
+  error: "",
+  movies: [], //trend movies
+  favList: favoriteLs ? favoriteLs : [],
+  people: [], //reviews
+  similar: [],
+  cast: [],
+  currentPage: 1,
+  totalPages: 0,
+  singleMovie: initialSingleMovie,
+  mode: "dark",
+};
+
 export interface MovieType {
   name: string;
   adult: boolean;
@@ -90,6 +122,7 @@ export enum ActionNames {
   ERROR = "ERROR",
   UPDATE_FAVLIST = "UPDATE_FAVLIST",
   UPDATE_SINGLEMOVIE = "UPDATE_SINGLEMOVIE",
+  CLEAR_SINGLEMOVIE = "CLEAR_SINGLEMOVIE",
   UPDATE_REVIEWS = "UPDATE_REVIEWS",
   UPDATE_CAST = "UPDATE_CAST",
   CLEAR_FAVLIST = "CLEAR_FAVLIST",

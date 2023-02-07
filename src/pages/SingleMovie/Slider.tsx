@@ -79,7 +79,7 @@ export const Slider: React.FC<SliderProps> = ({ showMore }) => {
                 />
 
                 {/* todo styling h4 */}
-                <h4>
+                <h4 id={`${mode === "light" && "loading-black"}`}>
                   {person.author} ( {person.author_details.rating} ⭐ )
                 </h4>
                 <p className="title">{person.author_details.username}</p>

@@ -18,8 +18,6 @@ export default function MoviesList() {
     totalPages,
   } = UseMovieContext();
 
-  console.log(totalPages, currentPage);
-
   const handlePrevious = useCallback(() => {
     dispatch({
       type: ActionNames.UPDATE_CURRENTPAGE,
@@ -53,7 +51,7 @@ export default function MoviesList() {
       {isPending ? (
         <div className={`center-me`}>
           {/* Handle style !!! TODO */}
-          <h1>Loading . . .</h1>
+          <h1 id={`${mode === "light" && "loading-black"}`}>Loading . . .</h1>
         </div>
       ) : (
         <>

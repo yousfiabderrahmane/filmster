@@ -61,7 +61,7 @@ export default function TrendingMovies() {
 
       {isPending ? (
         <div className={`center-me ${mode === "light" && "dark-color"}`}>
-          <h1>Loading . . .</h1>
+          <h1 id={`${mode === "light" && "loading-black"}`}>Loading . . .</h1>
         </div>
       ) : (
         <div className="trending-movies-list">

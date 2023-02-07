@@ -95,153 +95,161 @@ export default function SingleMovieDetails() {
           </button>
         </div>
       )}
-      {singleMovie && (
-        <section className="single-movie-page">
-          <div className="left">
-            <div style={{ height: !key && "60%" }} className="image-container">
-              <img
-                className="poster"
-                src={`${IMAGE_URL}${singleMovie.poster_path}`}
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="right">
-            <button className="close-me">
-              <Close
-                fill={mode === "light" ? "#121212" : "white"}
-                onClick={() => navigate(-1)}
-              />
-            </button>
-            <div className="titles">
-              <div className="big-t">
-                <h1 className={`${mode === "light" && "dark-color"}`}>
-                  {singleMovie.title}
-                </h1>
+      {singleMovie && error === "" && (
+        <>
+          <section className="single-movie-page">
+            <div className="left">
+              <div
+                style={{ height: !key && "60%" }}
+                className="image-container"
+              >
+                <img
+                  className="poster"
+                  src={`${IMAGE_URL}${singleMovie.poster_path}`}
+                  alt=""
+                />
               </div>
-              <h5 className={`${mode === "light" && "dark-color"}`}>
-                {singleMovie.tagline}
-              </h5>
             </div>
-
-            <div className="details">
-              <div className="details-left">
-                <div className="div">
-                  <h2>Details</h2>
-                  <p className="space-between">
-                    <span className={`${mode === "light" && "dark-color"}`}>
-                      Language :
-                    </span>{" "}
-                    <span className={`red `}>
-                      {singleMovie.original_language.toUpperCase()}
-                    </span>
-                  </p>
-                  <p className="space-between">
-                    <span className={`${mode === "light" && "dark-color"}`}>
-                      Length :
-                    </span>{" "}
-                    <span className={`red `}>
-                      {singleMovie.runtime} minutes
-                    </span>
-                  </p>
-                  <p className="space-between">
-                    <span className={`${mode === "light" && "dark-color"}`}>
-                      Rate :
-                    </span>{" "}
-                    <span className={`red `}>
-                      {singleMovie.vote_average}/10
-                    </span>
-                  </p>
-                  <p className="space-between">
-                    <span className={`${mode === "light" && "dark-color"}`}>
-                      Budget :
-                    </span>{" "}
-                    <span className={`red `}>{singleMovie.budget}</span>
-                  </p>
-                  <p className="space-between">
-                    <span className={`${mode === "light" && "dark-color"}`}>
-                      Release Date :
-                    </span>{" "}
-                    <span className={`red `}>{singleMovie.release_date}</span>
-                  </p>
+            <div className="right">
+              <button className="close-me">
+                <Close
+                  fill={mode === "light" ? "#121212" : "white"}
+                  onClick={() => navigate(-1)}
+                />
+              </button>
+              <div className="titles">
+                <div className="big-t">
+                  <h1 className={`${mode === "light" && "dark-color"}`}>
+                    {singleMovie.title}
+                  </h1>
                 </div>
-
-                <div className="genres">
-                  <h3 className={`${mode === "light" && "dark-color"}`}>
-                    Genres
-                  </h3>
-                  <ul>
-                    {singleMovie.genres.map((item) => (
-                      <li
-                        className={`${mode === "light" && "dark-color"}`}
-                        key={item.id}
-                      >
-                        {item.name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <h5 className={`${mode === "light" && "dark-color"}`}>
+                  {singleMovie.tagline}
+                </h5>
               </div>
-              <div className="details-right">
-                <h2>Reviews</h2>
-                {people.length >= 2 ? (
-                  <>
-                    {" "}
-                    <Slider showMore={showMore} />
-                    <button
-                      // style={{ position: showMore && "unset" }} TODO LATER FOR STYLING SAKE
-                      className={`showmore-btn ${
-                        mode === "light" && "dark-color"
-                      } `}
-                      onClick={() => setShowMore(!showMore)}
-                    >
-                      {showMore ? "Shorten" : "Expand"}
-                    </button>
-                  </>
-                ) : (
-                  <div>
-                    <h2 style={{ color: mode === "dark" ? "#fff" : "#121212" }}>
-                      There is no reviews yet
-                    </h2>
+
+              <div className="details">
+                <div className="details-left">
+                  <div className="div">
+                    <h2>Details</h2>
+                    <p className="space-between">
+                      <span className={`${mode === "light" && "dark-color"}`}>
+                        Language :
+                      </span>{" "}
+                      <span className={`red `}>
+                        {singleMovie.original_language.toUpperCase()}
+                      </span>
+                    </p>
+                    <p className="space-between">
+                      <span className={`${mode === "light" && "dark-color"}`}>
+                        Length :
+                      </span>{" "}
+                      <span className={`red `}>
+                        {singleMovie.runtime} minutes
+                      </span>
+                    </p>
+                    <p className="space-between">
+                      <span className={`${mode === "light" && "dark-color"}`}>
+                        Rate :
+                      </span>{" "}
+                      <span className={`red `}>
+                        {singleMovie.vote_average}/10
+                      </span>
+                    </p>
+                    <p className="space-between">
+                      <span className={`${mode === "light" && "dark-color"}`}>
+                        Budget :
+                      </span>{" "}
+                      <span className={`red `}>{singleMovie.budget}</span>
+                    </p>
+                    <p className="space-between">
+                      <span className={`${mode === "light" && "dark-color"}`}>
+                        Release Date :
+                      </span>{" "}
+                      <span className={`red `}>{singleMovie.release_date}</span>
+                    </p>
                   </div>
-                )}
-              </div>
-            </div>
-            {cast.length > 1 && (
-              <div className="cast">
-                <h1>Top Cast </h1>
-                <Cast />
-              </div>
-            )}
 
-            <div className="overview">
-              <h3 className={`${mode === "light" && "dark-color"}`}>
-                Overview
-              </h3>
-              <p className={`${mode === "light" && "dark-color"}`}>
-                {singleMovie.overview}
-              </p>
-            </div>
-            {key && (
-              <div className="trailer">
-                <h3 className={`${mode === "light" && "dark-color"}`}>
-                  Trailer
-                </h3>
-                <iframe
-                  width="560"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${key}`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                  <div className="genres">
+                    <h3 className={`${mode === "light" && "dark-color"}`}>
+                      Genres
+                    </h3>
+                    <ul>
+                      {singleMovie.genres.map((item) => (
+                        <li
+                          className={`${mode === "light" && "dark-color"}`}
+                          key={item.id}
+                        >
+                          {item.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div className="details-right">
+                  <h2>Reviews</h2>
+                  {people.length >= 2 ? (
+                    <>
+                      {" "}
+                      <Slider showMore={showMore} />
+                      <button
+                        // style={{ position: showMore && "unset" }} TODO LATER FOR STYLING SAKE
+                        className={`showmore-btn ${
+                          mode === "light" && "dark-color"
+                        }`}
+                        id={`${showMore && "unset-my-ass"}`}
+                        onClick={() => setShowMore(!showMore)}
+                      >
+                        {showMore ? "Shorten" : "Expand"}
+                      </button>
+                    </>
+                  ) : (
+                    <div>
+                      <h2
+                        style={{ color: mode === "dark" ? "#fff" : "#121212" }}
+                      >
+                        There is no reviews yet
+                      </h2>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
-        </section>
+              {cast.length > 1 && (
+                <div className="cast">
+                  <h1>Top Cast </h1>
+                  <Cast />
+                </div>
+              )}
+
+              <div className="overview">
+                <h3 className={`${mode === "light" && "dark-color"}`}>
+                  Overview
+                </h3>
+                <p className={`${mode === "light" && "dark-color"}`}>
+                  {singleMovie.overview}
+                </p>
+              </div>
+              {key && (
+                <div className="trailer">
+                  <h3 className={`${mode === "light" && "dark-color"}`}>
+                    Trailer
+                  </h3>
+                  <iframe
+                    width="560"
+                    height="315"
+                    src={`https://www.youtube.com/embed/${key}`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
+            </div>
+          </section>
+          {!isPending && singleMovie && similar.length > 0 && <Similar />}
+        </>
       )}
-      {!isPending && singleMovie && similar.length > 0 && <Similar />}
     </>
   );
 }

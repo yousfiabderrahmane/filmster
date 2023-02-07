@@ -1,9 +1,14 @@
 import React, { ReactNode, useContext, useEffect, useReducer } from "react";
 import { createContext, useCallback } from "react";
-import { ActionType, InitialState, MovieType, ReviewsType } from "../types";
+import {
+  ActionType,
+  initialSingleMovie,
+  initialState,
+  InitialState,
+  MovieType,
+  ReviewsType,
+} from "../types";
 // import API_KEY from "./apikey";
-
-const favoriteLs = JSON.parse(localStorage.getItem("favList")!);
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -24,36 +29,6 @@ export enum ActionNames {
   UPDATE_CURRENTPAGE = "UPDATE_CURRENTPAGE",
   UPDATE_TOTALPAGES = "UPDATE_TOTALPAGES",
 }
-
-//initial state
-export const initialSingleMovie = {
-  poster_path: "",
-  title: "",
-  tagline: "",
-  original_language: "",
-  runtime: 0,
-  vote_average: 0,
-  budget: 0,
-  release_date: "",
-  genres: [],
-  overview: "",
-};
-
-let initialState = {
-  searchTerm: "",
-  list: [], //by name
-  isPending: false,
-  error: "",
-  movies: [], //trend movies
-  favList: favoriteLs ? favoriteLs : [],
-  people: [], //reviews
-  similar: [],
-  cast: [],
-  currentPage: 1,
-  totalPages: 0,
-  singleMovie: initialSingleMovie,
-  mode: "dark",
-};
 
 const contextReducer = (
   state: InitialState,
@@ -141,7 +116,6 @@ export const Context = () => {
 
   //get trending movies for the home page
   const getTrendingHomeMovies: () => any = useCallback(async () => {
-    console.log("i ran");
     dispatch({ type: ActionNames.IS_PENDING });
     try {
       const response = await fetch(
@@ -357,7 +331,7 @@ const movieContext = createContext<movieContextType>({
   isPending: false,
   error: "",
   movies: [], //trend movies
-  favList: favoriteLs ? favoriteLs : [],
+  favList: [],
   people: [], //reviews
   similar: [],
   cast: [],
@@ -380,7 +354,6 @@ const movieContext = createContext<movieContextType>({
 // 3-create a custom hook to constum the context later on, also provide the return type in declatarion
 export const UseMovieContext = (): movieContextType => {
   const ctx = useContext(movieContext);
-  console.log(ctx);
   return ctx;
 };
 
@@ -394,3 +367,4 @@ export const MovieContextProvider: React.FC<ProviderProps> = ({ children }) => {
     <movieContext.Provider value={Context()}>{children}</movieContext.Provider>
   );
 };
+export { initialSingleMovie };
