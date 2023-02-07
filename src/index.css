@@ -52,3 +52,13 @@ code {
 .center-me h1 {
   color: white;
 }
+
+#loading-black {
+  color: #121212;
+}
+#loading-white {
+  color: white;
+}
+.unset-my-ass {
+  position: unset;
+}

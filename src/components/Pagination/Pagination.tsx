@@ -1,13 +1,20 @@
-import { useAppContext } from "../context/useAppContext";
+import { UseMovieContext } from "../../context/Context";
 import "./Pagination.css";
 
-export default function Pagination({
+interface PaginationProps {
+  handleNext: () => void;
+  handlePrevious: () => void;
+  totalPages: number;
+  currentPage: number;
+}
+
+export const Pagination: React.FC<PaginationProps> = ({
   handleNext,
   handlePrevious,
   totalPages,
   currentPage,
-}) {
-  const { mode } = useAppContext();
+}) => {
+  const { mode } = UseMovieContext();
   return (
     <div className="pagination-container">
       {currentPage > 1 && (
@@ -31,4 +38,4 @@ export default function Pagination({
       )}
     </div>
   );
-}
+};

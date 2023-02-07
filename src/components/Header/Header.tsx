@@ -1,13 +1,14 @@
 import "./Header.css";
-import { ReactComponent as MovieIcon } from "../assets/movie_FILL0_wght400_GRAD0_opsz48.svg";
-import { ReactComponent as Light } from "../assets/light_mode_FILL0_wght400_GRAD0_opsz48 (1).svg";
-import { ReactComponent as Dark } from "../assets/dark_mode_FILL0_wght400_GRAD0_opsz48 (1).svg";
-import { useAppContext } from "../context/useAppContext";
+import { ReactComponent as MovieIcon } from "../../assets/movie_FILL0_wght400_GRAD0_opsz48.svg";
+import { ReactComponent as Light } from "../../assets/light_mode_FILL0_wght400_GRAD0_opsz48 (1).svg";
+import { ReactComponent as Dark } from "../../assets/dark_mode_FILL0_wght400_GRAD0_opsz48 (1).svg";
+import { UseMovieContext } from "../../context/Context";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
+import { ActionNames } from "../../context/Context";
 
 export default function Header() {
-  const { mode, dispatch } = useAppContext();
+  const { mode, dispatch } = UseMovieContext();
 
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ export default function Header() {
           <Dark
             onClick={() =>
               dispatch({
-                type: "TOGGLE_MODE",
+                type: ActionNames.TOGGLE_MODE,
                 payload: mode === "light" ? "dark" : "light",
               })
             }
@@ -33,7 +34,7 @@ export default function Header() {
           <Light
             onClick={() =>
               dispatch({
-                type: "TOGGLE_MODE",
+                type: ActionNames.TOGGLE_MODE,
                 payload: mode === "light" ? "dark" : "light",
               })
             }

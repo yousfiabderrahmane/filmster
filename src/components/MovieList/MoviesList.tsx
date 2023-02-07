@@ -1,8 +1,10 @@
 import { useEffect, useCallback } from "react";
 import "./MoviesList.css";
-import { useAppContext } from "../context/useAppContext";
-import MovieCard from "./MovieCard";
-import Pagination from "./Pagination";
+import { UseMovieContext } from "../../context/Context";
+import { MovieCard } from "./../MovieCard/MovieCard";
+import { Pagination } from "../Pagination/Pagination";
+
+import { ActionNames } from "../../context/Context";
 
 export default function MoviesList() {
   const {
@@ -14,11 +16,11 @@ export default function MoviesList() {
     dispatch,
     currentPage,
     totalPages,
-  } = useAppContext();
+  } = UseMovieContext();
 
   const handlePrevious = useCallback(() => {
     dispatch({
-      type: "UPDATE_CURRENTPAGE",
+      type: ActionNames.UPDATE_CURRENTPAGE,
       payload: currentPage - 1,
     });
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -26,7 +28,7 @@ export default function MoviesList() {
 
   const handleNext = useCallback(() => {
     dispatch({
-      type: "UPDATE_CURRENTPAGE",
+      type: ActionNames.UPDATE_CURRENTPAGE,
       payload: currentPage + 1,
     });
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -48,9 +50,8 @@ export default function MoviesList() {
     <>
       {isPending ? (
         <div className={`center-me`}>
-          <h1 style={{ color: mode === "light" && "#121212" }}>
-            Loading . . .
-          </h1>
+          {/* Handle style !!! TODO */}
+          <h1 id={`${mode === "light" && "loading-black"}`}>Loading . . .</h1>
         </div>
       ) : (
         <>

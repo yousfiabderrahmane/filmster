@@ -1,9 +1,9 @@
 import "./Similar.css";
-import { useAppContext } from "../context/useAppContext";
-import MovieCard from "./MovieCard";
+import { UseMovieContext } from "../../context/Context";
+import { MovieCard } from "../MovieCard/MovieCard";
 
 export default function Similar() {
-  const { mode, similar } = useAppContext();
+  const { mode, similar } = UseMovieContext();
 
   return (
     <div className="similar">

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MovieCard from "../../components/MovieCard";
-import { useAppContext } from "../../context/useAppContext";
+import { MovieCard } from "../../components/MovieCard/MovieCard";
+import { UseMovieContext } from "../../context/Context";
 import "./FavoriteMovies.css";
 import { ReactComponent as FavBookMark } from "../../assets/favorite-bookmark-svgrepo-com.svg";
-import Pagination from "../../components/Pagination";
+import { Pagination } from "../../components/Pagination/Pagination";
+import { ActionNames } from "../../context/Context";
 
 export default function FavoriteMovies() {
-  const { favList, dispatch, mode } = useAppContext();
+  const { favList, dispatch, mode } = UseMovieContext();
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +31,7 @@ export default function FavoriteMovies() {
   };
 
   const handleClear = () => {
-    dispatch({ type: "CLEAR_FAVLIST" });
+    dispatch({ type: ActionNames.CLEAR_FAVLIST, payload: [] });
   };
 
   useEffect(() => {
@@ -43,7 +44,8 @@ export default function FavoriteMovies() {
       <div
         className={`favorite-page-header ${mode === "light" && "dark-color"}`}
       >
-        <h2 style={{ color: mode === "light" && "#121212" }}>
+        {/* to do styling */}
+        <h2 id={`${mode === "light" && "loading-black"}`}>
           My Favorite Movies
         </h2>
         <div className="btns">
@@ -69,12 +71,10 @@ export default function FavoriteMovies() {
             <FavBookMark fill={mode === "light" ? "#121212" : "white"} />
           </div>
 
-          <h1
-            style={{ color: mode === "dark" && "white" }}
-            className={`${mode === "light" && "dark-color"}`}
-          >
+          {/* to do styling */}
+          <h2 id={`${mode === "light" ? "laoding-black" : "loading-white"}`}>
             Currently Empty
-          </h1>
+          </h2>
         </div>
       )}
 
@@ -91,7 +91,6 @@ export default function FavoriteMovies() {
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
-          currentFavList={currentFavList}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
         />

@@ -1,29 +1,28 @@
-import { useAppContext } from "../../context/useAppContext";
-import Alternative from "../../assets/download.png";
+import { UseMovieContext } from "../../context/Context";
+// import Alternative from "../../assets/download.png";
 import "./Cast.css";
-// import { LazyLoadImage } from "react-lazy-load-image-component";
-// import ImagePlaceHolder from "../../assets/placeholder.jpg";
-// import "react-lazy-load-image-component/src/effects/blur.css";
+
+const logo = require("../../assets/download.png");
 
 export default function Cast() {
-  const { cast, mode } = useAppContext();
+  const { cast, mode } = UseMovieContext();
 
   return (
     <section className="cast-container">
       {cast.map((member, index) => (
         <div
           key={index}
-          style={{ borderColor: mode === "light" && "#121212" }}
+          // style={{ borderColor: mode === "light" && "#121212" }}
           className="cast-card"
         >
           <div className="img-container">
             <img
               src={
                 member.profile_path == null
-                  ? Alternative
+                  ? logo
                   : `http://image.tmdb.org/t/p/w500${member.profile_path}`
               }
-              alt={member.id}
+              alt={`Dah number : ${member.id}`}
               height="100%"
               width="100%"
             />
