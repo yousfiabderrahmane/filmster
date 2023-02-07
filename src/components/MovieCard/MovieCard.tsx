@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MovieCard.css";
 import { useNavigate } from "react-router-dom";
-import { UseMovieContext } from "../context/Context";
-import { ReactComponent as RatingStar } from "../assets/rating.svg";
-import { ReactComponent as Favorite } from "../assets/removeFav.svg";
-import { ReactComponent as AddFavIcon } from "../assets/AddToFav.svg";
+import { UseMovieContext } from "../../context/Context";
+import { ReactComponent as RatingStar } from "../../assets/rating.svg";
+import { ReactComponent as Favorite } from "../../assets/removeFav.svg";
+import { ReactComponent as AddFavIcon } from "../../assets/AddToFav.svg";
 
-import { MovieType } from "../context/Context";
-import { ActionNames } from "../context/Context";
+import { MovieType } from "../../types";
+import { ActionNames } from "../../context/Context";
 
 interface MovieCardProps {
   movie: MovieType;

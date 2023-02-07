@@ -1,10 +1,10 @@
 import { useEffect, useCallback } from "react";
 import "./MoviesList.css";
-import { UseMovieContext } from "../context/Context";
-import { MovieCard } from "./MovieCard";
-import { Pagination } from "./Pagination";
+import { UseMovieContext } from "../../context/Context";
+import { MovieCard } from "./../MovieCard/MovieCard";
+import { Pagination } from "../Pagination/Pagination";
 
-import { ActionNames } from "../context/Context";
+import { ActionNames } from "../../context/Context";
 
 export default function MoviesList() {
   const {

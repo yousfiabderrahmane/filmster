@@ -1,11 +1,11 @@
 import "./Header.css";
-import { ReactComponent as MovieIcon } from "../assets/movie_FILL0_wght400_GRAD0_opsz48.svg";
-import { ReactComponent as Light } from "../assets/light_mode_FILL0_wght400_GRAD0_opsz48 (1).svg";
-import { ReactComponent as Dark } from "../assets/dark_mode_FILL0_wght400_GRAD0_opsz48 (1).svg";
-import { UseMovieContext } from "../context/Context";
+import { ReactComponent as MovieIcon } from "../../assets/movie_FILL0_wght400_GRAD0_opsz48.svg";
+import { ReactComponent as Light } from "../../assets/light_mode_FILL0_wght400_GRAD0_opsz48 (1).svg";
+import { ReactComponent as Dark } from "../../assets/dark_mode_FILL0_wght400_GRAD0_opsz48 (1).svg";
+import { UseMovieContext } from "../../context/Context";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
-import { ActionNames } from "../context/Context";
+import { ActionNames } from "../../context/Context";
 
 export default function Header() {
   const { mode, dispatch } = UseMovieContext();

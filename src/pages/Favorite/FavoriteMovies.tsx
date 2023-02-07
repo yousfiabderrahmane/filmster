@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MovieCard } from "../../components/MovieCard";
+import { MovieCard } from "../../components/MovieCard/MovieCard";
 import { UseMovieContext } from "../../context/Context";
 import "./FavoriteMovies.css";
 import { ReactComponent as FavBookMark } from "../../assets/favorite-bookmark-svgrepo-com.svg";
-import { Pagination } from "../../components/Pagination";
+import { Pagination } from "../../components/Pagination/Pagination";
 import { ActionNames } from "../../context/Context";
 
 export default function FavoriteMovies() {

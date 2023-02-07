@@ -2,9 +2,9 @@ import { UseMovieContext } from "./context/Context";
 import React, { Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import ErrorBoundary from "./components/ErrorBoundary";
-import Search from "./components/Search";
+import Header from "./components/Header/Header";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import Search from "./components/Search/Search";
 
 const LazySingleMovieDetails = React.lazy(
   () => import("./pages/SingleMovie/SingleMovieDetails")
@@ -15,7 +15,9 @@ const LazyTrendingMovies = React.lazy(
 const LazyFavoriteMovies = React.lazy(
   () => import("./pages/Favorite/FavoriteMovies")
 );
-const LazyMovieList = React.lazy(() => import("./components/MoviesList"));
+const LazyMovieList = React.lazy(
+  () => import("./components/MovieList/MoviesList")
+);
 
 function App() {
   const { mode } = UseMovieContext();

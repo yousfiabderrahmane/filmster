@@ -3,12 +3,12 @@ import React, { useEffect, useState, useCallback } from "react";
 import "./SIngleMovieDetails.css";
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
 import { UseMovieContext } from "../../context/Context";
-import Similar from "../../components/Similar";
+import Similar from "../../components/Similar/Similar";
 import { Slider } from "./Slider";
 import Cast from "./Cast";
-import API_KEY from "../../context/apikey";
 import { ActionNames } from "../../context/Context";
 import { initialSingleMovie } from "../../context/Context";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function SingleMovieDetails() {
   const [key, setKey] = useState(null);

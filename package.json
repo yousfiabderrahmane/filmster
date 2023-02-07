@@ -9,6 +9,7 @@
     "@types/jest": "^29.4.0",
     "@types/node": "^18.11.19",
     "@types/react-dom": "^18.0.10",
+    "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",

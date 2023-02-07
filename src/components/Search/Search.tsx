@@ -1,15 +1,15 @@
 import "./Search.css";
-import { UseMovieContext } from "../context/Context";
+import { UseMovieContext } from "../../context/Context";
 import { useRef } from "react";
 
 import { useCallback } from "react";
 // import TrendIcon from "../assets/trending.svg";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as TrendIcon } from "../assets/trending.svg";
-import { ReactComponent as FavIcon } from "../assets/favorite.svg";
-import { ReactComponent as SearchIcon } from "../assets/search.svg";
-import { ReactComponent as TV } from "../assets/tv.svg";
-import { ActionNames } from "../context/Context";
+import { ReactComponent as TrendIcon } from "../../assets/trending.svg";
+import { ReactComponent as FavIcon } from "../../assets/favorite.svg";
+import { ReactComponent as SearchIcon } from "../../assets/search.svg";
+import { ReactComponent as TV } from "../../assets/tv.svg";
+import { ActionNames } from "../../context/Context";
 
 export default function Search() {
   const { dispatch, mode } = UseMovieContext();

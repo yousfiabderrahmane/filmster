@@ -1,4 +1,4 @@
-import { UseMovieContext } from "../context/Context";
+import { UseMovieContext } from "../../context/Context";
 import "./Pagination.css";
 
 interface PaginationProps {

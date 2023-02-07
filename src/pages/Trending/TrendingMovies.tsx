@@ -2,10 +2,10 @@ import React from "react";
 import { useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "./TrendingMovies.css";
-import "../../components/MovieCard.css";
-import { MovieCard } from "../../components/MovieCard";
+import "../../components/MovieCard/MovieCard.css";
+import { MovieCard } from "../../components/MovieCard/MovieCard";
 import { UseMovieContext } from "../../context/Context";
-import { Pagination } from "../../components/Pagination";
+import { Pagination } from "../../components/Pagination/Pagination";
 import { ActionNames } from "../../context/Context";
 
 export default function TrendingMovies() {
