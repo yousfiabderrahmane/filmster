@@ -9,37 +9,40 @@ import { ReactComponent as TrendIcon } from "../assets/trending.svg";
 import { ReactComponent as FavIcon } from "../assets/favorite.svg";
 import { ReactComponent as SearchIcon } from "../assets/search.svg";
 import { ReactComponent as TV } from "../assets/tv.svg";
+import { ActionNames } from "../context/Context";
 
 export default function Search() {
   const { dispatch, mode } = UseMovieContext();
 
-  const searchValue = useRef();
+  const searchValue = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
   //navigation
   const favRedirect = useCallback(() => {
     navigate("/favorite");
-    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
+    dispatch({ type: ActionNames.UPDATE_CURRENTPAGE, payload: 1 });
   }, [dispatch, navigate]);
   const TrendRedirect = useCallback(() => {
     navigate("/trending");
-    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
+    dispatch({ type: ActionNames.UPDATE_CURRENTPAGE, payload: 1 });
   }, [dispatch, navigate]);
 
   //handle searchterm state
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!searchValue.current.value) {
-      searchValue.current.focus();
-    } else {
-      dispatch({
-        type: "UPDATE_SEARCHTERM",
-        payload: searchValue.current.value,
-      });
-      dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
-      searchValue.current.value = "";
-      searchValue.current.blur();
+    if (searchValue.current) {
+      if (!searchValue.current.value) {
+        searchValue.current.focus();
+      } else {
+        dispatch({
+          type: ActionNames.UPDATE_SEARCHTERM,
+          payload: searchValue.current.value,
+        });
+        dispatch({ type: ActionNames.UPDATE_CURRENTPAGE, payload: 1 });
+        searchValue.current.value = "";
+        searchValue.current.blur();
+      }
     }
   };
   return (
@@ -67,7 +70,7 @@ export default function Search() {
         </button>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="right">
           <input
             className={`${mode === "light" && "dark-color"}`}

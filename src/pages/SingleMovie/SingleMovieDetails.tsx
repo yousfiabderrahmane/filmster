@@ -4,9 +4,11 @@ import "./SIngleMovieDetails.css";
 import { ReactComponent as Close } from "../../assets/close_FILL0_wght400_GRAD0_opsz48 (1).svg";
 import { UseMovieContext } from "../../context/Context";
 import Similar from "../../components/Similar";
-import Slider from "./Slider";
+import { Slider } from "./Slider";
 import Cast from "./Cast";
 import API_KEY from "../../context/apikey";
+import { ActionNames } from "../../context/Context";
+import { initialSingleMovie } from "../../context/Context";
 
 export default function SingleMovieDetails() {
   const [key, setKey] = useState(null);
@@ -31,6 +33,8 @@ export default function SingleMovieDetails() {
   const IMAGE_URL = `http://image.tmdb.org/t/p/w500`;
 
   const { id } = useParams();
+  const newId = Number(id); //or else it will be considered like it is a string
+
   const navigate = useNavigate();
 
   //get trailer key
@@ -47,18 +51,21 @@ export default function SingleMovieDetails() {
   }, [id]);
 
   useEffect(() => {
-    fetchMovieById(id);
-    getReviews(id);
-    fetchCast(id);
+    fetchMovieById(newId);
+    getReviews(newId);
+    fetchCast(newId);
     getTrailerKey();
-    getSimilarMovies(id);
+    getSimilarMovies(newId);
 
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
     return () => {
-      dispatch({ type: "UPDATE_SIMILAR", payload: [] });
-      dispatch({ type: "UPDATE_SINGLEMOVIE", payload: null });
-      dispatch({ type: "UPDATE_CAST", payload: [] });
+      dispatch({ type: ActionNames.UPDATE_SIMILAR, payload: [] });
+      dispatch({
+        type: ActionNames.UPDATE_SINGLEMOVIE,
+        payload: initialSingleMovie,
+      });
+      dispatch({ type: ActionNames.UPDATE_CAST, payload: [] });
     };
   }, [
     dispatch,
@@ -67,16 +74,14 @@ export default function SingleMovieDetails() {
     getReviews,
     getSimilarMovies,
     getTrailerKey,
-    id,
+    newId,
   ]);
 
   return (
     <>
       {isPending && (
         <div className={`center-me ${mode === "light" && "dark-color"}`}>
-          <h1 style={{ color: mode === "light" && "#121212" }}>
-            Loading . . .
-          </h1>
+          <h1>Loading . . .</h1>
         </div>
       )}
       {error && (
@@ -84,7 +89,6 @@ export default function SingleMovieDetails() {
           <p className={`info ${mode === "light" && "dark-color"}`}>{error}</p>
           <button
             className={`${mode === "light" && "dark-color"}`}
-            style={{ color: mode === "light" && "#121212" }}
             onClick={() => navigate(-1)}
           >
             Back
@@ -111,10 +115,7 @@ export default function SingleMovieDetails() {
             </button>
             <div className="titles">
               <div className="big-t">
-                <h1
-                  style={{ backgroundColor: mode === "light" && "#121212" }}
-                  className={`${mode === "light" && "dark-color"}`}
-                >
+                <h1 className={`${mode === "light" && "dark-color"}`}>
                   {singleMovie.title}
                 </h1>
               </div>
@@ -188,7 +189,7 @@ export default function SingleMovieDetails() {
                     {" "}
                     <Slider showMore={showMore} />
                     <button
-                      style={{ position: showMore && "unset" }}
+                      // style={{ position: showMore && "unset" }} TODO LATER FOR STYLING SAKE
                       className={`showmore-btn ${
                         mode === "light" && "dark-color"
                       } `}

@@ -4,7 +4,11 @@ import { ReactComponent as LeftArr } from "../../assets/arrow_back_ios_FILL0_wgh
 import { ReactComponent as RightArr } from "../../assets/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg";
 import { UseMovieContext } from "../../context/Context";
 
-export default function Slider({ showMore }) {
+interface SliderProps {
+  showMore: boolean;
+}
+
+export const Slider: React.FC<SliderProps> = ({ showMore }) => {
   const [index, setIndex] = React.useState(0);
 
   const { mode, people } = UseMovieContext();
@@ -34,7 +38,7 @@ export default function Slider({ showMore }) {
   return (
     <section className="section">
       <div
-        style={{ overflowY: showMore && "scroll" }}
+        // style={{ overflowY: showMore && "scroll" }} TODO
         className={`section-center`}
       >
         {people?.map((person, personIndex) => {
@@ -74,7 +78,8 @@ export default function Slider({ showMore }) {
                   className="person-img"
                 />
 
-                <h4 className={mode === "light" && "dark-color"}>
+                {/* todo styling h4 */}
+                <h4>
                   {person.author} ( {person.author_details.rating} ⭐ )
                 </h4>
                 <p className="title">{person.author_details.username}</p>
@@ -103,4 +108,4 @@ export default function Slider({ showMore }) {
       </div>
     </section>
   );
-}
+};

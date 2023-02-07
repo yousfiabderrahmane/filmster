@@ -5,7 +5,8 @@ import API_KEY from "./apikey";
 const favoriteLs = JSON.parse(localStorage.getItem("favList")!);
 
 //interface of the movie object that the API'S returns
-interface MovieType {
+export interface MovieType {
+  name: string;
   adult: boolean;
   backdrop_path: string;
   id: number;
@@ -21,6 +22,23 @@ interface MovieType {
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+interface genre {
+  id: number;
+  name: string;
+}
+
+export interface SingleMovieType {
+  poster_path: string;
+  title: string;
+  tagline: string;
+  original_language: string;
+  runtime: number;
+  vote_average: number;
+  budget: number;
+  release_date: string;
+  genres: genre[];
+  overview: string;
 }
 
 interface CastType {
@@ -53,6 +71,19 @@ interface ReviewsType {
 }
 
 //initial state
+export const initialSingleMovie = {
+  poster_path: "",
+  title: "",
+  tagline: "",
+  original_language: "",
+  runtime: 0,
+  vote_average: 0,
+  budget: 0,
+  release_date: "",
+  genres: [],
+  overview: "",
+};
+
 let initialState = {
   searchTerm: "",
   list: [], //by name
@@ -65,7 +96,7 @@ let initialState = {
   cast: [],
   currentPage: 1,
   totalPages: 0,
-  singleMovie: [],
+  singleMovie: initialSingleMovie,
   mode: "dark",
 };
 
@@ -82,7 +113,7 @@ interface InitialState {
   cast: CastType[];
   currentPage: number;
   totalPages: number;
-  singleMovie: any[];
+  singleMovie: SingleMovieType;
   mode: string;
 }
 
@@ -113,7 +144,7 @@ type ActionType =
   | { type: ActionNames.UPDATE_SIMILAR; payload: MovieType[] }
   | { type: ActionNames.ERROR; payload: string }
   | { type: ActionNames.UPDATE_FAVLIST; payload: MovieType[] }
-  | { type: ActionNames.UPDATE_SINGLEMOVIE; payload: MovieType[] }
+  | { type: ActionNames.UPDATE_SINGLEMOVIE; payload: SingleMovieType }
   | { type: ActionNames.UPDATE_REVIEWS; payload: ReviewsType[] }
   | { type: ActionNames.UPDATE_CAST; payload: CastType[] }
   | { type: ActionNames.CLEAR_FAVLIST; payload: MovieType[] }
@@ -429,7 +460,7 @@ const movieContext = createContext<movieContextType>({
   cast: [],
   currentPage: 1,
   totalPages: 0,
-  singleMovie: [],
+  singleMovie: initialSingleMovie,
   mode: "dark",
   dispatch: () => {},
   getTrendingMovies: () => {},

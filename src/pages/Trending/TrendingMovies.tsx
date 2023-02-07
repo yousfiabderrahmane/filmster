@@ -1,10 +1,12 @@
+import React from "react";
 import { useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "./TrendingMovies.css";
 import "../../components/MovieCard.css";
-import MovieCard from "../../components/MovieCard";
+import { MovieCard } from "../../components/MovieCard";
 import { UseMovieContext } from "../../context/Context";
-import Pagination from "../../components/Pagination";
+import { Pagination } from "../../components/Pagination";
+import { ActionNames } from "../../context/Context";
 
 export default function TrendingMovies() {
   const {
@@ -20,7 +22,7 @@ export default function TrendingMovies() {
 
   const handlePrevious = useCallback(() => {
     dispatch({
-      type: "UPDATE_CURRENTPAGE",
+      type: ActionNames.UPDATE_CURRENTPAGE,
       payload: currentPage - 1,
     });
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -28,14 +30,14 @@ export default function TrendingMovies() {
 
   const handleNext = useCallback(() => {
     dispatch({
-      type: "UPDATE_CURRENTPAGE",
+      type: ActionNames.UPDATE_CURRENTPAGE,
       payload: currentPage + 1,
     });
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [currentPage, dispatch]);
 
   const handleHome = () => {
-    dispatch({ type: "UPDATE_CURRENTPAGE", payload: 1 });
+    dispatch({ type: ActionNames.UPDATE_CURRENTPAGE, payload: 1 });
     navigate("/");
   };
 
@@ -59,9 +61,7 @@ export default function TrendingMovies() {
 
       {isPending ? (
         <div className={`center-me ${mode === "light" && "dark-color"}`}>
-          <h1 style={{ color: mode === "light" && "#121212" }}>
-            Loading . . .
-          </h1>
+          <h1>Loading . . .</h1>
         </div>
       ) : (
         <div className="trending-movies-list">

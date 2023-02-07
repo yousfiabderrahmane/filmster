@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
-import { ErrorBoundary } from "./components/ErrorBoundary";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Search from "./components/Search";
 
 const LazySingleMovieDetails = React.lazy(
