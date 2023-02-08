@@ -66,44 +66,50 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, index }) => {
   }, [favList, movie.id]);
 
   return (
-    <section className={`movie-card ${isFavorite && "favorite-border"}`}>
-      <div className={`sticker-container ${isFavorite && "favorite-bg"}`}>
-        {isFavorite ? (
-          <Favorite onClick={() => handleAddFav(movie)} fill="white" />
-        ) : (
-          <AddFavIcon onClick={() => handleAddFav(movie)} fill="white" />
-        )}
-      </div>
+    <>
+      {movie.poster_path && (
+        <>
+          <section className={`movie-card ${isFavorite && "favorite-border"}`}>
+            <div className={`sticker-container ${isFavorite && "favorite-bg"}`}>
+              {isFavorite ? (
+                <Favorite onClick={() => handleAddFav(movie)} fill="white" />
+              ) : (
+                <AddFavIcon onClick={() => handleAddFav(movie)} fill="white" />
+              )}
+            </div>
 
-      <div className="lazy-image-container">
-        <img
-          onClick={handleNavigation}
-          className="img"
-          src={IMAGE_URL}
-          alt={movie.original_title ? movie.original_title : movie.name}
-          height="100%"
-          width="100%"
-          data-fetchpriority={index === 0 ? "high" : "false"}
-        />
-      </div>
+            <div className="lazy-image-container">
+              <img
+                onClick={handleNavigation}
+                className="img"
+                src={IMAGE_URL}
+                alt={movie.original_title ? movie.original_title : movie.name}
+                height="100%"
+                width="100%"
+                data-fetchpriority={index === 0 ? "high" : "false"}
+              />
+            </div>
 
-      <div
-        onClick={handleNavigation}
-        className={`overlay-info ${mode === "light" && "dark-color"}
+            <div
+              onClick={handleNavigation}
+              className={`overlay-info ${mode === "light" && "dark-color"}
 `}
-      >
-        <p>{movie.original_title ? movie.original_title : movie.name}</p>{" "}
-        <div className="rating-flex">
-          <span> {movie.vote_average} </span>
-          <span className="rating-star-container">
-            {" "}
-            <RatingStar
-              className="rating-star"
-              fill={mode === "light" ? "#121212" : "white"}
-            />
-          </span>
-        </div>
-      </div>
-    </section>
+            >
+              <p>{movie.original_title ? movie.original_title : movie.name}</p>{" "}
+              <div className="rating-flex">
+                <span> {movie.vote_average} </span>
+                <span className="rating-star-container">
+                  {" "}
+                  <RatingStar
+                    className="rating-star"
+                    fill={mode === "light" ? "#121212" : "white"}
+                  />
+                </span>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+    </>
   );
 };
