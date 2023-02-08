@@ -8,9 +8,7 @@ import { Slider } from "./Slider";
 import Cast from "./Cast";
 import { ActionNames } from "../../context/Context";
 import { initialSingleMovie } from "../../context/Context";
-// const API_KEY = process.env.REACT_APP_API_KEY;
-
-import API_KEY from "../../context/apikey";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function SingleMovieDetails() {
   const [key, setKey] = useState(null);

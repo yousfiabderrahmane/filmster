@@ -8,7 +8,8 @@ import {
   MovieType,
   ReviewsType,
 } from "../types";
-import API_KEY from "./apikey";
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 // const API_KEY = process.env.REACT_APP_API_KEY;
 
