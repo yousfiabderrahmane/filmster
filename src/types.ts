@@ -113,7 +113,7 @@ export interface InitialState {
 }
 
 //enum for the actions names
-export enum ActionNames {
+enum ActionNames {
   IS_PENDING = "IS_PENDING",
   UPDATE_SEARCHTERM = "UPDATE_SEARCHTERM",
   UPDATE_LIST = "UPDATE_LIST",

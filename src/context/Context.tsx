@@ -11,8 +11,6 @@ import {
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-// const API_KEY = process.env.REACT_APP_API_KEY;
-
 //3gezt n bdl les imports kamlin xDDDD
 export enum ActionNames {
   IS_PENDING = "IS_PENDING",
@@ -322,7 +320,7 @@ export const Context = () => {
 
 //context
 
-// capture th return type of my context
+// capture the return type of my context
 type movieContextType = ReturnType<typeof Context>;
 
 // 2-create the context
@@ -352,7 +350,7 @@ const movieContext = createContext<movieContextType>({
   //in this foucking bloody case we had to declare the return value to be foucking void in every single foucking func AAAAAAAAA !!!
 });
 
-// 3-create a custom hook to constum the context later on, also provide the return type in declatarion
+// 3-create a custom hook to consum the context later on, also provide the return type in declatarion
 export const UseMovieContext = (): movieContextType => {
   const ctx = useContext(movieContext);
   return ctx;
@@ -368,4 +366,5 @@ export const MovieContextProvider: React.FC<ProviderProps> = ({ children }) => {
     <movieContext.Provider value={Context()}>{children}</movieContext.Provider>
   );
 };
+
 export { initialSingleMovie };
